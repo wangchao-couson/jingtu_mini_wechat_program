@@ -5,9 +5,9 @@
   ],
   "window": {
     "navigationBarTitleText": "京途",
-    "navigationBarBackgroundColor": "#5C4A32",
+    "navigationBarBackgroundColor": "#145C63",
     "navigationBarTextStyle": "white",
-    "backgroundColor": "#F5F0E8"
+    "backgroundColor": "#F2F8FA"
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"

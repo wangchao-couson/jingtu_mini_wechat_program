@@ -1,40 +1,85 @@
 const WECHAT_ID = "coulson_pro";
 
-const categories = ["全部", "山水公路", "长城古镇", "草原天路", "湖库环线", "峡谷公路"];
+const categories = ["全部", "最新预告", "草原湖泊", "山水公路", "长城古镇", "湖库环线", "峡谷公路"];
 
 const classByCategory = {
-  "山水公路": "type-green",
-  "长城古镇": "type-gold",
-  "草原天路": "type-blue",
-  "湖库环线": "type-teal",
-  "峡谷公路": "type-orange"
+  "最新预告": "type-sky",
+  "草原湖泊": "type-lake",
+  "山水公路": "type-forest",
+  "长城古镇": "type-cloud",
+  "湖库环线": "type-lake",
+  "峡谷公路": "type-river"
+};
+
+const tripImages = {
+  grassA: ["/assets/images/trips/preview-01.jpg", "/assets/images/trips/preview-02.jpg", "/assets/images/trips/preview-03.jpg"],
+  grassB: ["/assets/images/trips/preview-04.jpg", "/assets/images/trips/preview-05.jpg", "/assets/images/trips/preview-06.jpg"],
+  bonfire: ["/assets/images/trips/preview-07.jpg", "/assets/images/trips/preview-08.jpg", "/assets/images/trips/preview-09.jpg"],
+  lake: ["/assets/images/trips/preview-10.jpg", "/assets/images/trips/preview-11.jpg", "/assets/images/trips/preview-12.jpg"],
+  road: ["/assets/images/trips/preview-13.jpg", "/assets/images/trips/preview-14.jpg", "/assets/images/trips/preview-15.jpg"],
+  beijing: ["/assets/images/baili.jpg", "/assets/images/miyun.jpg", "/assets/images/shidu.jpg"]
 };
 
 const banners = [
   {
-    title: "百里山水画廊",
-    subtitle: "延庆最经典山水自驾线，河谷、公路、村落和观景台一路展开。",
-    category: "山水公路",
-    activityId: "baili-gallery",
-    image: "/assets/images/baili.jpg"
+    title: "乌兰布统草原秘境",
+    subtitle: "7.3-7.6，乌兰布统外围 + 多伦湖，4天3晚自驾环线。",
+    category: "最新预告",
+    activityId: "ulanbutong-duolun",
+    images: [...tripImages.grassA, ...tripImages.lake]
   },
   {
-    title: "古北水镇 · 司马台",
-    subtitle: "夜景古镇加长城视野，适合周末轻度假和家庭自驾。",
-    category: "长城古镇",
-    activityId: "gubei-simatai",
-    image: "/assets/images/shidu.jpg"
+    title: "百里山水画廊",
+    subtitle: "延庆经典山水自驾线，河谷、公路、村落和观景台一路展开。",
+    category: "山水公路",
+    activityId: "baili-gallery",
+    images: tripImages.beijing
   },
   {
     title: "密云水库环湖",
     subtitle: "水库观景、山路弯道、鱼街午餐，一天往返刚刚好。",
     category: "湖库环线",
     activityId: "miyun-lake",
-    image: "/assets/images/miyun.jpg"
+    images: ["/assets/images/miyun.jpg", "/assets/images/trips/preview-10.jpg", "/assets/images/trips/preview-12.jpg"]
   }
 ];
 
 const activities = [
+  {
+    id: "ulanbutong-duolun",
+    category: "最新预告",
+    title: "乌兰布统草原秘境 + 多伦湖环线",
+    date: "7.3 18:00 - 7.6 20:00",
+    location: "北京 → 围场 → 乌兰布统外围 → 多伦湖",
+    duration: "4天3晚",
+    difficulty: "中等",
+    price: "约1150元，现场纯AA自理",
+    people: "20人精品小团",
+    hot: "最新",
+    expired: false,
+    images: [...tripImages.grassA, ...tripImages.grassB, ...tripImages.bonfire, ...tripImages.lake],
+    wechat: WECHAT_ID,
+    intro: "京东同事专属精品小团，自北京出发，经围场、御道口草原、乌兰布统外围小众点位和多伦湖环湖公路，组成一条不折返的草原湖泊自驾环线。路线主打原生态草原、白桦林、骑马体验、篝火烤羊排和高原湖泊日落。",
+    highlights: [
+      { title: "环线不折返", desc: "每天景观不重复，自驾体验更完整。" },
+      { title: "小众原生态", desc: "避开主景区人流，深入乌兰布统外围点位。" },
+      { title: "双日落体验", desc: "草原丘陵日落与高原湖泊日落各有氛围。" },
+      { title: "牧民骑马", desc: "私家牧道穿越草原白桦林，新手友好。" },
+      { title: "篝火烤羊排", desc: "牧民合规场地，炭火烤羊排和星空篝火。" },
+      { title: "同好社群", desc: "纯京东同事社群，结识志同道合的伙伴。" }
+    ],
+    itinerary: [
+      "Day 1：17:00 京东总部集合出发，约 21:30 抵达围场县城，入住酒店休整。",
+      "Day 2：御道口草原森林风景区随停随拍，下午 1.5 小时牧民私家牧道骑马，傍晚草原日落，夜晚烤羊排 + 篝火。",
+      "Day 3：深入乌兰布统外围原生态草原，小河头白桦林、烟子窑湖、金鸽牧场等小众点位，傍晚抵达多伦县。",
+      "Day 4：多伦湖 41 公里环湖公路自驾，6 大观景台随停随拍，午餐后返程北京。"
+    ],
+    includes: [
+      "费用 AA：住宿约 290 元，餐饮约 280 元，门票约 40 元，骑马约 130 元，油费过路费约 210 元，车主补贴约 150 元，公共物资约 50 元。",
+      "费用多退少补，明细公示；有车无车均可，车队统一调配拼车。",
+      "集合地点：京东总部。"
+    ]
+  },
   {
     id: "baili-gallery",
     category: "山水公路",
@@ -47,9 +92,10 @@ const activities = [
     people: "6-18人",
     hot: "经典",
     expired: false,
-    image: "/assets/images/baili.jpg",
+    images: ["/assets/images/baili.jpg", "/assets/images/trips/preview-13.jpg", "/assets/images/trips/preview-14.jpg"],
     wechat: WECHAT_ID,
     intro: "从延庆城区出发，沿滦赤路进入千家店镇，串联硅化木、滴水壶、乌龙峡谷一带的山水公路。路线弯道舒展、停车点多，是北京周边非常成熟的一日自驾线路。",
+    highlights: [],
     itinerary: ["09:00 延庆集合，确认车队编号和对讲频率", "10:30 进入百里山水画廊主线，沿途观景停靠", "12:30 千家店午餐，休整补给", "14:00 继续前往乌龙峡谷/滴水壶方向", "16:30 返程，北京城区傍晚抵达"],
     includes: ["线路规划", "车队领航", "停车点建议", "午餐/门票 AA 或自理"]
   },
@@ -65,29 +111,12 @@ const activities = [
     people: "4-12人",
     hot: "夜景",
     expired: false,
-    image: "/assets/images/shidu.jpg",
+    images: ["/assets/images/shidu.jpg", "/assets/images/trips/preview-04.jpg", "/assets/images/trips/preview-05.jpg"],
     wechat: WECHAT_ID,
     intro: "北京东北方向的轻度假自驾线，适合朋友、情侣和亲子。白天看古北口山势与长城，傍晚进入古北水镇，夜间可远眺司马台长城灯光。",
+    highlights: [],
     itinerary: ["D1 10:00 北京出发，京承高速前往密云", "D1 12:30 古北口午餐，下午游览古镇", "D1 19:00 夜景自由活动", "D2 09:30 睡到自然醒，周边短途观景", "D2 14:00 返程"],
     includes: ["路线规划", "住宿建议", "停车与入园提示", "餐食/住宿/门票自理"]
-  },
-  {
-    id: "grassland-road",
-    category: "草原天路",
-    title: "张北草原天路周末自驾",
-    date: "夏秋周末可约",
-    location: "河北张家口 · 张北",
-    duration: "2天1晚",
-    difficulty: "中等",
-    price: "现场纯AA自理",
-    people: "4-16人",
-    hot: "夏秋",
-    expired: false,
-    image: "/assets/images/baili.jpg",
-    wechat: WECHAT_ID,
-    intro: "从北京出发北上张家口，体验草原天路东线或西线的开阔视野。适合夏季避暑和秋季看风车、草坡、落日。",
-    itinerary: ["D1 08:00 北京集合出发", "D1 12:30 张北午餐后进入草原天路", "D1 17:30 落日观景，入住张北", "D2 09:30 继续草原公路轻巡游", "D2 15:00 返程"],
-    includes: ["两日路线规划", "车队节奏控制", "住宿区域建议", "油费/过路费/住宿自理"]
   },
   {
     id: "miyun-lake",
@@ -101,9 +130,10 @@ const activities = [
     people: "6-20人",
     hot: "亲子",
     expired: false,
-    image: "/assets/images/miyun.jpg",
+    images: ["/assets/images/miyun.jpg", "/assets/images/trips/preview-10.jpg", "/assets/images/trips/preview-11.jpg"],
     wechat: WECHAT_ID,
     intro: "适合第一次参加自驾活动的轻松线路，围绕密云水库周边观景道路、鱼街午餐和山间咖啡点设计，不赶路，重点是舒服地看山看水。",
+    highlights: [],
     itinerary: ["09:30 密云集合，车队说明", "10:30 水库观景点拍照", "12:00 鱼街午餐", "14:00 山间咖啡/村落散步", "16:00 返程"],
     includes: ["路线规划", "观景点建议", "领航车", "餐饮消费自理"]
   },
@@ -119,43 +149,28 @@ const activities = [
     people: "6-18人",
     hot: "峡谷",
     expired: true,
-    image: "/assets/images/shidu.jpg",
+    images: ["/assets/images/shidu.jpg", "/assets/images/trips/preview-06.jpg", "/assets/images/trips/preview-07.jpg"],
     wechat: WECHAT_ID,
     intro: "北京西南方向经典峡谷自驾线，沿拒马河谷前行，适合看山谷、河道、栈道和周边农家餐。路线成熟，停车补给相对方便。",
+    highlights: [],
     itinerary: ["08:30 北京西南集合出发", "10:30 进入十渡河谷段", "12:30 农家午餐", "14:00 观景/轻徒步自由活动", "16:30 返程"],
     includes: ["线路规划", "停车点建议", "车队领航", "游玩项目自理"]
-  },
-  {
-    id: "baihua-cuan",
-    category: "山水公路",
-    title: "百花山 · 爨底下古村线",
-    date: "周末一日/两日",
-    location: "北京门头沟 · 斋堂",
-    duration: "1-2天",
-    difficulty: "中等",
-    price: "现场纯AA自理",
-    people: "4-12人",
-    hot: "山路",
-    expired: true,
-    image: "/assets/images/baili.jpg",
-    wechat: WECHAT_ID,
-    intro: "门头沟西线山路自驾，适合喜欢山路和古村氛围的车友。可根据季节选择百花山观景、爨底下古村停留或斋堂周边轻度假。",
-    itinerary: ["09:00 门头沟集合，确认路况", "10:30 山路观景段行驶", "12:30 斋堂午餐", "14:00 爨底下古村/百花山方向游览", "16:30 返程或留宿"],
-    includes: ["山路路线规划", "车队安全提醒", "古村/住宿建议", "门票/餐饮/住宿自理"]
   }
 ];
 
 function decorateActivity(activity) {
   return {
     ...activity,
-    className: classByCategory[activity.category] || "type-green"
+    className: classByCategory[activity.category] || "type-sky",
+    coverImage: activity.images[0]
   };
 }
 
 const decoratedActivities = activities.map(decorateActivity);
 const decoratedBanners = banners.map((banner) => ({
   ...banner,
-  className: classByCategory[banner.category] || "type-green"
+  className: classByCategory[banner.category] || "type-sky",
+  coverImage: banner.images[0]
 }));
 
 Page({
@@ -206,6 +221,8 @@ Page({
   },
 
   copyWechat() {
+    const { selectedActivity } = this.data;
+    if (!selectedActivity || selectedActivity.expired) return;
     wx.setClipboardData({
       data: WECHAT_ID,
       success() {

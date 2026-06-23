@@ -14,7 +14,7 @@
     <swiper class="hero" autoplay circular interval="3600" duration="500" indicator-dots indicator-color="rgba(255,255,255,.42)" indicator-active-color="#ffffff">
       <swiper-item wx:for="{{banners}}" wx:key="activityId">
         <view class="slide {{item.className}}" data-id="{{item.activityId}}" bindtap="openActivity">
-          <image class="photo" src="{{item.image}}" mode="aspectFill"></image>
+          <image class="photo" src="{{item.coverImage}}" mode="aspectFill"></image>
           <view class="photo-shade"></view>
           <view class="slide-copy">
             <view class="eyebrow">{{item.category}}</view>
@@ -35,15 +35,19 @@
     </scroll-view>
 
     <view id="activityList" class="section-head">
-      <view class="section-title">活动模板</view>
-      <view class="section-count">{{filteredActivities.length}} 个模板</view>
+      <view class="section-title">近期预告</view>
+      <view class="section-count">{{filteredActivities.length}} 条线路</view>
     </view>
 
     <view class="list">
       <view wx:if="{{filteredActivities.length === 0}}" class="empty">没有找到匹配活动，换个关键词试试。</view>
       <view wx:for="{{filteredActivities}}" wx:key="id" class="activity-card {{item.expired ? 'is-expired' : ''}}" data-id="{{item.id}}" bindtap="openActivity">
         <view class="cover">
-          <image class="photo" src="{{item.image}}" mode="aspectFill"></image>
+          <swiper class="card-swiper" circular autoplay interval="3200" duration="500" indicator-dots indicator-color="rgba(255,255,255,.46)" indicator-active-color="#ffffff">
+            <swiper-item wx:for="{{item.images}}" wx:for-item="photo" wx:key="*this">
+              <image class="photo" src="{{photo}}" mode="aspectFill"></image>
+            </swiper-item>
+          </swiper>
           <view class="photo-shade"></view>
           <view class="badge">{{item.category}}</view>
           <view class="hot {{item.expired ? 'expired' : ''}}">{{item.expired ? '已结束' : item.hot}}</view>
@@ -66,7 +70,11 @@
 
   <view wx:else class="detail">
     <view class="detail-hero {{selectedActivity.className}}">
-      <image class="photo" src="{{selectedActivity.image}}" mode="aspectFill"></image>
+      <swiper class="detail-swiper" circular autoplay interval="3600" duration="520" indicator-dots indicator-color="rgba(255,255,255,.46)" indicator-active-color="#ffffff">
+        <swiper-item wx:for="{{selectedActivity.images}}" wx:for-item="photo" wx:key="*this">
+          <image class="photo" src="{{photo}}" mode="aspectFill"></image>
+        </swiper-item>
+      </swiper>
       <view class="photo-shade detail-shade"></view>
       <button class="back" bindtap="goHome">
         <view class="back-icon">‹</view>
@@ -89,6 +97,14 @@
     <view class="panel">
       <view class="panel-title">活动介绍</view>
       <view class="paragraph">{{selectedActivity.intro}}</view>
+    </view>
+
+    <view wx:if="{{selectedActivity.highlights.length}}" class="panel">
+      <view class="panel-title">核心体验</view>
+      <view wx:for="{{selectedActivity.highlights}}" wx:key="title" class="highlight-line">
+        <view class="highlight-name">{{item.title}}</view>
+        <view class="highlight-desc">{{item.desc}}</view>
+      </view>
     </view>
 
     <view class="panel">
