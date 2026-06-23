@@ -1,0 +1,137 @@
+<view class="page">
+  <view wx:if="{{!selectedActivity}}" class="home">
+    <view class="header">
+      <view class="brand">
+        <view class="mark">山</view>
+        <view>
+          <view class="brand-title">山野集合</view>
+          <view class="brand-sub">活动展示 · 微信联系报名</view>
+        </view>
+      </view>
+      <button class="mini-btn" bindtap="scrollToList">看活动</button>
+    </view>
+
+    <swiper class="hero" autoplay circular interval="3600" duration="500" indicator-dots indicator-color="rgba(255,255,255,.42)" indicator-active-color="#ffffff">
+      <swiper-item wx:for="{{banners}}" wx:key="activityId">
+        <view class="slide {{item.className}}" data-id="{{item.activityId}}" bindtap="openActivity">
+          <view class="route-lines">
+            <view></view>
+            <view></view>
+            <view></view>
+          </view>
+          <view class="orb orb-a"></view>
+          <view class="orb orb-b"></view>
+          <view class="mountain-a"></view>
+          <view class="mountain-b"></view>
+          <view class="hero-symbol">{{item.symbol}}</view>
+          <view class="slide-copy">
+            <view class="eyebrow">{{item.category}} template</view>
+            <view class="slide-title">{{item.title}}</view>
+            <view class="slide-sub">{{item.subtitle}}</view>
+          </view>
+        </view>
+      </swiper-item>
+    </swiper>
+
+    <view class="search-row">
+      <input value="{{searchText}}" placeholder="搜索标题、地点、类型" bindinput="onSearch" />
+      <button bindtap="renderList">⌕</button>
+    </view>
+
+    <scroll-view class="chips" scroll-x enhanced show-scrollbar="{{false}}">
+      <button wx:for="{{categories}}" wx:key="*this" class="chip {{activeCategory === item ? 'active' : ''}}" data-category="{{item}}" bindtap="setCategory">{{item}}</button>
+    </scroll-view>
+
+    <view id="activityList" class="section-head">
+      <view class="section-title">活动模板</view>
+      <view class="section-count">{{filteredActivities.length}} 个模板</view>
+    </view>
+
+    <view class="list">
+      <view wx:if="{{filteredActivities.length === 0}}" class="empty">没有找到匹配活动，换个关键词试试。</view>
+      <view wx:for="{{filteredActivities}}" wx:key="id" class="activity-card" data-id="{{item.id}}" bindtap="openActivity">
+        <view class="cover {{item.className}}">
+          <view class="route-lines small">
+            <view></view>
+            <view></view>
+            <view></view>
+          </view>
+          <view class="orb orb-a"></view>
+          <view class="mountain-a"></view>
+          <view class="mountain-b"></view>
+          <view class="cover-symbol">{{item.symbol}}</view>
+          <view class="badge">{{item.category}}</view>
+          <view class="hot">{{item.hot}}</view>
+        </view>
+        <view class="card-body">
+          <view class="card-title">
+            <text>{{item.title}}</text>
+            <text class="price">¥{{item.price}}</text>
+          </view>
+          <view class="meta">
+            <view>时间 <text>{{item.date}}</text></view>
+            <view>地点 <text>{{item.location}}</text></view>
+            <view>人数 <text>{{item.people}}</text></view>
+            <view>难度 <text>{{item.difficulty}}</text></view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view wx:else class="detail">
+    <view class="detail-hero {{selectedActivity.className}}">
+      <button class="back" bindtap="goHome">←</button>
+      <view class="route-lines">
+        <view></view>
+        <view></view>
+        <view></view>
+      </view>
+      <view class="orb orb-a"></view>
+      <view class="orb orb-b"></view>
+      <view class="mountain-a"></view>
+      <view class="mountain-b"></view>
+      <view class="detail-symbol">{{selectedActivity.symbol}}</view>
+      <view class="detail-title">
+        <view class="badge inline">{{selectedActivity.category}}</view>
+        <view class="detail-name">{{selectedActivity.title}}</view>
+      </view>
+    </view>
+
+    <view class="info-grid">
+      <view class="info-tile"><text>日期</text><view>{{selectedActivity.date}}</view></view>
+      <view class="info-tile"><text>时长</text><view>{{selectedActivity.duration}}</view></view>
+      <view class="info-tile"><text>人数</text><view>{{selectedActivity.people}}</view></view>
+      <view class="info-tile"><text>地点</text><view>{{selectedActivity.location}}</view></view>
+      <view class="info-tile"><text>难度</text><view>{{selectedActivity.difficulty}}</view></view>
+      <view class="info-tile"><text>费用</text><view>¥{{selectedActivity.price}}</view></view>
+    </view>
+
+    <view class="panel">
+      <view class="panel-title">活动介绍</view>
+      <view class="paragraph">{{selectedActivity.intro}}</view>
+    </view>
+
+    <view class="panel">
+      <view class="panel-title">行程安排</view>
+      <view wx:for="{{selectedActivity.itinerary}}" wx:key="*this" class="bullet">• {{item}}</view>
+    </view>
+
+    <view class="panel">
+      <view class="panel-title">费用包含</view>
+      <view wx:for="{{selectedActivity.includes}}" wx:key="*this" class="bullet">• {{item}}</view>
+    </view>
+
+    <view class="contact-card">
+      <view class="qr">
+        <view wx:for="{{selectedActivity.qrCells}}" wx:key="index" class="qr-dot {{item ? 'on' : ''}}"></view>
+      </view>
+      <view class="contact-main">
+        <view class="contact-title">微信联系报名</view>
+        <view class="contact-desc">{{selectedActivity.contactText}}</view>
+        <view class="wechat-id">微信：{{selectedActivity.wechat}}</view>
+        <button class="copy-btn" bindtap="copyWechat">复制微信号</button>
+      </view>
+    </view>
+  </view>
+</view>

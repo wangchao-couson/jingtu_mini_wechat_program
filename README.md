@@ -1,6 +1,9 @@
 # 山野集合：户外活动 WebView 小程序
 
-当前第一个版本采用“微信小程序壳 + WebView 静态网页”的方式。小程序只负责打开线上活动页，活动内容全部在网页里维护。以后更新活动时，只改网页并重新发布网页，不需要改小程序代码。
+当前第一个版本同时保留两套入口：
+
+- 默认入口：小程序原生静态测试版，不依赖 WebView 域名，可直接上传体验版测试。
+- 备用入口：WebView 静态网页版，等业务域名解决后再切回。
 
 ## 当前版本功能
 
@@ -8,7 +11,8 @@
 - 首页下方：活动模板列表，内置 6 个活动模板。
 - 活动详情：展示活动介绍、时间、地点、人数、难度、费用、行程安排、费用包含。
 - 联系报名：详情页展示微信群二维码样式卡片和个人微信号，支持复制微信号。
-- 微信小程序壳：`pages/webview/index` 通过 `<web-view>` 加载线上活动页。
+- 原生测试页：`pages/native/index`，无需业务域名。
+- WebView 备用页：`pages/webview/index`，通过 `<web-view>` 加载线上活动页。
 - 暂无登录、角色、报名表单、支付、审核、后台管理。
 
 ## 本地预览网页
@@ -40,9 +44,30 @@ WEBVIEW_URL: "https://wangchao-couson.github.io/jingtu_mini_wechat_program/"
 
 如果你改用自己的域名，把这里换成你的 HTTPS 活动页地址。
 
+## 当前默认启动页
+
+当前 `app.json` 默认启动：
+
+```text
+pages/native/index
+```
+
+这意味着你现在可以先不用配置业务域名，直接在微信开发者工具里预览、上传体验版。
+
+等业务域名解决后，如果要切回 WebView，把 `app.json` 的页面顺序改成：
+
+```json
+{
+  "pages": [
+    "pages/webview/index",
+    "pages/native/index"
+  ]
+}
+```
+
 ## 后续更新活动
 
-只需要编辑 `index.html` 顶部脚本里的两个数组：
+如果是 WebView 版本，只需要编辑 `index.html` 顶部脚本里的两个数组：
 
 ```js
 const banners = [
@@ -52,6 +77,19 @@ const banners = [
 const activities = [
   // 活动卡片和详情模板
 ];
+```
+
+如果是当前原生测试版，需要同步编辑：
+
+```text
+pages/native/index.js
+```
+
+里面的：
+
+```js
+const banners = [];
+const activities = [];
 ```
 
 更新后执行：
@@ -77,15 +115,36 @@ git push
   utils/
     config.js                # WebView URL 配置
   pages/
+    native/
+      index.wxml             # 当前默认原生静态测试页
+      index.js
+      index.json
+      index.wxss
     webview/
-      index.wxml             # web-view 入口
+      index.wxml             # web-view 备用入口
       index.js
       index.json
       index.wxss
   README.md
 ```
 
-## 微信小程序三步上线
+## 当前免域名测试上线步骤
+
+1. 打开微信开发者工具
+2. 导入本项目：
+
+```text
+/Users/liqiang/Documents/活动报名小程序
+```
+
+3. 使用你的小程序 AppID
+4. 预览确认首页、活动详情、复制微信号可用
+5. 点击上传
+6. 到微信公众平台设置体验成员，并生成体验版二维码
+
+这一套走的是 `pages/native/index`，不需要业务域名。
+
+## WebView 正式版三步上线
 
 ### 第一步：发布活动网页
 

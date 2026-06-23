@@ -1,5 +1,5 @@
 {
-  "appid": "touristappid",
+  "appid": "wx41c5fec33e8beba9",
   "projectname": "jingtu_mini_wechat_program",
   "description": "山野集合户外活动 WebView 小程序",
   "compileType": "miniprogram",
@@ -9,6 +9,30 @@
     "es6": true,
     "postcss": true,
     "minified": true,
-    "enhance": true
-  }
+    "enhance": true,
+    "compileWorklet": false,
+    "uglifyFileName": false,
+    "uploadWithSourceMap": true,
+    "packNpmManually": false,
+    "packNpmRelationList": [],
+    "minifyWXSS": true,
+    "minifyWXML": true,
+    "localPlugins": false,
+    "disableUseStrict": false,
+    "useCompilerPlugins": false,
+    "condition": false,
+    "swc": false,
+    "disableSWC": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    }
+  },
+  "simulatorPluginLibVersion": {},
+  "packOptions": {
+    "ignore": [],
+    "include": []
+  },
+  "editorSetting": {}
 }
