@@ -17,7 +17,7 @@ const tripImages = {
   bonfire: ["/assets/images/trips/preview-07.jpg", "/assets/images/trips/preview-08.jpg", "/assets/images/trips/preview-09.jpg"],
   lake: ["/assets/images/trips/preview-10.jpg", "/assets/images/trips/preview-11.jpg", "/assets/images/trips/preview-12.jpg"],
   road: ["/assets/images/trips/preview-13.jpg", "/assets/images/trips/preview-14.jpg", "/assets/images/trips/preview-15.jpg"],
-  beijing: ["/assets/images/baili.jpg", "/assets/images/miyun.jpg", "/assets/images/shidu.jpg"]
+  beijing: tripImages.road
 };
 
 const banners = [
@@ -40,7 +40,7 @@ const banners = [
     subtitle: "水库观景、山路弯道、鱼街午餐，一天往返刚刚好。",
     category: "湖库环线",
     activityId: "miyun-lake",
-    images: ["/assets/images/miyun.jpg", "/assets/images/trips/preview-10.jpg", "/assets/images/trips/preview-12.jpg"]
+    images: ["/assets/images/trips/preview-10.jpg", "/assets/images/trips/preview-11.jpg", "/assets/images/trips/preview-12.jpg"]
   }
 ];
 
@@ -92,7 +92,7 @@ const activities = [
     people: "6-18人",
     hot: "经典",
     expired: false,
-    images: ["/assets/images/baili.jpg", "/assets/images/trips/preview-13.jpg", "/assets/images/trips/preview-14.jpg"],
+    images: ["/assets/images/trips/preview-13.jpg", "/assets/images/trips/preview-14.jpg", "/assets/images/trips/preview-15.jpg"],
     wechat: WECHAT_ID,
     intro: "从延庆城区出发，沿滦赤路进入千家店镇，串联硅化木、滴水壶、乌龙峡谷一带的山水公路。路线弯道舒展、停车点多，是北京周边非常成熟的一日自驾线路。",
     highlights: [],
@@ -111,7 +111,7 @@ const activities = [
     people: "4-12人",
     hot: "夜景",
     expired: false,
-    images: ["/assets/images/shidu.jpg", "/assets/images/trips/preview-04.jpg", "/assets/images/trips/preview-05.jpg"],
+    images: ["/assets/images/trips/preview-04.jpg", "/assets/images/trips/preview-05.jpg", "/assets/images/trips/preview-06.jpg"],
     wechat: WECHAT_ID,
     intro: "北京东北方向的轻度假自驾线，适合朋友、情侣和亲子。白天看古北口山势与长城，傍晚进入古北水镇，夜间可远眺司马台长城灯光。",
     highlights: [],
@@ -130,7 +130,7 @@ const activities = [
     people: "6-20人",
     hot: "亲子",
     expired: false,
-    images: ["/assets/images/miyun.jpg", "/assets/images/trips/preview-10.jpg", "/assets/images/trips/preview-11.jpg"],
+    images: ["/assets/images/trips/preview-10.jpg", "/assets/images/trips/preview-11.jpg", "/assets/images/trips/preview-12.jpg"],
     wechat: WECHAT_ID,
     intro: "适合第一次参加自驾活动的轻松线路，围绕密云水库周边观景道路、鱼街午餐和山间咖啡点设计，不赶路，重点是舒服地看山看水。",
     highlights: [],
@@ -149,7 +149,7 @@ const activities = [
     people: "6-18人",
     hot: "峡谷",
     expired: true,
-    images: ["/assets/images/shidu.jpg", "/assets/images/trips/preview-06.jpg", "/assets/images/trips/preview-07.jpg"],
+    images: ["/assets/images/trips/preview-06.jpg", "/assets/images/trips/preview-07.jpg", "/assets/images/trips/preview-08.jpg"],
     wechat: WECHAT_ID,
     intro: "北京西南方向经典峡谷自驾线，沿拒马河谷前行，适合看山谷、河道、栈道和周边农家餐。路线成熟，停车补给相对方便。",
     highlights: [],
