@@ -4,26 +4,26 @@
   align-items: center;
   justify-content: center;
   padding: 48rpx;
-  background: linear-gradient(145deg, #f7f1df 0%, #edf6e6 52%, #e6f5f2 100%);
+  background: linear-gradient(145deg, #F5F0E8 0%, #F8F5EF 52%, #EFE3D2 100%);
 }
 
 .card {
   width: 100%;
   padding: 44rpx 36rpx;
   border-radius: 32rpx;
-  background: rgba(255, 253, 246, .82);
-  box-shadow: 0 24rpx 70rpx rgba(26, 55, 36, .14);
+  background: rgba(255, 255, 255, .86);
+  box-shadow: 0 24rpx 70rpx rgba(92, 74, 50, .14);
 }
 
 .title {
-  color: #17231d;
+  color: #3F3324;
   font-size: 36rpx;
   font-weight: 700;
 }
 
 .desc {
   margin-top: 18rpx;
-  color: #68766d;
+  color: #8B7B64;
   font-size: 26rpx;
   line-height: 1.7;
 }

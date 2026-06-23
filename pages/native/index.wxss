@@ -1,7 +1,7 @@
 page {
   min-height: 100vh;
-  color: #17231d;
-  background: linear-gradient(145deg, #f7f1df 0%, #edf6e6 52%, #e6f5f2 100%);
+  color: #3F3324;
+  background: #F5F0E8;
 }
 
 button {
@@ -20,9 +20,9 @@ button::after {
   min-height: 100vh;
   padding: 24rpx 24rpx 54rpx;
   background:
-    radial-gradient(circle at 14% 0%, rgba(188, 223, 99, .5), transparent 32%),
-    radial-gradient(circle at 84% 16%, rgba(64, 168, 201, .24), transparent 30%),
-    linear-gradient(145deg, #f7f1df 0%, #edf6e6 52%, #e6f5f2 100%);
+    radial-gradient(circle at 10% 0%, rgba(139, 111, 71, .18), transparent 34%),
+    radial-gradient(circle at 88% 12%, rgba(217, 194, 163, .42), transparent 30%),
+    linear-gradient(145deg, #F5F0E8 0%, #F8F5EF 54%, #EFE3D2 100%);
 }
 
 .header {
@@ -46,8 +46,8 @@ button::after {
   width: 78rpx;
   height: 78rpx;
   border-radius: 30rpx;
-  background: #fffdf6;
-  box-shadow: 0 18rpx 46rpx rgba(31, 138, 91, .24);
+  background: #FFFFFF;
+  box-shadow: 0 18rpx 46rpx rgba(92, 74, 50, .18);
 }
 
 .brand-title {
@@ -59,15 +59,15 @@ button::after {
 
 .brand-sub {
   margin-top: 4rpx;
-  color: #68766d;
+  color: #8B7B64;
   font-size: 22rpx;
 }
 
 .mini-btn {
   padding: 18rpx 24rpx;
-  color: #17351f;
+  color: #5C4A32;
   border-radius: 999rpx;
-  background: #f4e4a5;
+  background: #D9C2A3;
   font-size: 24rpx;
   font-weight: 900;
 }
@@ -76,7 +76,7 @@ button::after {
   height: 366rpx;
   overflow: hidden;
   border-radius: 56rpx;
-  box-shadow: 0 30rpx 80rpx rgba(26, 55, 36, .16);
+  box-shadow: 0 30rpx 80rpx rgba(92, 74, 50, .18);
 }
 
 .slide,
@@ -92,11 +92,11 @@ button::after {
   padding: 38rpx;
 }
 
-.type-green { background: linear-gradient(135deg, #214f36, #63b15f, #d9b35a); }
-.type-gold { background: linear-gradient(135deg, #5f422c, #b66f38, #f0bd71); }
-.type-blue { background: linear-gradient(135deg, #2d617f, #4eb6d0, #b9dd6a); }
-.type-teal { background: linear-gradient(135deg, #1d6f8a, #38b8d2, #b5e8de); }
-.type-orange { background: linear-gradient(135deg, #6e4b37, #df8050, #f2c96b); }
+.type-green { background: linear-gradient(135deg, #5C4A32, #8B6F47, #D9C2A3); }
+.type-gold { background: linear-gradient(135deg, #4F3E2A, #8B6F47, #C9A77D); }
+.type-blue { background: linear-gradient(135deg, #5C4A32, #9A7A52, #D9C2A3); }
+.type-teal { background: linear-gradient(135deg, #4A3A28, #8B6F47, #E7D7C1); }
+.type-orange { background: linear-gradient(135deg, #5C4A32, #A98257, #D9C2A3); }
 
 .photo {
   position: absolute;
@@ -110,14 +110,14 @@ button::after {
   inset: 0;
   z-index: 1;
   background:
-    linear-gradient(90deg, rgba(14, 25, 18, .74) 0%, rgba(14, 25, 18, .34) 56%, rgba(14, 25, 18, .08) 100%),
-    linear-gradient(0deg, rgba(14, 25, 18, .48) 0%, rgba(14, 25, 18, .08) 48%);
+    linear-gradient(90deg, rgba(45, 35, 24, .78) 0%, rgba(66, 49, 31, .36) 56%, rgba(66, 49, 31, .08) 100%),
+    linear-gradient(0deg, rgba(45, 35, 24, .5) 0%, rgba(45, 35, 24, .08) 48%);
 }
 
 .detail-shade {
   background:
-    linear-gradient(0deg, rgba(14, 25, 18, .76) 0%, rgba(14, 25, 18, .1) 58%),
-    linear-gradient(90deg, rgba(14, 25, 18, .5) 0%, rgba(14, 25, 18, .08) 100%);
+    linear-gradient(0deg, rgba(45, 35, 24, .78) 0%, rgba(45, 35, 24, .1) 58%),
+    linear-gradient(90deg, rgba(45, 35, 24, .48) 0%, rgba(45, 35, 24, .08) 100%);
 }
 
 .route-lines {
@@ -235,8 +235,8 @@ button::after {
   height: 92rpx;
   padding: 0 26rpx;
   border-radius: 34rpx;
-  color: #17231d;
-  background: rgba(255,255,255,.72);
+  color: #3F3324;
+  background: rgba(255,255,255,.82);
   box-shadow: inset 0 2rpx 0 rgba(255,255,255,.8);
 }
 
@@ -245,8 +245,8 @@ button::after {
   height: 92rpx;
   color: #fff;
   border-radius: 32rpx;
-  background: #17351f;
-  box-shadow: 0 20rpx 42rpx rgba(23,53,31,.2);
+  background: #5C4A32;
+  box-shadow: 0 20rpx 42rpx rgba(92,74,50,.22);
 }
 
 .chips {
@@ -261,16 +261,16 @@ button::after {
   justify-content: center;
   margin-right: 14rpx;
   padding: 18rpx 26rpx;
-  color: #33463b;
+  color: #5C4A32;
   border-radius: 999rpx;
-  background: rgba(255,255,255,.62);
+  background: rgba(255,255,255,.76);
   font-size: 26rpx;
 }
 
 .chip.active {
   color: #fff;
-  background: #17351f;
-  box-shadow: 0 14rpx 38rpx rgba(23,53,31,.18);
+  background: #5C4A32;
+  box-shadow: 0 14rpx 38rpx rgba(92,74,50,.2);
 }
 
 .section-head {
@@ -286,7 +286,7 @@ button::after {
 }
 
 .section-count {
-  color: #68766d;
+  color: #8B7B64;
   font-size: 24rpx;
 }
 
@@ -298,8 +298,8 @@ button::after {
 .activity-card {
   overflow: hidden;
   border-radius: 44rpx;
-  background: rgba(255,253,246,.82);
-  box-shadow: 0 24rpx 62rpx rgba(25,52,33,.1);
+  background: rgba(255,255,255,.9);
+  box-shadow: 0 24rpx 62rpx rgba(92,74,50,.12);
 }
 
 .cover {
@@ -331,8 +331,18 @@ button::after {
 
 .hot {
   right: 22rpx;
-  color: #17351f;
+  color: #5C4A32;
   background: rgba(247,231,171,.92);
+}
+
+.hot.expired {
+  color: #8B7B64;
+  background: rgba(245,240,232,.9);
+}
+
+.activity-card.is-expired {
+  filter: grayscale(.18);
+  opacity: .72;
 }
 
 .badge.inline {
@@ -356,27 +366,27 @@ button::after {
 
 .price {
   flex-shrink: 0;
-  color: #e26f2e;
+  color: #8B6F47;
 }
 
 .meta {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12rpx;
-  color: #68766d;
+  color: #8B7B64;
   font-size: 23rpx;
 }
 
 .meta text {
-  color: #17231d;
+  color: #3F3324;
   font-weight: 900;
 }
 
 .empty {
   padding: 54rpx 30rpx;
-  color: #68766d;
+  color: #8B7B64;
   text-align: center;
-  border: 2rpx dashed rgba(23,35,29,.15);
+  border: 2rpx dashed rgba(92,74,50,.18);
   border-radius: 40rpx;
   background: rgba(255,255,255,.55);
 }
@@ -389,7 +399,7 @@ button::after {
   height: 500rpx;
   margin: -24rpx -24rpx 0;
   border-radius: 0 0 60rpx 60rpx;
-  box-shadow: 0 30rpx 80rpx rgba(26,55,36,.16);
+  box-shadow: 0 30rpx 80rpx rgba(92,74,50,.18);
 }
 
 .back {
@@ -405,7 +415,7 @@ button::after {
   padding: 0;
   color: #fff;
   border-radius: 50%;
-  background: rgba(12, 24, 16, .42);
+  background: rgba(92, 74, 50, .42);
   box-shadow: 0 16rpx 42rpx rgba(0,0,0,.18);
   backdrop-filter: blur(16px);
 }
@@ -417,8 +427,8 @@ button::after {
   align-items: center;
   justify-content: center;
   border-radius: 999rpx;
-  color: #17351f;
-  background: #f7e7ab;
+  color: #5C4A32;
+  background: #FFFFFF;
   font-size: 48rpx;
   line-height: 1;
   font-weight: 900;
@@ -457,18 +467,18 @@ button::after {
   min-height: 132rpx;
   padding: 22rpx 18rpx;
   border-radius: 32rpx;
-  background: rgba(255,255,255,.68);
+  background: rgba(255,255,255,.86);
 }
 
 .info-tile text {
   display: block;
   margin-bottom: 8rpx;
-  color: #68766d;
+  color: #8B7B64;
   font-size: 22rpx;
 }
 
 .info-tile view {
-  color: #17231d;
+  color: #3F3324;
   font-size: 24rpx;
   font-weight: 900;
 }
@@ -477,7 +487,7 @@ button::after {
   margin-top: 22rpx;
   padding: 28rpx;
   border-radius: 40rpx;
-  background: rgba(255,255,255,.68);
+  background: rgba(255,255,255,.86);
 }
 
 .panel-title {
@@ -488,7 +498,7 @@ button::after {
 
 .paragraph,
 .bullet {
-  color: #35443b;
+  color: #5C4A32;
   font-size: 27rpx;
   line-height: 1.75;
 }
@@ -499,8 +509,14 @@ button::after {
   padding: 26rpx;
   color: #fff;
   border-radius: 44rpx;
-  background: linear-gradient(135deg, #17351f, #1f8a5b);
-  box-shadow: 0 30rpx 76rpx rgba(23,53,31,.17);
+  background: linear-gradient(135deg, #5C4A32, #8B6F47);
+  box-shadow: 0 30rpx 76rpx rgba(92,74,50,.22);
+}
+
+.contact-card.disabled {
+  color: #8B7B64;
+  background: linear-gradient(135deg, #D8D1C6, #EFE7DC);
+  box-shadow: none;
 }
 
 .contact-title {
@@ -521,11 +537,16 @@ button::after {
   flex: 1;
   min-width: 0;
   padding: 14rpx 18rpx;
-  color: #17351f;
+  color: #5C4A32;
   border-radius: 999rpx;
-  background: #f7e7ab;
+  background: #D9C2A3;
   font-size: 24rpx;
   font-weight: 900;
+}
+
+.contact-card.disabled .wechat-id {
+  color: #8B7B64;
+  background: rgba(255,255,255,.62);
 }
 
 .wechat-row {
@@ -539,9 +560,14 @@ button::after {
   height: 78rpx;
   flex: 0 0 78rpx;
   margin-top: 0;
-  color: #17351f;
+  color: #5C4A32;
   border-radius: 50%;
-  background: #fffdf6;
+  background: #FFFFFF;
   font-size: 22rpx;
   font-weight: 900;
+}
+
+.copy-btn.disabled {
+  color: #A79B8A;
+  background: #E7E0D6;
 }

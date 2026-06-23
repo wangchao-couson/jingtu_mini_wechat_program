@@ -41,12 +41,12 @@
 
     <view class="list">
       <view wx:if="{{filteredActivities.length === 0}}" class="empty">没有找到匹配活动，换个关键词试试。</view>
-      <view wx:for="{{filteredActivities}}" wx:key="id" class="activity-card" data-id="{{item.id}}" bindtap="openActivity">
+      <view wx:for="{{filteredActivities}}" wx:key="id" class="activity-card {{item.expired ? 'is-expired' : ''}}" data-id="{{item.id}}" bindtap="openActivity">
         <view class="cover">
           <image class="photo" src="{{item.image}}" mode="aspectFill"></image>
           <view class="photo-shade"></view>
           <view class="badge">{{item.category}}</view>
-          <view class="hot">{{item.hot}}</view>
+          <view class="hot {{item.expired ? 'expired' : ''}}">{{item.expired ? '已结束' : item.hot}}</view>
         </view>
         <view class="card-body">
           <view class="card-title">
@@ -101,13 +101,13 @@
       <view wx:for="{{selectedActivity.includes}}" wx:key="*this" class="bullet">• {{item}}</view>
     </view>
 
-    <view class="contact-card">
+    <view class="contact-card {{selectedActivity.expired ? 'disabled' : ''}}">
       <view class="contact-main">
         <view class="contact-title">微信联系</view>
-        <view class="contact-desc">添加微信号，发送线路名称，获取集合地点、车辆建议和同行信息。</view>
+        <view class="contact-desc">{{selectedActivity.expired ? '该线路已结束，后续新线路开放后可继续查看。' : '发送线路名称，获取集合地点、车辆建议和同行信息。'}}</view>
         <view class="wechat-row">
           <view class="wechat-id">微信：{{selectedActivity.wechat}}</view>
-          <button class="copy-btn" bindtap="copyWechat">复制</button>
+          <button class="copy-btn {{selectedActivity.expired ? 'disabled' : ''}}" disabled="{{selectedActivity.expired}}" bindtap="copyWechat">复制</button>
         </view>
       </view>
     </view>
