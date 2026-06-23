@@ -1,0 +1,14 @@
+{
+  "appid": "touristappid",
+  "projectname": "jingtu_mini_wechat_program",
+  "description": "山野集合户外活动 WebView 小程序",
+  "compileType": "miniprogram",
+  "miniprogramRoot": "./",
+  "setting": {
+    "urlCheck": true,
+    "es6": true,
+    "postcss": true,
+    "minified": true,
+    "enhance": true
+  }
+}
