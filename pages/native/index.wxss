@@ -45,15 +45,9 @@ button::after {
 .mark {
   width: 78rpx;
   height: 78rpx;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
   border-radius: 30rpx;
-  background: linear-gradient(135deg, #153b28, #49a063);
+  background: #fffdf6;
   box-shadow: 0 18rpx 46rpx rgba(31, 138, 91, .24);
-  font-size: 32rpx;
-  font-weight: 900;
 }
 
 .brand-title {
@@ -98,12 +92,33 @@ button::after {
   padding: 38rpx;
 }
 
-.type-hike { background: linear-gradient(135deg, #214f36, #63b15f, #d9b35a); }
-.type-camp { background: linear-gradient(135deg, #314f42, #2e8d7c, #f0bd71); }
-.type-cycle { background: linear-gradient(135deg, #2d617f, #4eb6d0, #b9dd6a); }
-.type-climb { background: linear-gradient(135deg, #6e4b37, #df8050, #f2c96b); }
-.type-water { background: linear-gradient(135deg, #1d6f8a, #38b8d2, #b5e8de); }
-.type-run { background: linear-gradient(135deg, #4b3b72, #d56f5f, #f2ba59); }
+.type-green { background: linear-gradient(135deg, #214f36, #63b15f, #d9b35a); }
+.type-gold { background: linear-gradient(135deg, #5f422c, #b66f38, #f0bd71); }
+.type-blue { background: linear-gradient(135deg, #2d617f, #4eb6d0, #b9dd6a); }
+.type-teal { background: linear-gradient(135deg, #1d6f8a, #38b8d2, #b5e8de); }
+.type-orange { background: linear-gradient(135deg, #6e4b37, #df8050, #f2c96b); }
+
+.photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.photo-shade {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(90deg, rgba(14, 25, 18, .74) 0%, rgba(14, 25, 18, .34) 56%, rgba(14, 25, 18, .08) 100%),
+    linear-gradient(0deg, rgba(14, 25, 18, .48) 0%, rgba(14, 25, 18, .08) 48%);
+}
+
+.detail-shade {
+  background:
+    linear-gradient(0deg, rgba(14, 25, 18, .76) 0%, rgba(14, 25, 18, .1) 58%),
+    linear-gradient(90deg, rgba(14, 25, 18, .5) 0%, rgba(14, 25, 18, .08) 100%);
+}
 
 .route-lines {
   position: absolute;
@@ -382,11 +397,33 @@ button::after {
   top: 32rpx;
   left: 32rpx;
   z-index: 6;
-  width: 82rpx;
-  height: 82rpx;
+  width: auto;
+  height: 78rpx;
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  padding: 8rpx 22rpx 8rpx 10rpx;
   color: #fff;
-  border-radius: 30rpx;
-  background: rgba(255,255,255,.18);
+  border-radius: 999rpx;
+  background: rgba(12, 24, 16, .42);
+  box-shadow: 0 16rpx 42rpx rgba(0,0,0,.18);
+  backdrop-filter: blur(16px);
+  font-size: 26rpx;
+  font-weight: 900;
+}
+
+.back-icon {
+  width: 58rpx;
+  height: 58rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999rpx;
+  color: #17351f;
+  background: #f7e7ab;
+  font-size: 48rpx;
+  line-height: 1;
+  font-weight: 900;
 }
 
 .detail-symbol {
@@ -459,36 +496,13 @@ button::after {
 }
 
 .contact-card {
-  display: grid;
-  grid-template-columns: 204rpx 1fr;
-  gap: 24rpx;
-  align-items: center;
+  display: block;
   margin-top: 26rpx;
   padding: 26rpx;
   color: #fff;
   border-radius: 44rpx;
   background: linear-gradient(135deg, #17351f, #1f8a5b);
   box-shadow: 0 30rpx 76rpx rgba(23,53,31,.17);
-}
-
-.qr {
-  width: 204rpx;
-  height: 204rpx;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 10rpx;
-  padding: 18rpx;
-  border-radius: 34rpx;
-  background: #fffdf6;
-}
-
-.qr-dot {
-  border-radius: 6rpx;
-  background: rgba(23,53,31,.12);
-}
-
-.qr-dot.on {
-  background: #17351f;
 }
 
 .contact-title {

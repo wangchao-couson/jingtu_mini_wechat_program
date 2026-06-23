@@ -1,7 +1,7 @@
 {
   "appid": "wx41c5fec33e8beba9",
   "projectname": "jingtu_mini_wechat_program",
-  "description": "山野集合户外活动 WebView 小程序",
+  "description": "京途北京周边自驾活动小程序",
   "compileType": "miniprogram",
   "miniprogramRoot": "./",
   "setting": {

@@ -4,7 +4,7 @@
     "pages/webview/index"
   ],
   "window": {
-    "navigationBarTitleText": "山野集合",
+    "navigationBarTitleText": "京途",
     "navigationBarBackgroundColor": "#17351f",
     "navigationBarTextStyle": "white",
     "backgroundColor": "#f7f1df"

@@ -1,4 +1,4 @@
-# 山野集合：户外活动 WebView 小程序
+# 京途：北京周边自驾活动小程序
 
 当前第一个版本同时保留两套入口：
 
@@ -10,7 +10,7 @@
 - 首页顶部：热门活动轮播，内置 3 个轮播模板。
 - 首页下方：活动模板列表，内置 6 个活动模板。
 - 活动详情：展示活动介绍、时间、地点、人数、难度、费用、行程安排、费用包含。
-- 联系报名：详情页展示微信群二维码样式卡片和个人微信号，支持复制微信号。
+- 联系报名：详情页展示个人微信号 `coulson_pro`，支持复制微信号。
 - 原生测试页：`pages/native/index`，无需业务域名。
 - WebView 备用页：`pages/webview/index`，通过 `<web-view>` 加载线上活动页。
 - 暂无登录、角色、报名表单、支付、审核、后台管理。
@@ -111,7 +111,7 @@ git push
   app.wxss
   project.config.json
   sitemap.json
-  index.html                 # 线上活动网页
+  index.html                 # 线上活动网页，WebView 备用
   utils/
     config.js                # WebView URL 配置
   pages/
@@ -198,10 +198,10 @@ https://wangchao-couson.github.io/jingtu_mini_wechat_program/
 
 ```js
 {
-  title: "周末轻徒步模板",
-  subtitle: "适合新手、亲子、公司团建，主打短线低门槛。",
-  category: "徒步",
-  activityId: "trail-mogan",
+  title: "百里山水画廊",
+  subtitle: "延庆最经典山水自驾线，河谷、公路、村落和观景台一路展开。",
+  category: "山水公路",
+  activityId: "baili-gallery",
   theme: "linear-gradient(135deg,#174f36 0%,#3b9560 48%,#d89d4a 100%)"
 }
 ```
@@ -210,21 +210,19 @@ https://wangchao-couson.github.io/jingtu_mini_wechat_program/
 
 ```js
 {
-  id: "trail-mogan",
-  category: "徒步",
-  title: "莫干山竹海轻徒步",
-  date: "2026-07-05 周日",
-  location: "浙江湖州 · 莫干山",
+  id: "baili-gallery",
+  category: "山水公路",
+  title: "延庆百里山水画廊自驾",
+  date: "周六/周日可约",
+  location: "北京延庆 · 千家店",
   duration: "1天",
-  difficulty: "新手友好",
-  price: "199",
-  people: "16-30人",
-  hot: "热门",
-  leader: "阿岚",
-  wechat: "shanwalk-001",
-  contactText: "扫码进活动咨询群，发送“莫干山”获取集合点、装备清单和报名方式。",
+  difficulty: "轻松",
+  price: "咨询",
+  people: "6-18人",
+  hot: "经典",
+  wechat: "coulson_pro",
   intro: "活动介绍文案",
-  itinerary: ["08:30 集合签到", "10:00 开始徒步"],
-  includes: ["专业领队与协作", "户外保险"]
+  itinerary: ["09:00 集合", "10:30 进入山水画廊主线"],
+  includes: ["线路规划", "车队领航"]
 }
 ```

@@ -1,169 +1,156 @@
-const categories = ["全部", "徒步", "露营", "骑行", "攀岩", "水上", "越野跑"];
+const WECHAT_ID = "coulson_pro";
+
+const categories = ["全部", "山水公路", "长城古镇", "草原天路", "湖库环线", "峡谷公路"];
 
 const classByCategory = {
-  "徒步": { className: "type-hike", symbol: "△" },
-  "露营": { className: "type-camp", symbol: "⌂" },
-  "骑行": { className: "type-cycle", symbol: "◎" },
-  "攀岩": { className: "type-climb", symbol: "◆" },
-  "水上": { className: "type-water", symbol: "≈" },
-  "越野跑": { className: "type-run", symbol: "↟" }
+  "山水公路": "type-green",
+  "长城古镇": "type-gold",
+  "草原天路": "type-blue",
+  "湖库环线": "type-teal",
+  "峡谷公路": "type-orange"
 };
 
 const banners = [
   {
-    title: "周末轻徒步模板",
-    subtitle: "适合新手、亲子、公司团建，主打短线低门槛。",
-    category: "徒步",
-    activityId: "trail-mogan"
+    title: "百里山水画廊",
+    subtitle: "延庆最经典山水自驾线，河谷、公路、村落和观景台一路展开。",
+    category: "山水公路",
+    activityId: "baili-gallery",
+    image: "/assets/images/baili.jpg"
   },
   {
-    title: "星空露营模板",
-    subtitle: "营地、烧烤、篝火、日出，适合做高客单活动。",
-    category: "露营",
-    activityId: "camp-lake"
+    title: "古北水镇 · 司马台",
+    subtitle: "夜景古镇加长城视野，适合周末轻度假和家庭自驾。",
+    category: "长城古镇",
+    activityId: "gubei-simatai",
+    image: "/assets/images/shidu.jpg"
   },
   {
-    title: "城市骑行模板",
-    subtitle: "一日往返，路线灵活，适合周期性社群活动。",
-    category: "骑行",
-    activityId: "cycle-lake"
+    title: "密云水库环湖",
+    subtitle: "水库观景、山路弯道、鱼街午餐，一天往返刚刚好。",
+    category: "湖库环线",
+    activityId: "miyun-lake",
+    image: "/assets/images/miyun.jpg"
   }
 ];
 
 const activities = [
   {
-    id: "trail-mogan",
-    category: "徒步",
-    title: "莫干山竹海轻徒步",
-    date: "2026-07-05 周日",
-    location: "浙江湖州 · 莫干山",
+    id: "baili-gallery",
+    category: "山水公路",
+    title: "延庆百里山水画廊自驾",
+    date: "周六/周日可约",
+    location: "北京延庆 · 千家店",
     duration: "1天",
-    difficulty: "新手友好",
-    price: "199",
-    people: "16-30人",
-    hot: "热门",
-    leader: "阿岚",
-    wechat: "shanwalk-001",
-    contactText: "扫码进活动咨询群，发送“莫干山”获取集合点、装备清单和报名方式。",
-    intro: "竹林、古道、溪谷组合的轻量路线，适合第一次参加户外活动的朋友。全程节奏舒适，中途安排补给和拍照点。",
-    itinerary: ["08:30 集合签到，领队讲解路线与安全事项", "10:00 进入竹海古道，分组徒步", "12:30 山野午餐与自由拍照", "15:30 完成环线，返程解散"],
-    includes: ["专业领队与协作", "户外保险", "公共急救包", "路线组织与活动纪念贴纸"]
+    difficulty: "轻松",
+    price: "咨询",
+    people: "6-18人",
+    hot: "经典",
+    image: "/assets/images/baili.jpg",
+    wechat: WECHAT_ID,
+    intro: "从延庆城区出发，沿滦赤路进入千家店镇，串联硅化木、滴水壶、乌龙峡谷一带的山水公路。路线弯道舒展、停车点多，是北京周边非常成熟的一日自驾线路。",
+    itinerary: ["09:00 延庆集合，确认车队编号和对讲频率", "10:30 进入百里山水画廊主线，沿途观景停靠", "12:30 千家店午餐，休整补给", "14:00 继续前往乌龙峡谷/滴水壶方向", "16:30 返程，北京城区傍晚抵达"],
+    includes: ["线路规划", "车队领航", "停车点建议", "午餐/门票 AA 或自理"]
   },
   {
-    id: "camp-lake",
-    category: "露营",
-    title: "千岛湖星空露营夜",
-    date: "2026-07-12 周六",
-    location: "浙江杭州 · 千岛湖",
+    id: "gubei-simatai",
+    category: "长城古镇",
+    title: "古北水镇 · 司马台夜景线",
+    date: "周末两天一晚",
+    location: "北京密云 · 古北口",
     duration: "2天1晚",
     difficulty: "休闲",
-    price: "499",
-    people: "12-22人",
-    hot: "高人气",
-    leader: "北野",
-    wechat: "campfire-072",
-    contactText: "添加领队微信，备注“千岛湖露营”，确认帐篷、餐食和自驾拼车信息。",
-    intro: "湖边营位、日落晚餐、星空夜谈和次日晨间散步。适合朋友结伴，也适合第一次体验精致露营。",
-    itinerary: ["13:30 营地集合，分配装备", "16:30 湖边下午茶和自由活动", "19:00 晚餐、篝火和星空分享", "次日 09:30 早餐后收营"],
-    includes: ["营地使用费", "帐篷与基础露营装备", "晚餐与早餐", "户外保险"]
+    price: "咨询",
+    people: "4-12人",
+    hot: "夜景",
+    image: "/assets/images/shidu.jpg",
+    wechat: WECHAT_ID,
+    intro: "北京东北方向的轻度假自驾线，适合朋友、情侣和亲子。白天看古北口山势与长城，傍晚进入古北水镇，夜间可远眺司马台长城灯光。",
+    itinerary: ["D1 10:00 北京出发，京承高速前往密云", "D1 12:30 古北口午餐，下午游览古镇", "D1 19:00 夜景自由活动", "D2 09:30 睡到自然醒，周边短途观景", "D2 14:00 返程"],
+    includes: ["路线规划", "住宿建议", "停车与入园提示", "餐食/住宿/门票自理"]
   },
   {
-    id: "cycle-lake",
-    category: "骑行",
-    title: "环太湖日落骑行",
-    date: "2026-07-19 周日",
-    location: "江苏苏州 · 太湖边",
+    id: "grassland-road",
+    category: "草原天路",
+    title: "张北草原天路周末自驾",
+    date: "夏秋周末可约",
+    location: "河北张家口 · 张北",
+    duration: "2天1晚",
+    difficulty: "中等",
+    price: "咨询",
+    people: "4-16人",
+    hot: "夏秋",
+    image: "/assets/images/baili.jpg",
+    wechat: WECHAT_ID,
+    intro: "从北京出发北上张家口，体验草原天路东线或西线的开阔视野。适合夏季避暑和秋季看风车、草坡、落日。",
+    itinerary: ["D1 08:00 北京集合出发", "D1 12:30 张北午餐后进入草原天路", "D1 17:30 落日观景，入住张北", "D2 09:30 继续草原公路轻巡游", "D2 15:00 返程"],
+    includes: ["两日路线规划", "车队节奏控制", "住宿区域建议", "油费/过路费/住宿自理"]
+  },
+  {
+    id: "miyun-lake",
+    category: "湖库环线",
+    title: "密云水库环湖观景线",
+    date: "周六/周日可约",
+    location: "北京密云 · 水库周边",
     duration: "1天",
-    difficulty: "中级",
-    price: "159",
-    people: "20-40人",
-    hot: "日落线",
-    leader: "青川",
-    wechat: "ride-sunset",
-    contactText: "扫码进入骑行群，确认车辆要求、头盔要求和集合地点。",
-    intro: "沿湖绿道骑行，节奏稳定，傍晚抵达观景点看日落。建议有 20km 以上骑行经验。",
-    itinerary: ["14:00 集合检查车辆与护具", "14:30 沿湖绿道骑行", "17:20 日落点休整拍照", "18:30 回到起点解散"],
-    includes: ["领骑与收队", "补给水和能量胶", "基础维修工具", "户外保险"]
+    difficulty: "轻松",
+    price: "咨询",
+    people: "6-20人",
+    hot: "亲子",
+    image: "/assets/images/miyun.jpg",
+    wechat: WECHAT_ID,
+    intro: "适合第一次参加自驾活动的轻松线路，围绕密云水库周边观景道路、鱼街午餐和山间咖啡点设计，不赶路，重点是舒服地看山看水。",
+    itinerary: ["09:30 密云集合，车队说明", "10:30 水库观景点拍照", "12:00 鱼街午餐", "14:00 山间咖啡/村落散步", "16:00 返程"],
+    includes: ["路线规划", "观景点建议", "领航车", "餐饮消费自理"]
   },
   {
-    id: "climb-yangshuo",
-    category: "攀岩",
-    title: "阳朔喀斯特攀岩体验",
-    date: "2026-08-02 周日",
-    location: "广西桂林 · 阳朔",
+    id: "shidu-road",
+    category: "峡谷公路",
+    title: "房山十渡峡谷公路线",
+    date: "周末一日",
+    location: "北京房山 · 十渡",
     duration: "1天",
-    difficulty: "体验/进阶",
-    price: "899",
-    people: "6-12人",
-    hot: "小队",
-    leader: "石川",
-    wechat: "rockup-88",
-    contactText: "添加教练微信，备注“阳朔攀岩”，确认身高体重和装备尺码。",
-    intro: "由认证教练带队，从安全保护、基础动作到天然岩壁体验，适合想认真尝试攀岩的用户。",
-    itinerary: ["09:00 装备领取与安全教学", "10:30 基础动作训练", "13:30 天然岩壁线路体验", "16:30 总结与返程"],
-    includes: ["教练指导", "攀岩装备", "场地与保险", "摄影记录"]
+    difficulty: "轻松",
+    price: "咨询",
+    people: "6-18人",
+    hot: "峡谷",
+    image: "/assets/images/shidu.jpg",
+    wechat: WECHAT_ID,
+    intro: "北京西南方向经典峡谷自驾线，沿拒马河谷前行，适合看山谷、河道、栈道和周边农家餐。路线成熟，停车补给相对方便。",
+    itinerary: ["08:30 北京西南集合出发", "10:30 进入十渡河谷段", "12:30 农家午餐", "14:00 观景/轻徒步自由活动", "16:30 返程"],
+    includes: ["线路规划", "停车点建议", "车队领航", "游玩项目自理"]
   },
   {
-    id: "sup-anji",
-    category: "水上",
-    title: "安吉峡谷桨板漂流",
-    date: "2026-08-09 周日",
-    location: "浙江安吉 · 峡谷水域",
-    duration: "1天",
-    difficulty: "新手友好",
-    price: "299",
-    people: "10-26人",
-    hot: "清凉",
-    leader: "溪木",
-    wechat: "watergo-09",
-    contactText: "扫码进水上活动群，确认尺码、换洗衣物和天气安排。",
-    intro: "夏季水上活动模板，包含桨板教学、浅水练习和轻漂流体验。全程配救生衣和安全员。",
-    itinerary: ["10:00 水域集合，更换装备", "10:40 桨板基础教学", "13:30 峡谷轻漂流", "16:00 返程解散"],
-    includes: ["桨板装备", "救生衣", "安全员", "户外保险"]
-  },
-  {
-    id: "run-siming",
-    category: "越野跑",
-    title: "四明山清晨越野跑",
-    date: "2026-08-16 周日",
-    location: "浙江宁波 · 四明山",
-    duration: "半天",
-    difficulty: "中级",
-    price: "229",
-    people: "12-25人",
-    hot: "晨跑",
-    leader: "风禾",
-    wechat: "trailrun-16",
-    contactText: "添加领队微信，备注“四明山越野跑”，确认配速、装备和补给计划。",
-    intro: "清晨山脊线越野跑，路线约 12km，包含爬升和林道。适合有跑步基础的队员。",
-    itinerary: ["06:30 集合热身", "07:00 开始越野跑", "08:30 山脊补给点", "10:00 完成路线"],
-    includes: ["领跑与收队", "补给站", "急救包", "户外保险"]
+    id: "baihua-cuan",
+    category: "山水公路",
+    title: "百花山 · 爨底下古村线",
+    date: "周末一日/两日",
+    location: "北京门头沟 · 斋堂",
+    duration: "1-2天",
+    difficulty: "中等",
+    price: "咨询",
+    people: "4-12人",
+    hot: "山路",
+    image: "/assets/images/baili.jpg",
+    wechat: WECHAT_ID,
+    intro: "门头沟西线山路自驾，适合喜欢山路和古村氛围的车友。可根据季节选择百花山观景、爨底下古村停留或斋堂周边轻度假。",
+    itinerary: ["09:00 门头沟集合，确认路况", "10:30 山路观景段行驶", "12:30 斋堂午餐", "14:00 爨底下古村/百花山方向游览", "16:30 返程或留宿"],
+    includes: ["山路路线规划", "车队安全提醒", "古村/住宿建议", "门票/餐饮/住宿自理"]
   }
 ];
 
 function decorateActivity(activity) {
-  const meta = classByCategory[activity.category] || classByCategory["徒步"];
   return {
     ...activity,
-    className: meta.className,
-    symbol: meta.symbol,
-    qrCells: buildQrCells(activity.wechat)
+    className: classByCategory[activity.category] || "type-green"
   };
 }
 
-function buildQrCells(seed) {
-  const chars = Array.from(seed || "wechat");
-  return Array.from({ length: 25 }, (_, index) => {
-    const code = chars[index % chars.length].charCodeAt(0) + index * 17;
-    return code % 3 !== 0 || index === 0 || index === 4 || index === 20 || index === 24;
-  });
-}
-
 const decoratedActivities = activities.map(decorateActivity);
-const decoratedBanners = banners.map((banner) => {
-  const meta = classByCategory[banner.category] || classByCategory["徒步"];
-  return { ...banner, className: meta.className, symbol: meta.symbol };
-});
+const decoratedBanners = banners.map((banner) => ({
+  ...banner,
+  className: classByCategory[banner.category] || "type-green"
+}));
 
 Page({
   data: {
@@ -189,7 +176,7 @@ Page({
     const query = searchText.trim().toLowerCase();
     const filteredActivities = decoratedActivities.filter((activity) => {
       const categoryHit = activeCategory === "全部" || activity.category === activeCategory;
-      const searchHit = !query || [activity.title, activity.category, activity.location, activity.difficulty, activity.leader].join(" ").toLowerCase().includes(query);
+      const searchHit = !query || [activity.title, activity.category, activity.location, activity.difficulty].join(" ").toLowerCase().includes(query);
       return categoryHit && searchHit;
     });
     this.setData({ filteredActivities });
@@ -213,10 +200,8 @@ Page({
   },
 
   copyWechat() {
-    const { selectedActivity } = this.data;
-    if (!selectedActivity) return;
     wx.setClipboardData({
-      data: selectedActivity.wechat,
+      data: WECHAT_ID,
       success() {
         wx.showToast({ title: "微信号已复制", icon: "success" });
       }

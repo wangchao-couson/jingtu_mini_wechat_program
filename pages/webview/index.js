@@ -7,7 +7,7 @@ Page({
 
   onLoad() {
     wx.setNavigationBarTitle({
-      title: "山野集合"
+      title: "京途"
     });
   }
 });

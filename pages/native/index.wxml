@@ -2,10 +2,10 @@
   <view wx:if="{{!selectedActivity}}" class="home">
     <view class="header">
       <view class="brand">
-        <view class="mark">山</view>
+        <image class="mark" src="/assets/logo.png" mode="aspectFill"></image>
         <view>
-          <view class="brand-title">山野集合</view>
-          <view class="brand-sub">活动展示 · 微信联系报名</view>
+          <view class="brand-title">京途</view>
+          <view class="brand-sub">自驾北京周边，抵达山野和烟火</view>
         </view>
       </view>
       <button class="mini-btn" bindtap="scrollToList">看活动</button>
@@ -14,18 +14,10 @@
     <swiper class="hero" autoplay circular interval="3600" duration="500" indicator-dots indicator-color="rgba(255,255,255,.42)" indicator-active-color="#ffffff">
       <swiper-item wx:for="{{banners}}" wx:key="activityId">
         <view class="slide {{item.className}}" data-id="{{item.activityId}}" bindtap="openActivity">
-          <view class="route-lines">
-            <view></view>
-            <view></view>
-            <view></view>
-          </view>
-          <view class="orb orb-a"></view>
-          <view class="orb orb-b"></view>
-          <view class="mountain-a"></view>
-          <view class="mountain-b"></view>
-          <view class="hero-symbol">{{item.symbol}}</view>
+          <image class="photo" src="{{item.image}}" mode="aspectFill"></image>
+          <view class="photo-shade"></view>
           <view class="slide-copy">
-            <view class="eyebrow">{{item.category}} template</view>
+            <view class="eyebrow">{{item.category}}</view>
             <view class="slide-title">{{item.title}}</view>
             <view class="slide-sub">{{item.subtitle}}</view>
           </view>
@@ -50,23 +42,16 @@
     <view class="list">
       <view wx:if="{{filteredActivities.length === 0}}" class="empty">没有找到匹配活动，换个关键词试试。</view>
       <view wx:for="{{filteredActivities}}" wx:key="id" class="activity-card" data-id="{{item.id}}" bindtap="openActivity">
-        <view class="cover {{item.className}}">
-          <view class="route-lines small">
-            <view></view>
-            <view></view>
-            <view></view>
-          </view>
-          <view class="orb orb-a"></view>
-          <view class="mountain-a"></view>
-          <view class="mountain-b"></view>
-          <view class="cover-symbol">{{item.symbol}}</view>
+        <view class="cover">
+          <image class="photo" src="{{item.image}}" mode="aspectFill"></image>
+          <view class="photo-shade"></view>
           <view class="badge">{{item.category}}</view>
           <view class="hot">{{item.hot}}</view>
         </view>
         <view class="card-body">
           <view class="card-title">
             <text>{{item.title}}</text>
-            <text class="price">¥{{item.price}}</text>
+            <text class="price">{{item.price}}</text>
           </view>
           <view class="meta">
             <view>时间 <text>{{item.date}}</text></view>
@@ -81,17 +66,12 @@
 
   <view wx:else class="detail">
     <view class="detail-hero {{selectedActivity.className}}">
-      <button class="back" bindtap="goHome">←</button>
-      <view class="route-lines">
-        <view></view>
-        <view></view>
-        <view></view>
-      </view>
-      <view class="orb orb-a"></view>
-      <view class="orb orb-b"></view>
-      <view class="mountain-a"></view>
-      <view class="mountain-b"></view>
-      <view class="detail-symbol">{{selectedActivity.symbol}}</view>
+      <image class="photo" src="{{selectedActivity.image}}" mode="aspectFill"></image>
+      <view class="photo-shade detail-shade"></view>
+      <button class="back" bindtap="goHome">
+        <view class="back-icon">‹</view>
+        <text>返回</text>
+      </button>
       <view class="detail-title">
         <view class="badge inline">{{selectedActivity.category}}</view>
         <view class="detail-name">{{selectedActivity.title}}</view>
@@ -104,7 +84,7 @@
       <view class="info-tile"><text>人数</text><view>{{selectedActivity.people}}</view></view>
       <view class="info-tile"><text>地点</text><view>{{selectedActivity.location}}</view></view>
       <view class="info-tile"><text>难度</text><view>{{selectedActivity.difficulty}}</view></view>
-      <view class="info-tile"><text>费用</text><view>¥{{selectedActivity.price}}</view></view>
+      <view class="info-tile"><text>费用</text><view>{{selectedActivity.price}}</view></view>
     </view>
 
     <view class="panel">
@@ -123,12 +103,9 @@
     </view>
 
     <view class="contact-card">
-      <view class="qr">
-        <view wx:for="{{selectedActivity.qrCells}}" wx:key="index" class="qr-dot {{item ? 'on' : ''}}"></view>
-      </view>
       <view class="contact-main">
         <view class="contact-title">微信联系报名</view>
-        <view class="contact-desc">{{selectedActivity.contactText}}</view>
+        <view class="contact-desc">添加微信号，发送线路名称，获取集合地点、车辆建议和报名信息。</view>
         <view class="wechat-id">微信：{{selectedActivity.wechat}}</view>
         <button class="copy-btn" bindtap="copyWechat">复制微信号</button>
       </view>
