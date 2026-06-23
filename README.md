@@ -10,10 +10,10 @@
 - 首页顶部：热门活动轮播，内置 3 个轮播模板。
 - 首页下方：活动模板列表，内置 6 个活动模板。
 - 活动详情：展示活动介绍、时间、地点、人数、难度、费用、行程安排、费用包含。
-- 联系报名：详情页展示个人微信号 `coulson_pro`，支持复制微信号。
+- 微信联系：详情页展示个人微信号 `coulson_pro`，支持复制。
 - 原生测试页：`pages/native/index`，无需业务域名。
 - WebView 备用页：`pages/webview/index`，通过 `<web-view>` 加载线上活动页。
-- 暂无登录、角色、报名表单、支付、审核、后台管理。
+- 暂无登录、角色、表单、支付、审核、后台管理。
 
 ## 本地预览网页
 
@@ -138,7 +138,7 @@ git push
 ```
 
 3. 使用你的小程序 AppID
-4. 预览确认首页、活动详情、复制微信号可用
+4. 预览确认首页、活动详情、复制功能可用
 5. 点击上传
 6. 到微信公众平台设置体验成员，并生成体验版二维码
 
@@ -217,7 +217,7 @@ https://wangchao-couson.github.io/jingtu_mini_wechat_program/
   location: "北京延庆 · 千家店",
   duration: "1天",
   difficulty: "轻松",
-  price: "咨询",
+  price: "现场纯AA自理",
   people: "6-18人",
   hot: "经典",
   wechat: "coulson_pro",

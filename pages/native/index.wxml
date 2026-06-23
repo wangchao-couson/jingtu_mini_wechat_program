@@ -5,7 +5,7 @@
         <image class="mark" src="/assets/logo.png" mode="aspectFill"></image>
         <view>
           <view class="brand-title">京途</view>
-          <view class="brand-sub">自驾北京周边，抵达山野和烟火</view>
+          <view class="brand-sub">和有趣的人一起去探索更广阔的世界</view>
         </view>
       </view>
       <button class="mini-btn" bindtap="scrollToList">看活动</button>
@@ -70,7 +70,6 @@
       <view class="photo-shade detail-shade"></view>
       <button class="back" bindtap="goHome">
         <view class="back-icon">‹</view>
-        <text>返回</text>
       </button>
       <view class="detail-title">
         <view class="badge inline">{{selectedActivity.category}}</view>
@@ -104,10 +103,12 @@
 
     <view class="contact-card">
       <view class="contact-main">
-        <view class="contact-title">微信联系报名</view>
-        <view class="contact-desc">添加微信号，发送线路名称，获取集合地点、车辆建议和报名信息。</view>
-        <view class="wechat-id">微信：{{selectedActivity.wechat}}</view>
-        <button class="copy-btn" bindtap="copyWechat">复制微信号</button>
+        <view class="contact-title">微信联系</view>
+        <view class="contact-desc">添加微信号，发送线路名称，获取集合地点、车辆建议和同行信息。</view>
+        <view class="wechat-row">
+          <view class="wechat-id">微信：{{selectedActivity.wechat}}</view>
+          <button class="copy-btn" bindtap="copyWechat">复制</button>
+        </view>
       </view>
     </view>
   </view>

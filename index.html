@@ -284,10 +284,13 @@
       z-index: 4;
       width: 42px;
       height: 42px;
-      border-radius: 16px;
-      background: rgba(255,255,255,.18);
+      border-radius: 50%;
+      background: rgba(12, 24, 16, .42);
       color: white;
       backdrop-filter: blur(12px);
+      box-shadow: 0 8px 22px rgba(0,0,0,.18);
+      font-size: 24px;
+      font-weight: 900;
     }
     .detail-title {
       position: absolute;
@@ -349,6 +352,8 @@
       display: inline-flex;
       align-items: center;
       gap: 7px;
+      flex: 1;
+      min-width: 0;
       padding: 8px 10px;
       border-radius: 999px;
       color: #17351f;
@@ -356,13 +361,20 @@
       font-size: 13px;
       font-weight: 900;
     }
+    .wechat-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
     .copy-btn {
-      margin-top: 10px;
-      min-height: 42px;
-      width: 100%;
-      border-radius: 15px;
+      margin-top: 0;
+      width: 46px;
+      height: 46px;
+      flex: 0 0 46px;
+      border-radius: 50%;
       color: #17351f;
       background: #fffdf6;
+      font-size: 12px;
       font-weight: 900;
     }
 
@@ -407,7 +419,7 @@
         </div>
         <div>
           <h1>京途</h1>
-          <p>自驾北京周边，抵达山野和烟火</p>
+          <p>和有趣的人一起去探索更广阔的世界</p>
         </div>
       </div>
       <button class="call-mini" onclick="scrollToList()">看活动</button>
@@ -477,7 +489,7 @@
         location: "北京延庆 · 千家店",
         duration: "1天",
         difficulty: "轻松",
-        price: "咨询",
+        price: "现场纯AA自理",
         people: "6-18人",
         hot: "经典",
         leader: "京途",
@@ -494,7 +506,7 @@
         location: "北京密云 · 古北口",
         duration: "2天1晚",
         difficulty: "休闲",
-        price: "咨询",
+        price: "现场纯AA自理",
         people: "4-12人",
         hot: "夜景",
         leader: "京途",
@@ -511,7 +523,7 @@
         location: "河北张家口 · 张北",
         duration: "2天1晚",
         difficulty: "中级",
-        price: "咨询",
+        price: "现场纯AA自理",
         people: "4-16人",
         hot: "夏秋",
         leader: "京途",
@@ -528,7 +540,7 @@
         location: "北京密云 · 水库周边",
         duration: "1天",
         difficulty: "轻松",
-        price: "咨询",
+        price: "现场纯AA自理",
         people: "6-20人",
         hot: "亲子",
         leader: "京途",
@@ -545,7 +557,7 @@
         location: "北京房山 · 十渡",
         duration: "1天",
         difficulty: "轻松",
-        price: "咨询",
+        price: "现场纯AA自理",
         people: "6-18人",
         hot: "峡谷",
         leader: "京途",
@@ -562,7 +574,7 @@
         location: "北京门头沟 · 斋堂",
         duration: "1-2天",
         difficulty: "中级",
-        price: "咨询",
+        price: "现场纯AA自理",
         people: "4-12人",
         hot: "山路",
         leader: "京途",
@@ -712,10 +724,12 @@
         <div class="panel"><h3>费用包含</h3><ul>${activity.includes.map(item => `<li>${escapeHTML(item)}</li>`).join("")}</ul></div>
         <div class="contact-card">
           <div>
-            <h3>微信联系报名</h3>
-            <p>添加微信号，发送线路名称，获取集合地点、车辆建议和报名信息。</p>
-            <span class="wechat-id">微信：${escapeHTML(activity.wechat)}</span>
-            <button class="copy-btn" onclick="copyWechat('${escapeHTML(activity.wechat)}')">复制微信号</button>
+            <h3>微信联系</h3>
+            <p>添加微信号，发送线路名称，获取集合地点、车辆建议和同行信息。</p>
+            <div class="wechat-row">
+              <span class="wechat-id">微信：${escapeHTML(activity.wechat)}</span>
+              <button class="copy-btn" onclick="copyWechat('${escapeHTML(activity.wechat)}')">复制</button>
+            </div>
           </div>
         </div>`;
       homeScreen.classList.remove("active");
