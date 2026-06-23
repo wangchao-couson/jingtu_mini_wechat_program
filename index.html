@@ -1,0 +1,786 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>山野集合｜户外活动展示</title>
+  <style>
+    :root {
+      --ink: #17231d;
+      --muted: #68766d;
+      --paper: #fffdf6;
+      --glass: rgba(255, 253, 246, .72);
+      --line: rgba(23, 35, 29, .1);
+      --field: rgba(255, 255, 255, .72);
+      --green: #1f8a5b;
+      --sun: #f0b552;
+      --shadow: 0 18px 56px rgba(26, 55, 36, .16);
+      font-family: ui-rounded, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 14% 0%, rgba(188, 223, 99, .5), transparent 32%),
+        radial-gradient(circle at 84% 16%, rgba(64, 168, 201, .24), transparent 30%),
+        linear-gradient(145deg, #f7f1df 0%, #edf6e6 52%, #e6f5f2 100%);
+    }
+    button, input { font: inherit; }
+    button { border: 0; cursor: pointer; }
+
+    .phone {
+      width: min(430px, 100vw);
+      min-height: 100vh;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(rgba(255,255,255,.1), rgba(255,255,255,.1)),
+        repeating-linear-gradient(120deg, rgba(31,138,91,.045) 0 1px, transparent 1px 16px);
+      box-shadow: 0 0 0 1px rgba(0,0,0,.05), 0 30px 80px rgba(31, 64, 38, .18);
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 16px 10px;
+      backdrop-filter: blur(18px);
+      background: var(--glass);
+      border-bottom: 1px solid rgba(255,255,255,.7);
+    }
+    .brand { display: flex; align-items: center; gap: 10px; min-width: 0; }
+    .mark {
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      color: white;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #153b28, #49a063);
+      box-shadow: 0 10px 28px rgba(31, 138, 91, .24);
+    }
+    .brand h1 { margin: 0; font-size: 18px; line-height: 1.1; letter-spacing: .03em; }
+    .brand p { margin: 2px 0 0; color: var(--muted); font-size: 11px; }
+    .call-mini {
+      padding: 9px 12px;
+      color: #17351f;
+      border-radius: 999px;
+      background: #f4e4a5;
+      font-size: 12px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    main { padding: 14px 14px 34px; }
+    .screen { display: none; animation: rise .26s ease both; }
+    .screen.active { display: block; }
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-slider {
+      position: relative;
+      overflow: hidden;
+      height: 190px;
+      border-radius: 30px;
+      color: white;
+      box-shadow: var(--shadow);
+      background: #17351f;
+    }
+    .slides {
+      height: 100%;
+      display: flex;
+      transition: transform .55s cubic-bezier(.2,.75,.2,1);
+    }
+    .slide {
+      min-width: 100%;
+      height: 100%;
+      position: relative;
+      padding: 19px;
+      overflow: hidden;
+      background: var(--gradient);
+    }
+    .visual-svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .slide-copy {
+      position: relative;
+      z-index: 2;
+      width: 74%;
+      text-shadow: 0 2px 16px rgba(0,0,0,.18);
+    }
+    .eyebrow {
+      margin: 0 0 8px;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      opacity: .9;
+    }
+    .slide h2 { margin: 0; font-size: 30px; line-height: 1.06; }
+    .slide p { margin: 10px 0 0; font-size: 13px; line-height: 1.55; opacity: .92; }
+    .dots {
+      position: absolute;
+      z-index: 4;
+      left: 18px;
+      bottom: 14px;
+      display: flex;
+      gap: 7px;
+    }
+    .dot {
+      width: 7px;
+      height: 7px;
+      padding: 0;
+      border-radius: 999px;
+      background: rgba(255,255,255,.48);
+      transition: .22s ease;
+    }
+    .dot.active { width: 22px; background: white; }
+
+    .quick-search {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      margin: 15px 0 11px;
+    }
+    .quick-search input {
+      width: 100%;
+      border: 1px solid rgba(23,35,29,.09);
+      outline: none;
+      border-radius: 18px;
+      padding: 13px 14px;
+      color: var(--ink);
+      background: var(--field);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.8);
+    }
+    .quick-search button {
+      width: 47px;
+      border-radius: 17px;
+      color: white;
+      background: #17351f;
+      box-shadow: 0 12px 24px rgba(23,53,31,.2);
+    }
+
+    .chips {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 2px 0 13px;
+      scrollbar-width: none;
+    }
+    .chips::-webkit-scrollbar { display: none; }
+    .chip {
+      flex: 0 0 auto;
+      border-radius: 999px;
+      padding: 9px 13px;
+      color: #33463b;
+      background: rgba(255,255,255,.62);
+      border: 1px solid rgba(23,35,29,.08);
+      font-size: 13px;
+      transition: .2s ease;
+    }
+    .chip.active {
+      color: white;
+      background: #17351f;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(23,53,31,.18);
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      margin: 13px 2px 10px;
+    }
+    .section-head h3 { margin: 0; font-size: 18px; }
+    .section-head span { color: var(--muted); font-size: 12px; }
+    .list { display: grid; gap: 13px; }
+
+    .activity-card {
+      overflow: hidden;
+      border-radius: 24px;
+      background: rgba(255,253,246,.82);
+      border: 1px solid rgba(255,255,255,.72);
+      box-shadow: 0 14px 38px rgba(25,52,33,.1);
+      animation: cardIn .36s ease both;
+    }
+    @keyframes cardIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .activity-card:active { transform: scale(.99); }
+    .cover {
+      height: 132px;
+      position: relative;
+      overflow: hidden;
+      color: white;
+      background: var(--gradient);
+    }
+    .badge {
+      position: absolute;
+      z-index: 3;
+      left: 12px;
+      top: 12px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      color: white;
+      background: rgba(0,0,0,.22);
+      backdrop-filter: blur(10px);
+      font-size: 12px;
+      font-weight: 900;
+    }
+    .hot {
+      position: absolute;
+      z-index: 3;
+      right: 12px;
+      top: 12px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      color: #17351f;
+      background: rgba(247,231,171,.92);
+      font-size: 12px;
+      font-weight: 900;
+    }
+    .card-body { padding: 13px; }
+    .card-title {
+      margin: 0 0 8px;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 17px;
+    }
+    .price { color: #e26f2e; white-space: nowrap; }
+    .meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .meta b { color: var(--ink); font-weight: 900; }
+
+    .detail-hero {
+      height: 278px;
+      margin: -14px -14px 0;
+      border-radius: 0 0 34px 34px;
+      color: white;
+      position: relative;
+      overflow: hidden;
+      background: var(--gradient);
+      box-shadow: var(--shadow);
+    }
+    .back {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      z-index: 4;
+      width: 42px;
+      height: 42px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.18);
+      color: white;
+      backdrop-filter: blur(12px);
+    }
+    .detail-title {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 22px;
+      z-index: 3;
+    }
+    .detail-title h2 { margin: 8px 0 0; font-size: 30px; line-height: 1.08; }
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 9px;
+      margin: 14px 0;
+    }
+    .info-tile {
+      min-height: 70px;
+      padding: 12px 10px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.68);
+      border: 1px solid rgba(255,255,255,.72);
+    }
+    .info-tile span { color: var(--muted); display: block; font-size: 11px; margin-bottom: 4px; }
+    .info-tile b { font-size: 13px; }
+    .panel {
+      margin-top: 12px;
+      padding: 15px;
+      border-radius: 22px;
+      background: rgba(255,255,255,.68);
+      border: 1px solid rgba(255,255,255,.72);
+    }
+    .panel h3 { margin: 0 0 10px; font-size: 17px; }
+    .panel p { margin: 0; color: #35443b; line-height: 1.75; font-size: 14px; }
+    .panel ul { margin: 0; padding-left: 18px; color: #35443b; line-height: 1.75; font-size: 14px; }
+
+    .contact-card {
+      display: grid;
+      grid-template-columns: 108px 1fr;
+      gap: 13px;
+      align-items: center;
+      margin-top: 14px;
+      padding: 14px;
+      border-radius: 24px;
+      color: white;
+      background: linear-gradient(135deg, #17351f, #1f8a5b);
+      box-shadow: 0 16px 42px rgba(23,53,31,.17);
+    }
+    .qr {
+      width: 108px;
+      height: 108px;
+      border-radius: 18px;
+      padding: 9px;
+      background: #fffdf6;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 5px;
+    }
+    .qr i { border-radius: 3px; background: #17351f; opacity: var(--o, 1); }
+    .contact-card h3 { margin: 0 0 6px; font-size: 17px; }
+    .contact-card p { margin: 0 0 10px; opacity: .86; line-height: 1.55; font-size: 13px; }
+    .wechat-id {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      color: #17351f;
+      background: #f7e7ab;
+      font-size: 13px;
+      font-weight: 900;
+    }
+    .copy-btn {
+      margin-top: 10px;
+      min-height: 42px;
+      width: 100%;
+      border-radius: 15px;
+      color: #17351f;
+      background: #fffdf6;
+      font-weight: 900;
+    }
+
+    .empty {
+      padding: 28px 18px;
+      text-align: center;
+      color: var(--muted);
+      background: rgba(255,255,255,.55);
+      border: 1px dashed rgba(23,35,29,.15);
+      border-radius: 22px;
+    }
+    .toast {
+      position: fixed;
+      z-index: 80;
+      left: 50%;
+      bottom: 28px;
+      transform: translate(-50%, 20px);
+      width: max-content;
+      max-width: min(360px, calc(100vw - 32px));
+      padding: 12px 15px;
+      border-radius: 16px;
+      color: white;
+      background: rgba(23, 53, 31, .92);
+      opacity: 0;
+      pointer-events: none;
+      transition: .24s ease;
+      box-shadow: 0 16px 40px rgba(0,0,0,.2);
+      font-size: 13px;
+    }
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
+  </style>
+</head>
+<body>
+  <div class="phone">
+    <header>
+      <div class="brand">
+        <div class="mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" width="24" height="24" fill="none">
+            <path d="M4 24 13.5 8l4.8 8.1L21 12l7 12H4Z" fill="currentColor" opacity=".94"/>
+            <path d="M9 24c3.7-3.8 8.9-4.5 14-2.1" stroke="#f7e7ab" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div>
+          <h1>山野集合</h1>
+          <p>活动展示 · 微信联系报名</p>
+        </div>
+      </div>
+      <button class="call-mini" onclick="scrollToList()">看活动</button>
+    </header>
+
+    <main>
+      <section id="homeScreen" class="screen active">
+        <div class="hero-slider" id="heroSlider">
+          <div class="slides" id="slides"></div>
+          <div class="dots" id="dots"></div>
+        </div>
+
+        <div class="quick-search">
+          <input id="searchInput" placeholder="搜索标题、地点、类型">
+          <button onclick="renderHome()">⌕</button>
+        </div>
+        <div class="chips" id="chips"></div>
+        <div class="section-head" id="activityList">
+          <h3>活动模板</h3>
+          <span id="countText"></span>
+        </div>
+        <div class="list" id="cards"></div>
+      </section>
+
+      <section id="detailScreen" class="screen"></section>
+    </main>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <script>
+    /*
+      更新活动时，通常只需要改 banners 和 activities 两个数组。
+      cover / banner 使用 SVG 自动生成，不依赖外部图片，适合微信 WebView 静态托管。
+    */
+    const banners = [
+      {
+        title: "周末轻徒步模板",
+        subtitle: "适合新手、亲子、公司团建，主打短线低门槛。",
+        category: "徒步",
+        activityId: "trail-mogan",
+        theme: "linear-gradient(135deg,#174f36 0%,#3b9560 48%,#d89d4a 100%)"
+      },
+      {
+        title: "星空露营模板",
+        subtitle: "营地、烧烤、篝火、日出，适合做高客单活动。",
+        category: "露营",
+        activityId: "camp-lake",
+        theme: "linear-gradient(135deg,#263f56 0%,#2c8b8a 48%,#f0bd71 100%)"
+      },
+      {
+        title: "城市骑行模板",
+        subtitle: "一日往返，路线灵活，适合周期性社群活动。",
+        category: "骑行",
+        activityId: "cycle-lake",
+        theme: "linear-gradient(135deg,#2d617f 0%,#4eb6d0 48%,#b9dd6a 100%)"
+      }
+    ];
+
+    const activities = [
+      {
+        id: "trail-mogan",
+        category: "徒步",
+        title: "莫干山竹海轻徒步",
+        date: "2026-07-05 周日",
+        location: "浙江湖州 · 莫干山",
+        duration: "1天",
+        difficulty: "新手友好",
+        price: "199",
+        people: "16-30人",
+        hot: "热门",
+        leader: "阿岚",
+        wechat: "shanwalk-001",
+        contactText: "扫码进活动咨询群，发送“莫干山”获取集合点、装备清单和报名方式。",
+        intro: "竹林、古道、溪谷组合的轻量路线，适合第一次参加户外活动的朋友。全程节奏舒适，中途安排补给和拍照点。",
+        itinerary: ["08:30 集合签到，领队讲解路线与安全事项", "10:00 进入竹海古道，分组徒步", "12:30 山野午餐与自由拍照", "15:30 完成环线，返程解散"],
+        includes: ["专业领队与协作", "户外保险", "公共急救包", "路线组织与活动纪念贴纸"]
+      },
+      {
+        id: "camp-lake",
+        category: "露营",
+        title: "千岛湖星空露营夜",
+        date: "2026-07-12 周六",
+        location: "浙江杭州 · 千岛湖",
+        duration: "2天1晚",
+        difficulty: "休闲",
+        price: "499",
+        people: "12-22人",
+        hot: "高人气",
+        leader: "北野",
+        wechat: "campfire-072",
+        contactText: "添加领队微信，备注“千岛湖露营”，确认帐篷、餐食和自驾拼车信息。",
+        intro: "湖边营位、日落晚餐、星空夜谈和次日晨间散步。适合朋友结伴，也适合第一次体验精致露营。",
+        itinerary: ["13:30 营地集合，分配装备", "16:30 湖边下午茶和自由活动", "19:00 晚餐、篝火和星空分享", "次日 09:30 早餐后收营"],
+        includes: ["营地使用费", "帐篷与基础露营装备", "晚餐与早餐", "户外保险"]
+      },
+      {
+        id: "cycle-lake",
+        category: "骑行",
+        title: "环太湖日落骑行",
+        date: "2026-07-19 周日",
+        location: "江苏苏州 · 太湖边",
+        duration: "1天",
+        difficulty: "中级",
+        price: "159",
+        people: "20-40人",
+        hot: "日落线",
+        leader: "青川",
+        wechat: "ride-sunset",
+        contactText: "扫码进入骑行群，确认车辆要求、头盔要求和集合地点。",
+        intro: "沿湖绿道骑行，节奏稳定，傍晚抵达观景点看日落。建议有 20km 以上骑行经验。",
+        itinerary: ["14:00 集合检查车辆与护具", "14:30 沿湖绿道骑行", "17:20 日落点休整拍照", "18:30 回到起点解散"],
+        includes: ["领骑与收队", "补给水和能量胶", "基础维修工具", "户外保险"]
+      },
+      {
+        id: "climb-yangshuo",
+        category: "攀岩",
+        title: "阳朔喀斯特攀岩体验",
+        date: "2026-08-02 周日",
+        location: "广西桂林 · 阳朔",
+        duration: "1天",
+        difficulty: "体验/进阶",
+        price: "899",
+        people: "6-12人",
+        hot: "小队",
+        leader: "石川",
+        wechat: "rockup-88",
+        contactText: "添加教练微信，备注“阳朔攀岩”，确认身高体重和装备尺码。",
+        intro: "由认证教练带队，从安全保护、基础动作到天然岩壁体验，适合想认真尝试攀岩的用户。",
+        itinerary: ["09:00 装备领取与安全教学", "10:30 基础动作训练", "13:30 天然岩壁线路体验", "16:30 总结与返程"],
+        includes: ["教练指导", "攀岩装备", "场地与保险", "摄影记录"]
+      },
+      {
+        id: "sup-anji",
+        category: "水上",
+        title: "安吉峡谷桨板漂流",
+        date: "2026-08-09 周日",
+        location: "浙江安吉 · 峡谷水域",
+        duration: "1天",
+        difficulty: "新手友好",
+        price: "299",
+        people: "10-26人",
+        hot: "清凉",
+        leader: "溪木",
+        wechat: "watergo-09",
+        contactText: "扫码进水上活动群，确认尺码、换洗衣物和天气安排。",
+        intro: "夏季水上活动模板，包含桨板教学、浅水练习和轻漂流体验。全程配救生衣和安全员。",
+        itinerary: ["10:00 水域集合，更换装备", "10:40 桨板基础教学", "13:30 峡谷轻漂流", "16:00 返程解散"],
+        includes: ["桨板装备", "救生衣", "安全员", "户外保险"]
+      },
+      {
+        id: "run-siming",
+        category: "越野跑",
+        title: "四明山清晨越野跑",
+        date: "2026-08-16 周日",
+        location: "浙江宁波 · 四明山",
+        duration: "半天",
+        difficulty: "中级",
+        price: "229",
+        people: "12-25人",
+        hot: "晨跑",
+        leader: "风禾",
+        wechat: "trailrun-16",
+        contactText: "添加领队微信，备注“四明山越野跑”，确认配速、装备和补给计划。",
+        intro: "清晨山脊线越野跑，路线约 12km，包含爬升和林道。适合有跑步基础的队员。",
+        itinerary: ["06:30 集合热身", "07:00 开始越野跑", "08:30 山脊补给点", "10:00 完成路线"],
+        includes: ["领跑与收队", "补给站", "急救包", "户外保险"]
+      }
+    ];
+
+    const categories = ["全部", "徒步", "露营", "骑行", "攀岩", "水上", "越野跑"];
+    const categoryMeta = {
+      "徒步": { icon: "△", gradient: "linear-gradient(135deg,#214f36,#63b15f,#d9b35a)" },
+      "露营": { icon: "⌂", gradient: "linear-gradient(135deg,#314f42,#2e8d7c,#f0bd71)" },
+      "骑行": { icon: "◎", gradient: "linear-gradient(135deg,#2d617f,#4eb6d0,#b9dd6a)" },
+      "攀岩": { icon: "◆", gradient: "linear-gradient(135deg,#6e4b37,#df8050,#f2c96b)" },
+      "水上": { icon: "≈", gradient: "linear-gradient(135deg,#1d6f8a,#38b8d2,#b5e8de)" },
+      "越野跑": { icon: "↟", gradient: "linear-gradient(135deg,#4b3b72,#d56f5f,#f2ba59)" }
+    };
+
+    let activeBanner = 0;
+    let activeCategory = "全部";
+    let searchText = "";
+
+    const $ = (selector) => document.querySelector(selector);
+    const homeScreen = $("#homeScreen");
+    const detailScreen = $("#detailScreen");
+    const slides = $("#slides");
+    const dots = $("#dots");
+    const cards = $("#cards");
+    const toast = $("#toast");
+
+    function escapeHTML(value) {
+      return String(value ?? "").replace(/[&<>"']/g, s => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[s]));
+    }
+
+    function visualSVG(category, mode = "card") {
+      const icon = categoryMeta[category]?.icon || "△";
+      const height = mode === "hero" ? 278 : mode === "banner" ? 190 : 132;
+      const textSize = mode === "hero" ? 98 : mode === "banner" ? 82 : 56;
+      return `
+        <svg class="visual-svg" viewBox="0 0 420 ${height}" preserveAspectRatio="none" aria-hidden="true">
+          <circle cx="344" cy="${height * .22}" r="${height * .27}" fill="rgba(255,255,255,.17)"/>
+          <circle cx="58" cy="${height * .78}" r="${height * .24}" fill="rgba(255,255,255,.12)"/>
+          <path d="M0 ${height * .77} C92 ${height * .55}, 152 ${height * .86}, 238 ${height * .66} S352 ${height * .82}, 420 ${height * .6} V${height} H0Z" fill="rgba(23,53,31,.24)"/>
+          <path d="M0 ${height * .88} C108 ${height * .68}, 182 ${height * .94}, 282 ${height * .76} S372 ${height * .88}, 420 ${height * .8} V${height} H0Z" fill="rgba(255,253,246,.23)"/>
+          <text x="318" y="${height * .66}" fill="rgba(255,255,255,.32)" font-size="${textSize}" font-weight="900">${icon}</text>
+          <path d="M38 ${height * .26}h54M38 ${height * .37}h82M38 ${height * .48}h42" stroke="rgba(255,255,255,.55)" stroke-width="3" stroke-linecap="round"/>
+        </svg>`;
+    }
+
+    function qrHTML(seed) {
+      const chars = Array.from(seed);
+      let html = "";
+      for (let i = 0; i < 25; i += 1) {
+        const code = chars[i % chars.length].charCodeAt(0) + i * 17;
+        const filled = code % 3 !== 0 || i === 0 || i === 4 || i === 20 || i === 24;
+        html += `<i style="--o:${filled ? 1 : .12}"></i>`;
+      }
+      return html;
+    }
+
+    function renderBanners() {
+      slides.innerHTML = banners.map((banner) => `
+        <article class="slide" style="--gradient:${banner.theme}" onclick="openActivity('${banner.activityId}')">
+          ${visualSVG(banner.category, "banner")}
+          <div class="slide-copy">
+            <p class="eyebrow">${escapeHTML(banner.category)} template</p>
+            <h2>${escapeHTML(banner.title)}</h2>
+            <p>${escapeHTML(banner.subtitle)}</p>
+          </div>
+        </article>
+      `).join("");
+      dots.innerHTML = banners.map((_, index) => `<button class="dot ${index === activeBanner ? "active" : ""}" onclick="setBanner(${index})" aria-label="切换到第 ${index + 1} 张"></button>`).join("");
+      updateBanner();
+    }
+
+    function updateBanner() {
+      slides.style.transform = `translateX(${-activeBanner * 100}%)`;
+      dots.querySelectorAll(".dot").forEach((dot, index) => dot.classList.toggle("active", index === activeBanner));
+    }
+
+    function setBanner(index) {
+      activeBanner = index;
+      updateBanner();
+    }
+
+    function filteredActivities() {
+      const q = searchText.trim().toLowerCase();
+      return activities.filter(activity => {
+        const categoryHit = activeCategory === "全部" || activity.category === activeCategory;
+        const searchHit = !q || [activity.title, activity.category, activity.location, activity.difficulty, activity.leader].join(" ").toLowerCase().includes(q);
+        return categoryHit && searchHit;
+      });
+    }
+
+    function renderHome() {
+      const list = filteredActivities();
+      $("#chips").innerHTML = categories.map(category => `
+        <button class="chip ${category === activeCategory ? "active" : ""}" onclick="setCategory('${category}')">${category}</button>
+      `).join("");
+      $("#countText").textContent = `${list.length} 个模板`;
+      cards.innerHTML = list.length ? list.map((activity, index) => cardHTML(activity, index)).join("") : `<div class="empty">没有找到匹配活动，换个关键词试试。</div>`;
+    }
+
+    function cardHTML(activity, index) {
+      const meta = categoryMeta[activity.category] || categoryMeta["徒步"];
+      return `
+        <article class="activity-card" style="--gradient:${meta.gradient}; animation-delay:${index * 35}ms" onclick="openActivity('${activity.id}')">
+          <div class="cover">
+            ${visualSVG(activity.category)}
+            <span class="badge">${escapeHTML(activity.category)}</span>
+            <span class="hot">${escapeHTML(activity.hot)}</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title"><span>${escapeHTML(activity.title)}</span><span class="price">¥${escapeHTML(activity.price)}</span></h3>
+            <div class="meta">
+              <span>时间 <b>${escapeHTML(activity.date)}</b></span>
+              <span>地点 <b>${escapeHTML(activity.location)}</b></span>
+              <span>人数 <b>${escapeHTML(activity.people)}</b></span>
+              <span>难度 <b>${escapeHTML(activity.difficulty)}</b></span>
+            </div>
+          </div>
+        </article>`;
+    }
+
+    function renderDetail(activity) {
+      const meta = categoryMeta[activity.category] || categoryMeta["徒步"];
+      detailScreen.innerHTML = `
+        <div class="detail-hero" style="--gradient:${meta.gradient}">
+          ${visualSVG(activity.category, "hero")}
+          <button class="back" onclick="goHome()">←</button>
+          <div class="detail-title">
+            <span class="badge" style="position:static;display:inline-flex">${escapeHTML(activity.category)}</span>
+            <h2>${escapeHTML(activity.title)}</h2>
+          </div>
+        </div>
+        <div class="info-grid">
+          <div class="info-tile"><span>日期</span><b>${escapeHTML(activity.date)}</b></div>
+          <div class="info-tile"><span>时长</span><b>${escapeHTML(activity.duration)}</b></div>
+          <div class="info-tile"><span>人数</span><b>${escapeHTML(activity.people)}</b></div>
+          <div class="info-tile"><span>地点</span><b>${escapeHTML(activity.location)}</b></div>
+          <div class="info-tile"><span>难度</span><b>${escapeHTML(activity.difficulty)}</b></div>
+          <div class="info-tile"><span>费用</span><b>¥${escapeHTML(activity.price)}</b></div>
+        </div>
+        <div class="panel"><h3>活动介绍</h3><p>${escapeHTML(activity.intro)}</p></div>
+        <div class="panel"><h3>行程安排</h3><ul>${activity.itinerary.map(item => `<li>${escapeHTML(item)}</li>`).join("")}</ul></div>
+        <div class="panel"><h3>费用包含</h3><ul>${activity.includes.map(item => `<li>${escapeHTML(item)}</li>`).join("")}</ul></div>
+        <div class="contact-card">
+          <div class="qr">${qrHTML(activity.wechat)}</div>
+          <div>
+            <h3>微信联系报名</h3>
+            <p>${escapeHTML(activity.contactText)}</p>
+            <span class="wechat-id">微信：${escapeHTML(activity.wechat)}</span>
+            <button class="copy-btn" onclick="copyWechat('${escapeHTML(activity.wechat)}')">复制微信号</button>
+          </div>
+        </div>`;
+      homeScreen.classList.remove("active");
+      detailScreen.classList.add("active");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function openActivity(id) {
+      const activity = activities.find(item => item.id === id);
+      if (!activity) return;
+      renderDetail(activity);
+    }
+
+    function goHome() {
+      detailScreen.classList.remove("active");
+      homeScreen.classList.add("active");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function setCategory(category) {
+      activeCategory = category;
+      renderHome();
+    }
+
+    function scrollToList() {
+      $("#activityList").scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    async function copyWechat(id) {
+      try {
+        await navigator.clipboard.writeText(id);
+        showToast("微信号已复制");
+      } catch {
+        showToast(`微信号：${id}`);
+      }
+    }
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add("show");
+      clearTimeout(showToast.timer);
+      showToast.timer = setTimeout(() => toast.classList.remove("show"), 2100);
+    }
+
+    $("#searchInput").addEventListener("input", (event) => {
+      searchText = event.target.value;
+      renderHome();
+    });
+
+    renderBanners();
+    renderHome();
+    setInterval(() => {
+      activeBanner = (activeBanner + 1) % banners.length;
+      updateBanner();
+    }, 3600);
+  </script>
+</body>
+</html>
