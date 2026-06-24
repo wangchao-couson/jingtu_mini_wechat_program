@@ -31,7 +31,16 @@
   },
   "simulatorPluginLibVersion": {},
   "packOptions": {
-    "ignore": [],
+    "ignore": [
+      {
+        "type": "folder",
+        "value": "web"
+      },
+      {
+        "type": "file",
+        "value": "preview-v3-concept.html"
+      }
+    ],
     "include": []
   },
   "editorSetting": {}
