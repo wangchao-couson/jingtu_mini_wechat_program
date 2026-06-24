@@ -1,9 +1,7 @@
 <view class="stories-page">
-  <view class="nav-bar" style="padding-top:{{statusBarHeight}}px">
-    <view class="nav-inner">
-      <view class="nav-brand"><image class="nav-logo" src="/assets/logo.png" mode="aspectFit"/><text class="nav-name">京途</text></view>
-      <text class="nav-tagline">同学录</text>
-    </view>
+  <view class="stories-nav" style="padding-top:{{statusBarHeight}}px">
+    <view class="nav-left"><image class="nav-logo" src="/assets/logo.png" mode="aspectFit"/><text class="nav-name">京途</text></view>
+    <text class="nav-tagline">同学录</text>
   </view>
 
   <view class="greeting">
@@ -18,10 +16,7 @@
     <text class="slogan-text">和<text class="slogan-highlight">有趣的人</text>，一起去探索<text class="slogan-highlight">更广阔的世界</text></text>
   </view>
 
-  <view class="sec-head">
-    <text class="sec-title">共同的故事</text>
-    <navigator url="/pages/events/events" class="sec-more">全部 →</navigator>
-  </view>
+  <view class="sec-head"><text class="sec-title">共同的故事</text><navigator url="/pages/events/events" class="sec-more">全部 →</navigator></view>
 
   <view wx:if="{{stories.length > 0}}">
     <navigator wx:for="{{stories}}" wx:key="id" url="/pages/event-detail/event-detail?id={{item.id}}" class="story-card">

@@ -5,16 +5,16 @@
     <view class="disc-tab {{tab==='done'?'active':''}}" bindtap="switchTab" data-tab="done">已结束</view>
   </view>
 
-  <view wx:if="{{list.length>0}}" class="disc-list">
-    <navigator wx:for="{{list}}" wx:key="id" url="/pages/event-detail/event-detail?id={{item.id}}" class="story-card">
-      <image src="{{item.cover}}" mode="aspectFill" class="story-cover" style="height:180rpx"/>
-      <view class="story-body">
-        <view class="disc-tag-row"><text class="status-tag {{item.status==='registering'?'status-open':item.status==='upcoming'?'status-soon':'status-done'}}">{{item.status==='registering'?'招募中':item.status==='upcoming'?'即将开始':'已结束'}}</text></view>
-        <view class="story-title" style="font-size:28rpx">{{item.title}}</view>
-        <view class="story-meta">{{item.date}} · {{item.location}} · {{item.distance}}</view>
-        <view class="story-faces">
-          <view class="story-face" wx:for="{{item.faceList}}" wx:key="*this" wx:for-item="f">{{f}}</view>
-          <view class="story-face-more" wx:if="{{item.currentParticipants>item.faceList.length}}">+{{item.currentParticipants-item.faceList.length}}</view>
+  <view class="disc-list" wx:if="{{list.length>0}}">
+    <navigator wx:for="{{list}}" wx:key="id" url="/pages/event-detail/event-detail?id={{item.id}}" class="disc-card">
+      <image src="{{item.cover}}" mode="aspectFill" class="disc-cover"/>
+      <view class="disc-body">
+        <view class="disc-badge-row"><text class="status-tag {{item.status==='registering'?'status-open':item.status==='upcoming'?'status-soon':'status-done'}}">{{item.status==='registering'?'招募中':item.status==='upcoming'?'即将开始':'已结束'}}</text></view>
+        <view class="disc-title">{{item.title}}</view>
+        <view class="disc-meta"><text>📅 {{item.date}}</text><text>📍 {{item.location}}</text><text>📏 {{item.distance}}</text></view>
+        <view class="disc-faces">
+          <view class="disc-face" wx:for="{{item.faceList}}" wx:key="*this" wx:for-item="f">{{f}}</view>
+          <view class="disc-face-more" wx:if="{{item.currentParticipants>item.faceList.length}}">+{{item.currentParticipants-item.faceList.length}}</view>
         </view>
         <view class="disc-footer">
           <text class="disc-leader">🎯 领队：{{item.leader.name}}</text>
