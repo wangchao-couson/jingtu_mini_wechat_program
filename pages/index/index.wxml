@@ -1,97 +1,45 @@
-<view class="index-page">
-  <view class="nav-bar" style="padding-top: {{statusBarHeight}}px;">
-    <view class="nav-content">
-      <view class="nav-brand">
-        <image class="nav-logo" src="/assets/logo.png" mode="aspectFit"></image>
-        <text class="nav-title">京途</text>
-      </view>
-      <view class="nav-subtitle">活动日历 · 照片墙 · 通讯录</view>
+<view class="stories-page">
+  <view class="nav-bar" style="padding-top:{{statusBarHeight}}px">
+    <view class="nav-inner">
+      <view class="nav-brand"><image class="nav-logo" src="/assets/logo.png" mode="aspectFit"/><text class="nav-name">京途</text></view>
+      <text class="nav-tagline">同学录</text>
     </view>
   </view>
 
-  <view class="greeting-card">
+  <view class="greeting">
     <view class="avatar avatar-lg">{{userInitial}}</view>
-    <view class="greeting-text">
-      <view class="greeting-hello">{{greeting}}，京途同学 👋</view>
-      <view class="greeting-sub">今天宜出门，宜相遇，宜在路上</view>
+    <view class="greeting-right">
+      <text class="greeting-hi">{{greeting}}，京途同学</text>
+      <text class="greeting-sub">你和 {{companionCount}} 位同学一起走过 {{totalKm}} 公里</text>
     </view>
   </view>
 
-  <view class="section" wx:if="{{recentEvents.length > 0}}">
-    <view class="section-header">
-      <text class="section-title">🏔️ 近期活动</text>
-      <navigator url="/pages/events/events" class="section-more">全部 →</navigator>
-    </view>
-    <scroll-view scroll-x class="event-scroll" show-scrollbar="{{false}}">
-      <view class="event-scroll-inner">
-        <navigator
-          wx:for="{{recentEvents}}"
-          wx:key="id"
-          url="/pages/event-detail/event-detail?id={{item.id}}"
-          class="event-mini-card"
-        >
-          <image src="{{item.cover}}" mode="aspectFill" class="event-mini-cover"></image>
-          <view class="event-mini-info">
-            <view class="event-mini-title">{{item.title}}</view>
-            <view class="event-mini-meta">{{item.date}} · {{item.location}}</view>
-            <view class="event-mini-bottom">
-              <text class="status-tag status-{{item.status}}">
-                {{item.status === 'registering' ? '招募中' : item.status === 'upcoming' ? '即将开始' : '已结束'}}
-              </text>
-              <text class="event-mini-spots">{{item.currentParticipants}}/{{item.maxParticipants}}人</text>
-            </view>
-          </view>
-        </navigator>
-      </view>
-    </scroll-view>
+  <view class="slogan-banner">
+    <text class="slogan-text">和<text class="slogan-highlight">有趣的人</text>，一起去探索<text class="slogan-highlight">更广阔的世界</text></text>
   </view>
 
-  <view class="section">
-    <view class="section-header">
-      <text class="section-title">📡 同学动态</text>
-    </view>
-    <view class="moments-list">
-      <view class="moment-item" wx:for="{{moments}}" wx:key="index">
-        <view class="avatar avatar-sm">{{item.user[0]}}</view>
-        <view class="moment-text">
-          <text class="moment-name">{{item.user}}</text>
-          <text>{{item.action}}</text>
-          <text class="moment-target">「{{item.target}}」</text>
-          <view class="moment-time">{{item.time}}</view>
+  <view class="sec-head">
+    <text class="sec-title">共同的故事</text>
+    <navigator url="/pages/events/events" class="sec-more">全部 →</navigator>
+  </view>
+
+  <view wx:if="{{stories.length > 0}}">
+    <navigator wx:for="{{stories}}" wx:key="id" url="/pages/event-detail/event-detail?id={{item.id}}" class="story-card">
+      <image src="{{item.cover}}" mode="aspectFill" class="story-cover"/>
+      <view class="story-body">
+        <view class="story-month">{{item.month}}</view>
+        <view class="story-title">{{item.title}}</view>
+        <view class="story-subtitle">{{item.subtitle}}</view>
+        <view class="story-meta">{{item.date}} · {{item.location}} · {{item.currentParticipants}}人同行</view>
+        <view class="story-faces">
+          <view class="story-face" wx:for="{{item.faceList}}" wx:key="*this" wx:for-item="f">{{f}}</view>
+          <view class="story-face-more" wx:if="{{item.currentParticipants > item.faceList.length}}">+{{item.currentParticipants - item.faceList.length}}</view>
         </view>
+        <view class="story-quote" wx:if="{{item.quote}}">"{{item.quote}}"</view>
       </view>
-    </view>
+    </navigator>
   </view>
+  <view class="empty-state" wx:else><view class="empty-icon">📖</view><view class="empty-text">还没有故事，去发现页看看吧</view></view>
 
-  <view class="section" wx:if="{{photos.length > 0}}">
-    <view class="section-header">
-      <text class="section-title">📸 精选照片</text>
-    </view>
-    <view class="photo-grid">
-      <view class="photo-item" wx:for="{{photos}}" wx:key="id" wx:if="{{index < 6}}">
-        <image src="{{item.url}}" mode="aspectFill" class="photo-img"></image>
-        <view class="photo-meta">
-          <text class="photo-event">{{item.event}}</text>
-          <text class="photo-user">by {{item.user}}</text>
-        </view>
-      </view>
-    </view>
-  </view>
-
-  <view class="section" wx:if="{{announcements.length > 0}}">
-    <view class="section-header">
-      <text class="section-title">📢 社区公告</text>
-    </view>
-    <view class="anno-list">
-      <view class="anno-item" wx:for="{{announcements}}" wx:key="id">
-        <text class="anno-dot">•</text>
-        <view class="flex-1">
-          <text>{{item.text}}</text>
-          <view class="anno-time">{{item.time}}</view>
-        </view>
-      </view>
-    </view>
-  </view>
-
-  <view style="height: 40rpx;"></view>
+  <view style="height:40rpx"></view>
 </view>

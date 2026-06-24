@@ -1,94 +1,71 @@
-<view class="profile-page">
-  <view class="profile-nav-bg" style="padding-top: {{statusBarHeight}}px;">
-    <view class="profile-nav-title">我的</view>
+<view class="mp-page">
+  <view class="mp-nav" style="padding-top:{{statusBarHeight}}px">
+    <view class="mp-nav-title">我的京途档案</view>
+    <view class="mp-nav-sub">2026.3 加入</view>
   </view>
 
-  <view class="profile-hero">
-    <view class="profile-avatar avatar" style="width:120rpx;height:120rpx;font-size:48rpx;margin:0 auto 16rpx;">
-      {{user.nickname ? user.nickname[0] : '途'}}
-    </view>
-    <view class="profile-name">{{user.nickname || '京途同学'}}</view>
-    <view class="profile-bio">{{user.bio || '热爱自然，在路上遇见更好的自己'}}</view>
-    <view class="profile-tags flex gap-8 flex-wrap" style="justify-content:center;">
-      <text class="tag tag-cyan" wx:for="{{user.tags || []}}" wx:key="*this">{{item}}</text>
-    </view>
-    <view class="profile-join-date">🕐 {{user.joinDate || ''}} 加入京途</view>
-  </view>
-
-  <view class="detail-section">
-    <view class="detail-section-title">📊 我的户外足迹</view>
-    <view class="stats-grid">
-      <view class="stats-item">
-        <text class="stats-num">{{user.totalEvents || 0}}</text>
-        <text class="stats-label">参加次数</text>
-      </view>
-      <view class="stats-item">
-        <text class="stats-num primary">{{user.totalKm || 0}}</text>
-        <text class="stats-label">累计里程(km)</text>
-      </view>
-      <view class="stats-item">
-        <text class="stats-num secondary">{{user.totalDays || 0}}</text>
-        <text class="stats-label">累计天数</text>
-      </view>
+  <view class="mp-hero">
+    <view class="avatar avatar-xl" style="margin:0 auto 14rpx">{{user.nickname?user.nickname[0]:'途'}}</view>
+    <view class="mp-name">{{user.nickname||'京途同学'}}</view>
+    <view class="mp-bio">{{user.bio||'热爱自然，在路上遇见更好的自己'}}</view>
+    <view class="flex gap-6 flex-wrap" style="justify-content:center;margin:10rpx 0">
+      <text class="tag tag-teal" wx:for="{{user.tags||[]}}" wx:key="*this">{{item}}</text>
     </view>
   </view>
 
   <view class="detail-section">
-    <view class="detail-section-title">🗺️ 足迹地图</view>
-    <view class="footprint-placeholder">
-      <text class="footprint-icon">📍</text>
-      <text class="footprint-text">已点亮 {{visitedPlaces.length}} 个地点</text>
-    </view>
-    <view class="footprint-tags flex gap-8 flex-wrap" style="margin-top:12rpx;">
-      <view class="footprint-tag" wx:for="{{visitedPlaces}}" wx:key="*this">📍 {{item}}</view>
+    <view class="detail-title">我的户外足迹</view>
+    <view class="mp-stats">
+      <view class="mp-stat"><text class="mp-stat-num">{{user.totalEvents||0}}</text><text class="mp-stat-label">参加次数</text></view>
+      <view class="mp-stat"><text class="mp-stat-num teal">{{user.totalKm||0}}</text><text class="mp-stat-label">累计公里</text></view>
+      <view class="mp-stat"><text class="mp-stat-num mint">{{user.totalDays||0}}</text><text class="mp-stat-label">累计天数</text></view>
     </view>
   </view>
 
   <view class="detail-section">
-    <view class="detail-section-title">📋 我的加入 ({{participations.length}})</view>
-    <view wx:if="{{participations.length === 0}}" class="empty-text" style="padding:20rpx 0">
-      还没有加入活动，去<text class="text-primary" bindtap="goEvents">活动页</text>看看吧
+    <view class="detail-title">🤝 最常同行</view>
+    <view class="mp-comp" wx:for="{{topCompanions}}" wx:key="id">
+      <view class="avatar">{{item.name[0]}}</view>
+      <view class="flex-1"><view class="fs-28 font-bold">{{item.name}}</view><view class="fs-22 text-gray">{{item.bio}}</view></view>
+      <text class="mp-comp-count">{{item.count}}次</text>
     </view>
-    <view class="reg-list" wx:else>
-      <view class="reg-item" wx:for="{{participations}}" wx:key="id">
-        <image src="{{item.eventCover}}" mode="aspectFill" class="reg-cover"></image>
-        <view class="reg-info">
-          <view class="reg-title">{{item.eventTitle}}</view>
-          <view class="reg-date">{{item.eventDate}}</view>
-          <text class="status-tag status-registering">已加入</text>
-        </view>
-      </view>
+    <view class="empty-text fs-22" wx:if="{{topCompanions.length===0}}" style="padding:16rpx 0">还没有一起出行的同学</view>
+  </view>
+
+  <view class="detail-section">
+    <view class="detail-title">✨ 京途回忆</view>
+    <view class="mp-memory">
+      <view class="mp-memory-label">✦ 时光机</view>
+      <view class="mp-memory-word">"{{memoryText}}"</view>
+      <view class="mp-memory-meta">{{memoryMeta}}</view>
     </view>
   </view>
 
   <view class="detail-section">
-    <view class="detail-section-title">📸 我的相册</view>
-    <view class="photo-grid-small">
-      <image src="{{item.url}}" mode="aspectFill" class="photo-thumb" wx:for="{{myPhotos}}" wx:key="id"></image>
+    <view class="detail-title">🗺️ 足迹地图</view>
+    <view class="mp-footprint">
+      <text class="mp-fp-icon">📍</text>
+      <text class="mp-fp-text">已点亮 {{visitedPlaces.length}} 个地方</text>
     </view>
-    <view class="empty-text" wx:if="{{myPhotos.length === 0}}" style="padding:20rpx 0">
-      参加活动后照片会出现在这里
-    </view>
-  </view>
-
-  <view class="detail-section">
-    <view class="detail-section-title">📝 我的故事</view>
-    <view class="story-item" wx:for="{{myStories}}" wx:key="id">
-      <view class="story-date">{{item.date}}</view>
-      <view class="story-title">{{item.title}}</view>
-      <view class="story-event">🏔️ {{item.event}}</view>
-    </view>
-    <view class="empty-text" wx:if="{{myStories.length === 0}}" style="padding:20rpx 0">
-      记录每一次户外经历，成为京途故事
+    <view class="flex gap-6 flex-wrap" style="margin-top:12rpx">
+      <text class="mp-fp-tag" wx:for="{{visitedPlaces}}" wx:key="*this">{{item}}</text>
     </view>
   </view>
 
   <view class="detail-section">
-    <view class="detail-section-title">⚙️ 设置</view>
-    <view class="setting-item" bindtap="editProfile">✏️ 编辑资料</view>
-    <view class="setting-item" bindtap="showAbout">ℹ️ 关于京途</view>
-    <view class="setting-item" bindtap="clearCache">🗑️ 清除缓存</view>
+    <view class="detail-title">📋 我的加入 ({{participations.length}})</view>
+    <view wx:if="{{participations.length===0}}" class="empty-text fs-22" style="padding:12rpx 0">还没有加入活动</view>
+    <view class="mp-join" wx:for="{{participations}}" wx:key="id" wx:else>
+      <image src="{{item.eventCover}}" mode="aspectFill" class="mp-join-img"/>
+      <view class="flex-1"><view class="fs-26 font-bold">{{item.eventTitle}}</view><view class="fs-22 text-light">{{item.eventDate}}</view></view>
+      <text class="status-tag status-open">已加入</text>
+    </view>
   </view>
 
-  <view style="height: 40rpx;"></view>
+  <view class="detail-section">
+    <view class="detail-title">⚙️</view>
+    <view class="mp-setting" bindtap="editProfile">✏️ 编辑资料</view>
+    <view class="mp-setting" bindtap="showAbout">ℹ️ 关于京途</view>
+  </view>
+  <view style="height:40rpx"></view>
 </view>

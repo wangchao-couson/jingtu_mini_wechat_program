@@ -1,46 +1,27 @@
-<view class="events-page">
-  <view class="events-tabs">
-    <view class="events-tab {{currentTab === 'registering' ? 'active' : ''}}" bindtap="switchTab" data-tab="registering">招募中</view>
-    <view class="events-tab {{currentTab === 'upcoming' ? 'active' : ''}}" bindtap="switchTab" data-tab="upcoming">即将开始</view>
-    <view class="events-tab {{currentTab === 'finished' ? 'active' : ''}}" bindtap="switchTab" data-tab="finished">已结束</view>
+<view class="disc-page">
+  <view class="disc-tabs">
+    <view class="disc-tab {{tab==='open'?'active':''}}" bindtap="switchTab" data-tab="open">招募中</view>
+    <view class="disc-tab {{tab==='soon'?'active':''}}" bindtap="switchTab" data-tab="soon">即将开始</view>
+    <view class="disc-tab {{tab==='done'?'active':''}}" bindtap="switchTab" data-tab="done">已结束</view>
   </view>
 
-  <view class="events-list" wx:if="{{filteredEvents.length > 0}}">
-    <navigator
-      wx:for="{{filteredEvents}}"
-      wx:key="id"
-      url="/pages/event-detail/event-detail?id={{item.id}}"
-      class="event-card card"
-    >
-      <image src="{{item.cover}}" mode="aspectFill" class="event-cover"></image>
-      <view class="event-body">
-        <view class="event-tags">
-          <text class="tag tag-primary" wx:for="{{item.tags}}" wx:key="*this" wx:for-item="t">{{t}}</text>
+  <view wx:if="{{list.length>0}}" class="disc-list">
+    <navigator wx:for="{{list}}" wx:key="id" url="/pages/event-detail/event-detail?id={{item.id}}" class="story-card">
+      <image src="{{item.cover}}" mode="aspectFill" class="story-cover" style="height:180rpx"/>
+      <view class="story-body">
+        <view class="disc-tag-row"><text class="status-tag {{item.status==='registering'?'status-open':item.status==='upcoming'?'status-soon':'status-done'}}">{{item.status==='registering'?'招募中':item.status==='upcoming'?'即将开始':'已结束'}}</text></view>
+        <view class="story-title" style="font-size:28rpx">{{item.title}}</view>
+        <view class="story-meta">{{item.date}} · {{item.location}} · {{item.distance}}</view>
+        <view class="story-faces">
+          <view class="story-face" wx:for="{{item.faceList}}" wx:key="*this" wx:for-item="f">{{f}}</view>
+          <view class="story-face-more" wx:if="{{item.currentParticipants>item.faceList.length}}">+{{item.currentParticipants-item.faceList.length}}</view>
         </view>
-        <view class="event-title">{{item.title}}</view>
-        <view class="event-meta">
-          <text>📅 {{item.date}}</text>
-          <text>📍 {{item.location}}</text>
-        </view>
-        <view class="event-meta">
-          <text>📏 {{item.distance}}</text>
-          <text>⚡ {{item.difficulty}}</text>
-        </view>
-        <view class="event-footer">
-          <view>
-            <text class="status-tag status-{{item.status}}">
-              {{item.status === 'registering' ? '招募中' : item.status === 'upcoming' ? '即将开始' : '已结束'}}
-            </text>
-            <text class="event-spots">已加入 {{item.currentParticipants}}/{{item.maxParticipants}}人</text>
-          </view>
-          <text class="event-leader">领队: {{item.leader.name}}</text>
+        <view class="disc-footer">
+          <text class="disc-leader">🎯 领队：{{item.leader.name}}</text>
+          <text class="disc-join" wx:if="{{item.status==='registering'}}">联系加入 →</text>
         </view>
       </view>
     </navigator>
   </view>
-
-  <view class="empty-state" wx:else>
-    <view class="empty-icon">🏔️</view>
-    <view class="empty-text">暂无{{currentTab === 'registering' ? '招募中' : currentTab === 'upcoming' ? '即将开始' : '已结束'}}的活动</view>
-  </view>
+  <view class="empty-state" wx:else><view class="empty-icon">🧭</view><view class="empty-text">暂无活动</view></view>
 </view>
