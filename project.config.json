@@ -1,7 +1,7 @@
 {
   "appid": "wx41c5fec33e8beba9",
-  "projectname": "jingtu_mini_wechat_program",
-  "description": "京途北京周边自驾活动小程序",
+  "projectname": "京途",
+  "description": "京途 - 年轻户外社区 WeChat Mini Program MVP",
   "compileType": "miniprogram",
   "miniprogramRoot": "./",
   "setting": {

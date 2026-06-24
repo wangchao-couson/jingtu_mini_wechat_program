@@ -1,0 +1,84 @@
+.classmates-page { padding-bottom: 40rpx; }
+
+.classmates-header {
+  padding: 24rpx 24rpx 0;
+}
+.classmates-search {
+  display: flex;
+  align-items: center;
+  background: var(--white);
+  border-radius: 36rpx;
+  padding: 14rpx 20rpx;
+  box-shadow: var(--shadow);
+}
+.search-icon { font-size: 28rpx; margin-right: 12rpx; }
+.search-input { flex: 1; font-size: 26rpx; }
+.classmates-stats {
+  text-align: center;
+  font-size: 24rpx;
+  color: var(--text-secondary);
+  margin: 16rpx 0 8rpx;
+}
+
+.tag-scroll { width: 100%; }
+.tag-scroll-inner {
+  display: flex;
+  gap: 12rpx;
+  padding: 12rpx 24rpx;
+}
+.filter-tag {
+  padding: 10rpx 24rpx;
+  border-radius: 28rpx;
+  font-size: 24rpx;
+  white-space: nowrap;
+  background: var(--white);
+  color: var(--text-secondary);
+  border: 2rpx solid var(--border);
+  transition: all 0.2s;
+}
+.filter-tag.active {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+  box-shadow: 0 4rpx 12rpx rgba(30,93,117,0.2);
+}
+
+.classmate-list {
+  padding: 8rpx 24rpx;
+}
+.classmate-card {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+  margin-bottom: 16rpx;
+}
+.classmate-info { flex: 1; min-width: 0; }
+.classmate-name {
+  font-size: 30rpx;
+  font-weight: 600;
+  margin-bottom: 4rpx;
+}
+.classmate-city {
+  font-size: 24rpx;
+  font-weight: 400;
+  color: var(--text-light);
+}
+.classmate-bio {
+  font-size: 24rpx;
+  color: var(--text-secondary);
+  margin-bottom: 8rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.classmate-tags { margin-bottom: 8rpx; }
+.classmate-stats-row {
+  display: flex;
+  gap: 16rpx;
+  font-size: 22rpx;
+  color: var(--text-light);
+}
+.classmate-arrow {
+  font-size: 28rpx;
+  color: var(--text-light);
+}

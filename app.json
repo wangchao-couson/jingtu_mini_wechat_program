@@ -1,14 +1,51 @@
 {
   "pages": [
-    "pages/native/index",
-    "pages/webview/index"
+    "pages/index/index",
+    "pages/events/events",
+    "pages/classmates/classmates",
+    "pages/profile/profile",
+    "pages/event-detail/event-detail",
+    "pages/classmate-detail/classmate-detail"
   ],
   "window": {
+    "navigationBarBackgroundColor": "#1E5D75",
     "navigationBarTitleText": "京途",
-    "navigationBarBackgroundColor": "#145C63",
     "navigationBarTextStyle": "white",
-    "backgroundColor": "#F2F8FA"
+    "backgroundColor": "#F5F7F6",
+    "backgroundTextStyle": "dark"
   },
-  "style": "v2",
-  "sitemapLocation": "sitemap.json"
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#1E5D75",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "今日京途",
+        "iconPath": "assets/tab-home.png",
+        "selectedIconPath": "assets/tab-home-active.png"
+      },
+      {
+        "pagePath": "pages/events/events",
+        "text": "活动",
+        "iconPath": "assets/tab-events.png",
+        "selectedIconPath": "assets/tab-events-active.png"
+      },
+      {
+        "pagePath": "pages/classmates/classmates",
+        "text": "同学",
+        "iconPath": "assets/tab-classmates.png",
+        "selectedIconPath": "assets/tab-classmates-active.png"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的",
+        "iconPath": "assets/tab-profile.png",
+        "selectedIconPath": "assets/tab-profile-active.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2"
 }

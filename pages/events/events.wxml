@@ -1,0 +1,46 @@
+<view class="events-page">
+  <view class="events-tabs">
+    <view class="events-tab {{currentTab === 'registering' ? 'active' : ''}}" bindtap="switchTab" data-tab="registering">招募中</view>
+    <view class="events-tab {{currentTab === 'upcoming' ? 'active' : ''}}" bindtap="switchTab" data-tab="upcoming">即将开始</view>
+    <view class="events-tab {{currentTab === 'finished' ? 'active' : ''}}" bindtap="switchTab" data-tab="finished">已结束</view>
+  </view>
+
+  <view class="events-list" wx:if="{{filteredEvents.length > 0}}">
+    <navigator
+      wx:for="{{filteredEvents}}"
+      wx:key="id"
+      url="/pages/event-detail/event-detail?id={{item.id}}"
+      class="event-card card"
+    >
+      <image src="{{item.cover}}" mode="aspectFill" class="event-cover"></image>
+      <view class="event-body">
+        <view class="event-tags">
+          <text class="tag tag-primary" wx:for="{{item.tags}}" wx:key="*this" wx:for-item="t">{{t}}</text>
+        </view>
+        <view class="event-title">{{item.title}}</view>
+        <view class="event-meta">
+          <text>📅 {{item.date}}</text>
+          <text>📍 {{item.location}}</text>
+        </view>
+        <view class="event-meta">
+          <text>📏 {{item.distance}}</text>
+          <text>⚡ {{item.difficulty}}</text>
+        </view>
+        <view class="event-footer">
+          <view>
+            <text class="status-tag status-{{item.status}}">
+              {{item.status === 'registering' ? '招募中' : item.status === 'upcoming' ? '即将开始' : '已结束'}}
+            </text>
+            <text class="event-spots">已加入 {{item.currentParticipants}}/{{item.maxParticipants}}人</text>
+          </view>
+          <text class="event-leader">领队: {{item.leader.name}}</text>
+        </view>
+      </view>
+    </navigator>
+  </view>
+
+  <view class="empty-state" wx:else>
+    <view class="empty-icon">🏔️</view>
+    <view class="empty-text">暂无{{currentTab === 'registering' ? '招募中' : currentTab === 'upcoming' ? '即将开始' : '已结束'}}的活动</view>
+  </view>
+</view>

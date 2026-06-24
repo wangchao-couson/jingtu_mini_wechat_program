@@ -1,0 +1,14 @@
+.events-page { padding-bottom: 40rpx; }
+.events-tabs { display: flex; background: var(--white); padding: 16rpx 24rpx; gap: 8rpx; position: sticky; top: 0; z-index: 10; }
+.events-tab { flex: 1; text-align: center; padding: 14rpx 0; border-radius: 32rpx; font-size: 26rpx; font-weight: 500; color: var(--text-secondary); background: var(--bg); transition: all 0.2s; }
+.events-tab.active { background: var(--primary); color: white; font-weight: 600; box-shadow: 0 4rpx 12rpx rgba(30,93,117,0.25); }
+.events-list { padding: 16rpx 24rpx; }
+.event-card { margin-bottom: 20rpx; }
+.event-cover { width: 100%; height: 320rpx; }
+.event-body { padding: 20rpx 24rpx 24rpx; }
+.event-tags { display: flex; gap: 8rpx; margin-bottom: 12rpx; }
+.event-title { font-size: 32rpx; font-weight: 700; line-height: 1.3; margin-bottom: 12rpx; }
+.event-meta { display: flex; gap: 24rpx; font-size: 24rpx; color: var(--text-secondary); margin-bottom: 6rpx; }
+.event-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 16rpx; padding-top: 16rpx; border-top: 1rpx solid var(--border); }
+.event-spots { font-size: 22rpx; color: var(--text-light); margin-left: 12rpx; }
+.event-leader { font-size: 24rpx; color: var(--secondary); font-weight: 500; }

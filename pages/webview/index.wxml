@@ -1,8 +1,0 @@
-<web-view wx:if="{{webviewUrl}}" src="{{webviewUrl}}"></web-view>
-
-<view wx:else class="fallback">
-  <view class="card">
-    <view class="title">请配置活动页地址</view>
-    <view class="desc">打开 utils/config.js，填写已备案并通过业务域名校验的 HTTPS 地址。</view>
-  </view>
-</view>

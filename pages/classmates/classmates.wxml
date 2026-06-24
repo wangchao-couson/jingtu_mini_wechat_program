@@ -1,0 +1,49 @@
+<view class="classmates-page">
+  <view class="classmates-header">
+    <view class="classmates-search">
+      <text class="search-icon">🔍</text>
+      <input placeholder="搜索同学..." confirm-type="search" bindinput="onSearch" class="search-input"/>
+    </view>
+    <view class="classmates-stats">
+      已有 <text class="text-primary font-bold">{{totalCount}}</text> 位京途同学
+    </view>
+  </view>
+
+  <scroll-view scroll-x class="tag-scroll" show-scrollbar="{{false}}">
+    <view class="tag-scroll-inner">
+      <view class="filter-tag {{activeTag === '' ? 'active' : ''}}" bindtap="setTag" data-tag="">全部</view>
+      <view wx:for="{{allTags}}" wx:key="*this" class="filter-tag {{activeTag === item ? 'active' : ''}}" bindtap="setTag" data-tag="{{item}}">{{item}}</view>
+    </view>
+  </scroll-view>
+
+  <view class="classmate-list">
+    <navigator
+      wx:for="{{filteredClassmates}}"
+      wx:key="id"
+      url="/pages/classmate-detail/classmate-detail?id={{item.id}}"
+      class="classmate-card card-padded"
+    >
+      <view class="avatar avatar-lg">{{item.nickname[0]}}</view>
+      <view class="classmate-info">
+        <view class="classmate-name">
+          {{item.nickname}}
+          <text class="classmate-city"> · {{item.city}}</text>
+        </view>
+        <view class="classmate-bio">{{item.bio}}</view>
+        <view class="classmate-tags flex gap-8 flex-wrap">
+          <text class="tag tag-cyan" wx:for="{{item.tags}}" wx:key="*this">{{item}}</text>
+        </view>
+        <view class="classmate-stats-row">
+          <text>🏔️ {{item.eventCount}}次活动</text>
+          <text wx:if="{{item.commonEvents > 0}}">🤝 {{item.commonEvents}}次同行</text>
+        </view>
+      </view>
+      <view class="classmate-arrow">→</view>
+    </navigator>
+  </view>
+
+  <view class="empty-state" wx:if="{{filteredClassmates.length === 0}}">
+    <view class="empty-icon">👥</view>
+    <view class="empty-text">没有找到匹配的同学</view>
+  </view>
+</view>

@@ -1,0 +1,94 @@
+<view class="profile-page">
+  <view class="profile-nav-bg" style="padding-top: {{statusBarHeight}}px;">
+    <view class="profile-nav-title">我的</view>
+  </view>
+
+  <view class="profile-hero">
+    <view class="profile-avatar avatar" style="width:120rpx;height:120rpx;font-size:48rpx;margin:0 auto 16rpx;">
+      {{user.nickname ? user.nickname[0] : '途'}}
+    </view>
+    <view class="profile-name">{{user.nickname || '京途同学'}}</view>
+    <view class="profile-bio">{{user.bio || '热爱自然，在路上遇见更好的自己'}}</view>
+    <view class="profile-tags flex gap-8 flex-wrap" style="justify-content:center;">
+      <text class="tag tag-cyan" wx:for="{{user.tags || []}}" wx:key="*this">{{item}}</text>
+    </view>
+    <view class="profile-join-date">🕐 {{user.joinDate || ''}} 加入京途</view>
+  </view>
+
+  <view class="detail-section">
+    <view class="detail-section-title">📊 我的户外足迹</view>
+    <view class="stats-grid">
+      <view class="stats-item">
+        <text class="stats-num">{{user.totalEvents || 0}}</text>
+        <text class="stats-label">参加次数</text>
+      </view>
+      <view class="stats-item">
+        <text class="stats-num primary">{{user.totalKm || 0}}</text>
+        <text class="stats-label">累计里程(km)</text>
+      </view>
+      <view class="stats-item">
+        <text class="stats-num secondary">{{user.totalDays || 0}}</text>
+        <text class="stats-label">累计天数</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="detail-section">
+    <view class="detail-section-title">🗺️ 足迹地图</view>
+    <view class="footprint-placeholder">
+      <text class="footprint-icon">📍</text>
+      <text class="footprint-text">已点亮 {{visitedPlaces.length}} 个地点</text>
+    </view>
+    <view class="footprint-tags flex gap-8 flex-wrap" style="margin-top:12rpx;">
+      <view class="footprint-tag" wx:for="{{visitedPlaces}}" wx:key="*this">📍 {{item}}</view>
+    </view>
+  </view>
+
+  <view class="detail-section">
+    <view class="detail-section-title">📋 我的加入 ({{participations.length}})</view>
+    <view wx:if="{{participations.length === 0}}" class="empty-text" style="padding:20rpx 0">
+      还没有加入活动，去<text class="text-primary" bindtap="goEvents">活动页</text>看看吧
+    </view>
+    <view class="reg-list" wx:else>
+      <view class="reg-item" wx:for="{{participations}}" wx:key="id">
+        <image src="{{item.eventCover}}" mode="aspectFill" class="reg-cover"></image>
+        <view class="reg-info">
+          <view class="reg-title">{{item.eventTitle}}</view>
+          <view class="reg-date">{{item.eventDate}}</view>
+          <text class="status-tag status-registering">已加入</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="detail-section">
+    <view class="detail-section-title">📸 我的相册</view>
+    <view class="photo-grid-small">
+      <image src="{{item.url}}" mode="aspectFill" class="photo-thumb" wx:for="{{myPhotos}}" wx:key="id"></image>
+    </view>
+    <view class="empty-text" wx:if="{{myPhotos.length === 0}}" style="padding:20rpx 0">
+      参加活动后照片会出现在这里
+    </view>
+  </view>
+
+  <view class="detail-section">
+    <view class="detail-section-title">📝 我的故事</view>
+    <view class="story-item" wx:for="{{myStories}}" wx:key="id">
+      <view class="story-date">{{item.date}}</view>
+      <view class="story-title">{{item.title}}</view>
+      <view class="story-event">🏔️ {{item.event}}</view>
+    </view>
+    <view class="empty-text" wx:if="{{myStories.length === 0}}" style="padding:20rpx 0">
+      记录每一次户外经历，成为京途故事
+    </view>
+  </view>
+
+  <view class="detail-section">
+    <view class="detail-section-title">⚙️ 设置</view>
+    <view class="setting-item" bindtap="editProfile">✏️ 编辑资料</view>
+    <view class="setting-item" bindtap="showAbout">ℹ️ 关于京途</view>
+    <view class="setting-item" bindtap="clearCache">🗑️ 清除缓存</view>
+  </view>
+
+  <view style="height: 40rpx;"></view>
+</view>

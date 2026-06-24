@@ -1,0 +1,50 @@
+<view class="cd-page" wx:if="{{classmate}}">
+  <view class="cd-hero">
+    <view class="cd-avatar avatar" style="width:120rpx;height:120rpx;font-size:48rpx;background:rgba(255,255,255,0.2);margin:0 auto 16rpx;">
+      {{classmate.nickname[0]}}
+    </view>
+    <view class="cd-name">{{classmate.nickname}}</view>
+    <view class="cd-city">📍 {{classmate.city}}</view>
+    <view class="cd-bio-hero">「{{classmate.bio}}」</view>
+  </view>
+
+  <view class="detail-section">
+    <view class="flex gap-8 flex-wrap">
+      <text class="tag tag-cyan" wx:for="{{classmate.tags}}" wx:key="*this">{{item}}</text>
+    </view>
+  </view>
+
+  <view class="detail-section">
+    <view class="detail-section-title">📊 户外足迹</view>
+    <view class="cd-stats-grid">
+      <view class="cd-stat">
+        <text class="cd-stat-num">{{classmate.eventCount}}</text>
+        <text class="cd-stat-label">参加活动</text>
+      </view>
+      <view class="cd-stat">
+        <text class="cd-stat-num">{{classmate.commonEvents}}</text>
+        <text class="cd-stat-label">共同活动</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="detail-section">
+    <view class="detail-section-title">📱 联系方式</view>
+    <view class="cd-contact">
+      <text class="cd-contact-label">微信号</text>
+      <view class="cd-contact-row">
+        <text class="cd-contact-value">{{classmate.wechat || '未设置'}}</text>
+        <button class="btn btn-sm btn-outline" wx:if="{{classmate.wechat}}" bindtap="copyWechat">复制</button>
+      </view>
+    </view>
+  </view>
+
+  <view class="cd-actions">
+    <button class="btn btn-primary flex-1" bindtap="copyWechat" wx:if="{{classmate.wechat}}">📱 复制微信号</button>
+  </view>
+</view>
+
+<view class="empty-state" wx:else>
+  <view class="empty-icon">👤</view>
+  <view class="empty-text">同学信息不存在</view>
+</view>
