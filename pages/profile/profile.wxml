@@ -54,12 +54,16 @@
 
   <view class="detail-section">
     <view class="detail-title">📋 我的加入 ({{participations.length}})</view>
-    <view wx:if="{{participations.length===0}}" class="empty-text fs-22" style="padding:12rpx 0">还没有加入活动</view>
-    <view class="mp-join" wx:for="{{participations}}" wx:key="id" wx:else>
+    <block wx:if="{{participations.length===0}}">
+      <view class="empty-text fs-22" style="padding:12rpx 0">还没有加入活动</view>
+    </block>
+    <block wx:else>
+      <view class="mp-join" wx:for="{{participations}}" wx:key="id">
       <image src="{{item.eventCover}}" mode="aspectFill" class="mp-join-img"/>
       <view class="flex-1"><view class="fs-26 font-bold">{{item.eventTitle}}</view><view class="fs-22 text-light">{{item.eventDate}}</view></view>
       <text class="status-tag status-open">已加入</text>
-    </view>
+      </view>
+    </block>
   </view>
 
   <view class="detail-section">
