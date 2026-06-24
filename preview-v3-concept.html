@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<title>京途 v3 预览 — 同学录 · The Yearbook</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --ink:#1a1a1a;
+  --page:#f7f6f3;
+  --card:#fff;
+  --blue:#1E5D75;
+  --teal:#2FA7A1;
+  --green:#6CC37D;
+  --amber:#FFB14E;
+  --gray:#7a7a7a;
+  --light:#c4c4c4;
+  --border:#eee;
+  --shadow:0 4px 24px rgba(0,0,0,0.06);
+  --shadow-lg:0 12px 48px rgba(0,0,0,0.09);
+}
+body{
+  font-family:'Noto Sans SC',sans-serif;
+  background:#e8e6e1;
+  color:var(--ink);
+  display:flex;
+  justify-content:center;
+  padding:24px;
+  gap:24px;
+  flex-wrap:wrap;
+}
+.screen{
+  width:390px;
+  height:844px;
+  background:var(--page);
+  border-radius:44px;
+  overflow:hidden;
+  box-shadow:var(--shadow-lg);
+  position:relative;
+}
+
+/* Nav Bar */
+.navbar{
+  height:88px;
+  background:linear-gradient(135deg,var(--blue),#154454);
+  display:flex;
+  align-items:flex-end;
+  padding:0 24px 12px;
+  justify-content:space-between;
+}
+.nav-title{color:#fff;font-size:17px;font-weight:600;letter-spacing:1px}
+.nav-sub{color:rgba(255,255,255,0.6);font-size:11px}
+
+/* Bottom Tab */
+.tabbar{
+  position:absolute;bottom:0;left:0;right:0;
+  height:83px;background:rgba(255,255,255,0.92);
+  backdrop-filter:blur(20px);
+  border-top:1px solid var(--border);
+  display:flex;padding:6px 0 20px;
+}
+.tab{
+  flex:1;display:flex;flex-direction:column;align-items:center;
+  gap:3px;font-size:10px;color:var(--gray);
+}
+.tab.active{color:var(--blue)}
+.tab-icon{font-size:22px}
+
+/* Content area */
+.content{height:calc(844px - 88px - 83px);overflow-y:auto;padding:16px}
+
+/* Greeting Card */
+.greeting{
+  background:var(--card);
+  border-radius:20px;
+  padding:20px 24px;
+  margin-bottom:16px;
+  box-shadow:var(--shadow);
+  display:flex;align-items:center;gap:14px;
+}
+.avatar{
+  width:56px;height:56px;border-radius:50%;
+  background:linear-gradient(135deg,var(--blue),var(--teal));
+  color:#fff;display:flex;align-items:center;justify-content:center;
+  font-size:22px;font-weight:700;flex-shrink:0;
+}
+.greet-text{flex:1}
+.greet-hello{font-size:17px;font-weight:700}
+.greet-sub{font-size:12px;color:var(--gray);margin-top:2px}
+
+/* Section Header */
+.sec-head{
+  display:flex;align-items:center;justify-content:space-between;
+  margin:20px 0 12px;
+}
+.sec-title{font-family:'Noto Serif SC',serif;font-size:18px;font-weight:700}
+.sec-more{font-size:12px;color:var(--teal)}
+
+/* Story Card */
+.story-card{
+  background:var(--card);
+  border-radius:16px;
+  overflow:hidden;
+  margin-bottom:14px;
+  box-shadow:var(--shadow);
+}
+.story-cover{
+  width:100%;height:180px;
+  object-fit:cover;display:block;
+}
+.story-body{padding:16px 18px}
+.story-tag{
+  font-size:10px;color:var(--teal);font-weight:600;
+  letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;
+}
+.story-title{
+  font-family:'Noto Serif SC',serif;
+  font-size:17px;font-weight:700;line-height:1.3;margin-bottom:8px;
+}
+.story-meta{
+  font-size:11px;color:var(--gray);display:flex;gap:16px;margin-bottom:10px;
+}
+.story-faces{
+  display:flex;align-items:center;gap:-6px;margin-bottom:10px;
+}
+.face{
+  width:28px;height:28px;border-radius:50%;
+  background:linear-gradient(135deg,var(--teal),var(--green));
+  color:#fff;display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:600;border:2px solid var(--card);
+  margin-left:-6px;
+}
+.face:first-child{margin-left:0}
+.face-more{
+  width:28px;height:28px;border-radius:50%;
+  background:var(--light);color:#fff;display:flex;
+  align-items:center;justify-content:center;
+  font-size:10px;border:2px solid var(--card);margin-left:-6px;
+}
+.story-quote{
+  font-size:12px;color:var(--gray);font-style:italic;
+  border-left:2px solid var(--amber);padding-left:10px;
+}
+
+/* Classmate Card */
+.mate-card{
+  background:var(--card);
+  border-radius:16px;
+  padding:16px 18px;
+  margin-bottom:10px;
+  box-shadow:var(--shadow);
+  display:flex;align-items:center;gap:14px;
+}
+.mate-avatar{
+  width:52px;height:52px;border-radius:50%;
+  background:linear-gradient(135deg,var(--blue),var(--teal));
+  color:#fff;display:flex;align-items:center;justify-content:center;
+  font-size:20px;font-weight:700;flex-shrink:0;
+}
+.mate-info{flex:1;min-width:0}
+.mate-name{font-size:15px;font-weight:600}
+.mate-bio{font-size:11px;color:var(--gray);margin:2px 0 6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mate-tags{display:flex;gap:4px;flex-wrap:wrap}
+.mate-tag{
+  font-size:10px;padding:2px 10px;border-radius:12px;
+  background:rgba(47,167,161,0.08);color:var(--teal);
+}
+.mate-common{
+  font-size:10px;color:var(--amber);margin-top:4px;font-weight:500;
+}
+
+/* Stats Row */
+.stats-row{display:flex;gap:12px;margin:12px 0}
+.stat-box{
+  flex:1;background:var(--card);border-radius:16px;
+  padding:16px;text-align:center;box-shadow:var(--shadow);
+}
+.stat-num{font-size:28px;font-weight:700;font-family:'Noto Serif SC',serif}
+.stat-num.blue{color:var(--blue)}
+.stat-num.teal{color:var(--teal)}
+.stat-num.green{color:var(--green)}
+.stat-label{font-size:10px;color:var(--gray);margin-top:4px}
+
+/* Companion List */
+.comp-item{
+  display:flex;align-items:center;gap:12px;
+  padding:12px 0;
+}
+.comp-item+.comp-item{border-top:1px solid var(--border)}
+.comp-name{font-size:14px;font-weight:600}
+.comp-count{font-size:12px;color:var(--amber)}
+
+/* Memory Machine */
+.memory-box{
+  background:linear-gradient(135deg,#1a2a35,var(--blue));
+  border-radius:20px;padding:24px;color:#fff;
+  margin:16px 0;position:relative;overflow:hidden;
+}
+.memory-box::after{
+  content:'';position:absolute;
+  top:-40px;right:-40px;width:120px;height:120px;
+  border-radius:50%;background:rgba(255,255,255,0.04);
+}
+.memory-label{
+  font-size:10px;letter-spacing:2px;text-transform:uppercase;
+  opacity:0.6;margin-bottom:8px;
+}
+.memory-word{
+  font-family:'Noto Serif SC',serif;
+  font-size:20px;font-weight:700;line-height:1.5;margin-bottom:12px;
+}
+.memory-meta{font-size:12px;opacity:0.7}
+
+/* Event Mini */
+.event-mini{
+  background:var(--card);
+  border-radius:14px;
+  padding:14px 16px;
+  display:flex;align-items:center;gap:12px;
+  margin-bottom:8px;box-shadow:var(--shadow);
+}
+.event-emoji{font-size:28px}
+.event-mini-info{flex:1}
+.event-mini-title{font-size:14px;font-weight:600}
+.event-mini-sub{font-size:11px;color:var(--gray);margin-top:2px}
+.event-mini-badge{
+  font-size:10px;padding:3px 10px;border-radius:10px;
+  background:rgba(108,195,125,0.12);color:var(--green);font-weight:600;
+}
+
+/* Footprint */
+.footprint-grid{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.fp-tag{
+  padding:4px 12px;border-radius:12px;
+  font-size:10px;background:rgba(30,93,117,0.06);color:var(--blue);
+}
+
+/* Screen Labels */
+.screen-label{
+  position:absolute;top:-32px;left:20px;
+  font-size:13px;font-weight:600;color:var(--gray);
+  letter-spacing:1px;
+}
+
+/* Clickable hint */
+.click-hint{
+  font-size:10px;color:var(--teal);text-align:right;margin-top:6px;
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════ SCREEN 1: 故事（首页） ═══════════ -->
+<div class="screen" id="screen1">
+  <div class="screen-label">📖 故事 · STORIES</div>
+  <div class="navbar">
+    <span></span>
+    <span class="nav-title">京途</span>
+    <span class="nav-sub">同学录</span>
+  </div>
+  <div class="content">
+    <!-- Greeting -->
+    <div class="greeting">
+      <div class="avatar">途</div>
+      <div class="greet-text">
+        <div class="greet-hello">下午好，京途同学 👋</div>
+        <div class="greet-sub">你已经和6位同学一起走过143公里</div>
+      </div>
+    </div>
+
+    <div class="sec-head">
+      <span class="sec-title">共同的故事</span>
+      <span class="sec-more">全部 →</span>
+    </div>
+
+    <!-- Story 1 -->
+    <div class="story-card">
+      <img class="story-cover" src="../assets/images/trips/preview-04.jpg" alt="">
+      <div class="story-body">
+        <div class="story-tag">6月 · 海坨山</div>
+        <div class="story-title">那一夜的银河，我们谁都没说话</div>
+        <div class="story-meta"><span>📅 6月15-16日</span><span>📍 北京·延庆</span><span>👥 18人</span></div>
+        <div class="story-faces">
+          <div class="face">小</div><div class="face">大</div><div class="face">墨</div><div class="face">雨</div><div class="face">A</div>
+          <div class="face-more">+13</div>
+        </div>
+        <div class="story-quote">"凌晨三点我们裹着睡袋坐在山顶，头顶的银河像一条发光的河。没有人说话，但所有人都知道这一刻会记很久。"</div>
+      </div>
+    </div>
+
+    <!-- Story 2 -->
+    <div class="story-card">
+      <img class="story-cover" src="../assets/images/trips/preview-01.jpg" alt="">
+      <div class="story-body">
+        <div class="story-tag">6月 · 京西古道</div>
+        <div class="story-title">在马蹄窝前，我们和历史打了个照面</div>
+        <div class="story-meta"><span>📅 6月20日</span><span>📍 北京·门头沟</span><span>👥 22人</span></div>
+        <div class="story-faces">
+          <div class="face">阿</div><div class="face">山</div><div class="face">墨</div><div class="face">雨</div><div class="face">S</div>
+          <div class="face-more">+17</div>
+        </div>
+        <div class="story-quote">"京西古道上的马蹄窝有几百年的历史。阿杰说，这条路古代商人走了上千年，今天我们22个人也走了一遍。"</div>
+      </div>
+    </div>
+
+    <!-- Story 3 -->
+    <div class="story-card">
+      <img class="story-cover" src="../assets/images/trips/preview-10.jpg" alt="">
+      <div class="story-body">
+        <div class="story-tag">6月 · 坝上草原</div>
+        <div class="story-title">策马奔腾和篝火旁的真心话</div>
+        <div class="story-meta"><span>📅 6月28-29日</span><span>📍 河北·丰宁</span><span>👥 30人</span></div>
+        <div class="story-faces">
+          <div class="face">小</div><div class="face">老</div><div class="face">鱼</div><div class="face">A</div><div class="face">大</div>
+          <div class="face-more">+25</div>
+        </div>
+        <div class="story-quote">"篝火晚会上老王讲了他走川藏线的故事，小鹿弹了吉他。那一刻我突然觉得，这群人真好啊。"</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tabbar">
+    <div class="tab active"><span class="tab-icon">📖</span>故事</div>
+    <div class="tab"><span class="tab-icon">👥</span>同学</div>
+    <div class="tab"><span class="tab-icon">🧭</span>发现</div>
+    <div class="tab"><span class="tab-icon">👤</span>我的</div>
+  </div>
+</div>
+
+
+<!-- ═══════════ SCREEN 2: 同学 ═══════════ -->
+<div class="screen" id="screen2">
+  <div class="screen-label">👥 同学 · CLASSMATES</div>
+  <div class="navbar">
+    <span></span>
+    <span class="nav-title">京途同学录</span>
+    <span class="nav-sub">10人</span>
+  </div>
+  <div class="content">
+    <div class="sec-head">
+      <span class="sec-title">共同经历的人</span>
+    </div>
+
+    <!-- Classmate 1 - with common experience highlight -->
+    <div class="mate-card" style="border-left:3px solid var(--amber)">
+      <div class="mate-avatar">阿</div>
+      <div class="mate-info">
+        <div class="mate-name">阿杰</div>
+        <div class="mate-bio">走过26座山，还在路上</div>
+        <div class="mate-tags">
+          <span class="mate-tag">徒步</span><span class="mate-tag">露营</span><span class="mate-tag">骑行</span>
+        </div>
+        <div class="mate-common">🤝 一起走过 5 次 · 最近：京西古道</div>
+      </div>
+      <span style="color:var(--light);font-size:18px">→</span>
+    </div>
+
+    <div class="mate-card" style="border-left:3px solid var(--amber)">
+      <div class="mate-avatar">墨</div>
+      <div class="mate-info">
+        <div class="mate-name">墨墨</div>
+        <div class="mate-bio">互联网打工人，周末必进山</div>
+        <div class="mate-tags">
+          <span class="mate-tag">徒步</span><span class="mate-tag">摄影</span><span class="mate-tag">创业</span>
+        </div>
+        <div class="mate-common">🤝 一起走过 2 次 · 最近：海坨山</div>
+      </div>
+      <span style="color:var(--light);font-size:18px">→</span>
+    </div>
+
+    <div class="mate-card">
+      <div class="mate-avatar">小</div>
+      <div class="mate-info">
+        <div class="mate-name">小鹿</div>
+        <div class="mate-bio">户外摄影师，用镜头记录山野</div>
+        <div class="mate-tags">
+          <span class="mate-tag">摄影</span><span class="mate-tag">露营</span><span class="mate-tag">旅行</span>
+        </div>
+      </div>
+      <span style="color:var(--light);font-size:18px">→</span>
+    </div>
+
+    <div class="mate-card">
+      <div class="mate-avatar">山</div>
+      <div class="mate-info">
+        <div class="mate-name">山鹰</div>
+        <div class="mate-bio">攀岩爱好者，挑战自我极限</div>
+        <div class="mate-tags">
+          <span class="mate-tag">攀岩</span><span class="mate-tag">徒步</span><span class="mate-tag">探险</span>
+        </div>
+      </div>
+      <span style="color:var(--light);font-size:18px">→</span>
+    </div>
+
+    <div class="mate-card">
+      <div class="mate-avatar">雨</div>
+      <div class="mate-info">
+        <div class="mate-name">小雨</div>
+        <div class="mate-bio">喜欢边走边画的手帐女孩</div>
+        <div class="mate-tags">
+          <span class="mate-tag">徒步</span><span class="mate-tag">读书</span><span class="mate-tag">旅行</span>
+        </div>
+      </div>
+      <span style="color:var(--light);font-size:18px">→</span>
+    </div>
+
+    <div class="mate-card">
+      <div class="mate-avatar">大</div>
+      <div class="mate-info">
+        <div class="mate-name">大牛</div>
+        <div class="mate-bio">退伍军人，最靠谱的收队</div>
+        <div class="mate-tags">
+          <span class="mate-tag">徒步</span><span class="mate-tag">露营</span><span class="mate-tag">运动</span>
+        </div>
+      </div>
+      <span style="color:var(--light);font-size:18px">→</span>
+    </div>
+  </div>
+
+  <div class="tabbar">
+    <div class="tab"><span class="tab-icon">📖</span>故事</div>
+    <div class="tab active"><span class="tab-icon">👥</span>同学</div>
+    <div class="tab"><span class="tab-icon">🧭</span>发现</div>
+    <div class="tab"><span class="tab-icon">👤</span>我的</div>
+  </div>
+</div>
+
+
+<!-- ═══════════ SCREEN 3: 发现 ═══════════ -->
+<div class="screen" id="screen3">
+  <div class="screen-label">🧭 发现 · DISCOVER</div>
+  <div class="navbar">
+    <span></span>
+    <span class="nav-title">发现同行</span>
+    <span class="nav-sub">3个活动</span>
+  </div>
+  <div class="content">
+    <div class="sec-head">
+      <span class="sec-title">即将出发</span>
+    </div>
+
+    <div class="story-card">
+      <img class="story-cover" src="../assets/images/trips/preview-04.jpg" alt="" style="height:140px">
+      <div class="story-body">
+        <div class="story-tag">7月12-13日 · 2天1夜</div>
+        <div class="story-title">海坨山星空露营</div>
+        <div class="story-meta"><span>📍 北京·延庆</span><span>⚡ ★★☆☆☆</span></div>
+        <div class="story-faces">
+          <div class="face">小</div><div class="face">大</div><div class="face">阿</div>
+          <div class="face-more">+15</div>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:10px">
+          <span style="font-size:11px;color:var(--gray)">🎯 领队：小鹿</span>
+          <span style="font-size:12px;color:var(--teal);font-weight:600">联系加入 →</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="story-card">
+      <img class="story-cover" src="../assets/images/trips/preview-08.jpg" alt="" style="height:140px">
+      <div class="story-body">
+        <div class="story-tag">7月19日 · 1天</div>
+        <div class="story-title">箭扣长城探险</div>
+        <div class="story-meta"><span>📍 北京·怀柔</span><span>⚡ ★★★★☆</span></div>
+        <div class="story-faces">
+          <div class="face">山</div><div class="face">阿</div>
+          <div class="face-more">+6</div>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:10px">
+          <span style="font-size:11px;color:var(--gray)">🎯 领队：山鹰</span>
+          <span style="font-size:12px;color:var(--teal);font-weight:600">联系加入 →</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="story-card">
+      <img class="story-cover" src="../assets/images/trips/preview-09.jpg" alt="" style="height:140px">
+      <div class="story-body">
+        <div class="story-tag">7月11日 周五 · 半天</div>
+        <div class="story-title">香巴拉夜爬 · 城市夜景</div>
+        <div class="story-meta"><span>📍 北京·香山</span><span>⚡ ★☆☆☆☆</span></div>
+        <div class="story-faces">
+          <div class="face">阿</div><div class="face">墨</div><div class="face-more">+33</div>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:10px">
+          <span style="font-size:11px;color:var(--gray)">🎯 领队：阿杰</span>
+          <span style="font-size:12px;color:var(--teal);font-weight:600">联系加入 →</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tabbar">
+    <div class="tab"><span class="tab-icon">📖</span>故事</div>
+    <div class="tab"><span class="tab-icon">👥</span>同学</div>
+    <div class="tab active"><span class="tab-icon">🧭</span>发现</div>
+    <div class="tab"><span class="tab-icon">👤</span>我的</div>
+  </div>
+</div>
+
+
+<!-- ═══════════ SCREEN 4: 我的 ═══════════ -->
+<div class="screen" id="screen4">
+  <div class="screen-label">👤 我的 · PROFILE</div>
+  <div class="navbar">
+    <span></span>
+    <span class="nav-title">我的京途档案</span>
+    <span class="nav-sub" style="font-size:10px">2026.3 加入</span>
+  </div>
+  <div class="content">
+    <!-- Profile Header -->
+    <div style="text-align:center;padding:16px 0">
+      <div class="avatar" style="width:80px;height:80px;font-size:32px;margin:0 auto">途</div>
+      <h3 style="margin-top:10px;font-size:19px">京途同学</h3>
+      <p style="font-size:12px;color:var(--gray);margin:4px 0">热爱自然，在路上遇见更好的自己</p>
+      <div class="mate-tags" style="justify-content:center;margin-top:8px">
+        <span class="mate-tag">徒步</span><span class="mate-tag">摄影</span><span class="mate-tag">旅行</span>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-row">
+      <div class="stat-box"><div class="stat-num blue">7</div><div class="stat-label">参加次数</div></div>
+      <div class="stat-box"><div class="stat-num teal">143</div><div class="stat-label">累计里程 km</div></div>
+      <div class="stat-box"><div class="stat-num green">15</div><div class="stat-label">累计天数</div></div>
+    </div>
+
+    <!-- Most Frequent Companion -->
+    <div class="sec-head" style="margin-bottom:4px">
+      <span class="sec-title">最常同行</span>
+    </div>
+    <div class="mate-card" style="margin-bottom:6px">
+      <div class="mate-avatar">阿</div>
+      <div class="mate-info">
+        <div class="mate-name">阿杰</div>
+        <div class="mate-bio">走过26座山，还在路上</div>
+      </div>
+      <span style="font-size:18px;font-weight:700;color:var(--amber)">5次</span>
+    </div>
+    <div class="mate-card" style="margin-bottom:6px">
+      <div class="mate-avatar">大</div>
+      <div class="mate-info">
+        <div class="mate-name">大牛</div>
+        <div class="mate-bio">退伍军人，最靠谱的收队</div>
+      </div>
+      <span style="font-size:18px;font-weight:700;color:var(--amber)">5次</span>
+    </div>
+    <div class="mate-card">
+      <div class="mate-avatar">雨</div>
+      <div class="mate-info">
+        <div class="mate-name">小雨</div>
+        <div class="mate-bio">喜欢边走边画的手帐女孩</div>
+      </div>
+      <span style="font-size:18px;font-weight:700;color:var(--amber)">4次</span>
+    </div>
+
+    <!-- Memory Machine -->
+    <div class="memory-box">
+      <div class="memory-label">✦ 京途回忆</div>
+      <div class="memory-word">"那晚星空下，我们裹着睡袋聊了一个通宵"</div>
+      <div class="memory-meta">2026年6月 · 海坨山 · 和小鹿、大牛、墨墨一起</div>
+    </div>
+
+    <!-- Footprint -->
+    <div class="sec-head" style="margin-bottom:0">
+      <span class="sec-title">足迹地图</span>
+      <span style="font-size:11px;color:var(--gray)">已点亮 4 个地方</span>
+    </div>
+    <div class="footprint-grid">
+      <span class="fp-tag">📍 北京·门头沟</span>
+      <span class="fp-tag">📍 北京·延庆</span>
+      <span class="fp-tag">📍 北京·怀柔</span>
+      <span class="fp-tag">📍 河北·丰宁</span>
+    </div>
+  </div>
+
+  <div class="tabbar">
+    <div class="tab"><span class="tab-icon">📖</span>故事</div>
+    <div class="tab"><span class="tab-icon">👥</span>同学</div>
+    <div class="tab"><span class="tab-icon">🧭</span>发现</div>
+    <div class="tab active"><span class="tab-icon">👤</span>我的</div>
+  </div>
+</div>
+
+</body>
+</html>
