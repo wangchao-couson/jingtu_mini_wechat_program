@@ -1,12 +1,12 @@
 {
   "pages": [
-    "pages/story/story",
     "pages/index/index",
     "pages/events/events",
     "pages/classmates/classmates",
     "pages/profile/profile",
     "pages/event-detail/event-detail",
-    "pages/classmate-detail/classmate-detail"
+    "pages/classmate-detail/classmate-detail",
+    "pages/story/story"
   ],
   "window": {
     "navigationBarBackgroundColor": "#FFFFFF",
