@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<title>京途 · 故事</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&display=swap');
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --blue:#2D6FF7;--blue-dark:#1A4FCC;
+  --coral:#FF6B4A;--mint:#5BC4A8;--amber:#FFB14E;
+  --text:#1A1C20;--gray:#6B6F76;--light:#A5A9B0;
+  --bg:#F6F5F3;--card:#FFFFFF;
+}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Helvetica Neue',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+
+/* Loading */
+#loading{position:fixed;inset:0;background:var(--bg);z-index:999;display:flex;align-items:center;justify-content:center;transition:opacity .4s}
+#loading.hide{opacity:0;pointer-events:none}
+.loader{width:32px;height:32px;border:3px solid var(--light);border-top-color:var(--blue);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+#content{opacity:0;transform:translateY(20px);transition:all .6s cubic-bezier(.16,1,.3,1)}
+#content.show{opacity:1;transform:translateY(0)}
+
+/* Hero */
+.hero{position:relative;height:100vh;max-height:560px;overflow:hidden}
+.hero-img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.16,1,.3,1)}
+.hero:hover .hero-img{transform:scale(1.04)}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.15) 0%,rgba(0,0,0,0) 40%,rgba(0,0,0,.75) 100%)}
+.hero-content{position:absolute;bottom:0;left:0;right:0;padding:40px 24px 30px;color:#fff}
+.hero-status{display:inline-block;padding:4px 14px;border-radius:12px;font-size:12px;font-weight:600;margin-bottom:14px;backdrop-filter:blur(10px);letter-spacing:.5px}
+.hero-status.open{background:rgba(91,196,168,.25);color:#8DDBC8}
+.hero-status.done{background:rgba(255,255,255,.15);color:rgba(255,255,255,.7)}
+.hero h1{font-family:'Noto Serif SC',serif;font-size:clamp(24px,5vw,34px);font-weight:700;line-height:1.25;margin-bottom:8px;letter-spacing:.5px}
+.hero-meta{font-size:13px;opacity:.75;display:flex;flex-wrap:wrap;gap:6px 14px}
+.hero-slide{position:absolute;bottom:24px;right:24px;font-size:12px;opacity:.5}
+
+/* Section */
+.section{padding:28px 24px}
+.section-title{font-family:'Noto Serif SC',serif;font-size:20px;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.section-title::before{content:'';width:3px;height:18px;background:var(--blue);border-radius:2px}
+.section-text{font-size:15px;color:var(--gray);line-height:1.9}
+
+/* Info Grid */
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+.info-item{background:var(--card);border-radius:14px;padding:16px 14px;display:flex;align-items:center;gap:10px;box-shadow:0 1px 3px rgba(0,0,0,.03)}
+.info-icon{font-size:26px;width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center}
+.info-icon.blue{background:rgba(45,111,247,.08)}.info-icon.coral{background:rgba(255,107,74,.06)}
+.info-icon.mint{background:rgba(91,196,168,.08)}.info-icon.amber{background:rgba(255,177,78,.08)}
+.info-label{font-size:11px;color:var(--light);margin-bottom:1px}
+.info-value{font-size:14px;font-weight:600}
+
+/* Tags */
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}
+.tag{padding:4px 14px;border-radius:16px;font-size:12px;font-weight:500}
+.tag-blue{background:rgba(45,111,247,.07);color:var(--blue)}
+.tag-coral{background:rgba(255,107,74,.07);color:var(--coral)}
+
+/* Participants */
+.faces-row{display:flex;align-items:center;gap:0;margin:16px 0}
+.face{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--blue),#4F8CFF);color:#fff;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:600;border:3px solid var(--card);margin-left:-10px;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.face:first-child{margin-left:0}
+.face-more{width:42px;height:42px;border-radius:50%;background:#E8E7E3;color:var(--gray);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;border:3px solid var(--card);margin-left:-10px}
+.face-label{font-size:13px;color:var(--gray);margin-left:12px}
+
+/* Leader */
+.leader-card{background:linear-gradient(135deg,rgba(45,111,247,.04),rgba(45,111,247,.01));border-radius:16px;padding:18px 20px;display:flex;align-items:center;gap:14px;border:2px solid rgba(45,111,247,.06);margin:16px 0}
+.leader-avatar{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--blue),#4F8CFF);color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700}
+.leader-info{flex:1}
+.leader-name{font-size:16px;font-weight:600}
+.leader-tag{font-size:12px;color:var(--blue)}
+.leader-wechat{font-size:15px;font-weight:600;color:var(--blue);margin-top:6px;display:flex;align-items:center;gap:6px}
+.leader-wechat .copy-hint{font-size:11px;color:var(--coral);font-weight:500}
+
+/* Photo Gallery */
+.photo-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;border-radius:16px;overflow:hidden}
+.photo-grid img{width:100%;aspect-ratio:4/3;object-fit:cover;transition:transform .4s;cursor:pointer}
+.photo-grid img:first-child{grid-column:1/-1;aspect-ratio:16/9}
+.photo-grid img:hover{transform:scale(1.03)}
+
+/* Schedule */
+.schedule-list{background:var(--card);border-radius:16px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.03)}
+.schedule-item{padding:14px 20px;display:flex;align-items:center;gap:14px;font-size:14px}
+.schedule-item+.schedule-item{border-top:1px solid #F2F1EE}
+.schedule-dot{width:8px;height:8px;border-radius:50%;background:var(--blue);flex-shrink:0}
+.schedule-time{font-weight:600;color:var(--blue);min-width:50px;font-size:13px}
+
+/* Includes */
+.includes-grid{display:flex;flex-wrap:wrap;gap:6px}
+.include-tag{padding:6px 14px;background:rgba(91,196,168,.07);color:#3DA88C;border-radius:16px;font-size:13px}
+
+/* Slogan Banner */
+.slogan{background:linear-gradient(135deg,var(--blue),#4F8CFF);color:#fff;text-align:center;padding:32px 24px;margin:24px 0;border-radius:20px;position:relative;overflow:hidden}
+.slogan::before{content:'';position:absolute;top:-40px;right:-40px;width:160px;height:160px;border-radius:50%;background:rgba(255,255,255,.04)}
+.slogan-text{position:relative;z-index:1;font-size:17px;font-weight:300;letter-spacing:1px;line-height:1.7}
+.slogan b{font-weight:700;color:#FFE0A0}
+
+/* Bottom Bar */
+.bottom-bar{position:fixed;bottom:0;left:0;right:0;padding:10px 24px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid #ECEBE8;z-index:100;display:flex;align-items:center;gap:12px}
+.bottom-bar .bar-text{font-size:14px;color:var(--gray)}
+.bottom-join{flex:1;background:var(--blue);color:#fff;border:none;padding:14px 0;border-radius:22px;font-size:15px;font-weight:600;cursor:pointer;box-shadow:0 4px 14px rgba(45,111,247,.25);transition:transform .2s}
+.bottom-join:active{transform:scale(.96)}
+.bottom-done{flex:1;text-align:center;padding:14px 0;font-size:15px;color:var(--light);font-weight:500}
+
+/* Toast */
+.toast{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(.8);background:rgba(0,0,0,.8);color:#fff;padding:12px 28px;border-radius:20px;font-size:14px;font-weight:500;z-index:999;opacity:0;pointer-events:none;transition:all .3s}
+.toast.show{opacity:1;transform:translate(-50%,-50%) scale(1)}
+
+/* Back Button */
+.back-btn{position:fixed;top:16px;left:16px;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.2);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:none;display:flex;align-items:center;justify-content:center;z-index:50;cursor:pointer}
+.back-btn svg{width:18px;height:18px;stroke:#fff;stroke-width:2.5}
+</style>
+</head>
+<body>
+
+<div id="loading"><div class="loader"></div></div>
+<div id="content"><!-- populated by JS --></div>
+<div class="toast" id="toast"></div>
+
+<button class="back-btn" onclick="history.back()">
+  <svg viewBox="0 0 24 24" fill="none"><polyline points="15 18 9 12 15 6"/></svg>
+</button>
+
+<div class="bottom-bar" id="bottomBar"></div>
+
+<script>
+// ====== DATA ======
+const events = [
+  {id:2,title:'海坨山星空露营 · 两日一夜',cover:'preview-04.jpg',date:'7月12-13日',duration:'2天1夜',location:'北京 · 延庆',distance:'8km',difficulty:'★★☆☆☆',maxParticipants:25,currentParticipants:18,tags:['露营','星空','日出'],status:'registering',description:'海坨山是北京第二高峰，夏季山顶草甸如茵，夜晚星空璀璨。我们将露营在山顶，迎接第二天的壮美日出。凌晨三点，银河如河流般横跨天际，所有人裹着睡袋坐在山顶，没有人说话，但每个人都知道这一刻会记很久很久。',schedule:[{time:'08:00',desc:'集合出发'},{time:'10:30',desc:'到达大海坨村'},{time:'15:00',desc:'登顶，搭帐篷'},{time:'18:00',desc:'山顶BBQ'},{time:'21:00',desc:'星空观测、夜聊'},{time:'05:00',desc:'日出'},{time:'08:00',desc:'收营下山'},{time:'15:00',desc:'返京'}],includes:['露营装备','晚餐BBQ','早餐','户外保险','领队服务'],gear:'登山鞋、冲锋衣、头灯、防蚊液、睡袋（可租）',leader:{name:'小鹿',wechat:'deer_photo'},photos:['preview-04.jpg','preview-05.jpg'],participants:[{name:'小鹿'},{name:'大牛'},{name:'墨墨'},{name:'小雨'},{name:'Alex'}]},
+  {id:1,title:'京西古道徒步穿越',cover:'preview-01.jpg',date:'6月20日',duration:'1天',location:'北京 · 门头沟',distance:'12km',difficulty:'★☆☆☆☆',maxParticipants:30,currentParticipants:22,tags:['入门','古道','文化'],status:'finished',description:'京西古道是北京最经典的徒步路线之一，沿途可见马蹄窝、古村落、烽火台遗址。古道上的马蹄窝有几百年的历史，古代商人走了上千年，今天我们22个人也走了一遍。在马蹄窝前，阿杰给大家讲起古道的故事，所有人都听得入神。',schedule:[{time:'08:00',desc:'苹果园集合'},{time:'09:30',desc:'圈门出发点'},{time:'12:00',desc:'峰口庵午餐'},{time:'14:30',desc:'马蹄窝'},{time:'16:00',desc:'大台终点'},{time:'17:30',desc:'返程'}],includes:['往返交通','户外保险','领队服务','简易午餐'],gear:'运动鞋、防晒帽、1L水、小背包',leader:{name:'阿杰',wechat:'ajie_outdoor'},photos:['preview-01.jpg','preview-02.jpg','preview-03.jpg'],participants:[{name:'阿杰'},{name:'山鹰'},{name:'墨墨'},{name:'小雨'},{name:'Sunny'}]},
+  {id:3,title:'雁栖湖环湖骑行 · 休闲游',cover:'preview-06.jpg',date:'7月6日',duration:'半天',location:'北京 · 怀柔',distance:'25km',difficulty:'★☆☆☆☆',maxParticipants:20,currentParticipants:14,tags:['骑行','休闲','湖景'],status:'registering',description:'沿着雁栖湖环湖绿道骑行，一路湖光山色，途经日出东方酒店、雁栖塔。全程25公里，路面平坦，适合所有人。Alex说这是他今年骑得最开心的一次。',schedule:[{time:'09:00',desc:'雁栖湖集合'},{time:'09:30',desc:'出发'},{time:'12:00',desc:'环湖完成'},{time:'12:30',desc:'午餐'},{time:'14:00',desc:'结束'}],includes:['自行车租赁','头盔','午餐简餐','保险'],gear:'运动服、墨镜、防晒霜',leader:{name:'Alex',wechat:'alex_bike'},photos:['preview-06.jpg','preview-07.jpg'],participants:[{name:'Alex'},{name:'小鱼儿'},{name:'大牛'},{name:'Sunny'}]},
+  {id:4,title:'箭扣长城探险 · 高级路线',cover:'preview-08.jpg',date:'7月19日',duration:'1天',location:'北京 · 怀柔',distance:'10km',difficulty:'★★★★☆',maxParticipants:15,currentParticipants:8,tags:['长城','探险','高级'],status:'upcoming',description:'箭扣长城是明长城最险峻的一段，未经修缮的野长城保留了原始风貌。需要一定攀爬经验。山鹰带队，用绳索攀上一段野长城，虽然累，但那种成就感无与伦比。',schedule:[{time:'06:30',desc:'集合出发'},{time:'08:00',desc:'到达箭扣'},{time:'12:00',desc:'正北楼'},{time:'15:00',desc:'慕田峪'},{time:'17:00',desc:'返程'}],includes:['往返交通','专业领队','保险','路餐'],gear:'登山鞋必备、手套、头盔、2L水、能量补给',leader:{name:'山鹰',wechat:'eagle_climb'},photos:['preview-08.jpg'],participants:[{name:'山鹰'},{name:'阿杰'},{name:'老王'}]},
+  {id:5,title:'香巴拉夜爬 · 城市夜景',cover:'preview-09.jpg',date:'7月11日',duration:'半天',location:'北京 · 香山',distance:'8km',difficulty:'★☆☆☆☆',maxParticipants:40,currentParticipants:35,tags:['夜爬','夜景','社交'],status:'registering',description:'傍晚出发，沿香巴拉路线登山，在鬼笑石俯瞰北京夜景。轻松休闲，适合下班后放松。鬼笑石上万家灯火，大家掏出手机拍个不停，然后安静地看了很久。',schedule:[{time:'18:30',desc:'香山集合'},{time:'19:30',desc:'好汉坡'},{time:'20:30',desc:'鬼笑石'},{time:'22:00',desc:'结束'}],includes:['领队服务','头灯借用','保险'],gear:'运动鞋、薄外套、水',leader:{name:'阿杰',wechat:'ajie_outdoor'},photos:['preview-09.jpg'],participants:[{name:'阿杰'},{name:'墨墨'},{name:'Sunny'},{name:'大牛'},{name:'小雨'}]},
+  {id:6,title:'坝上草原骑马 · 两日行',cover:'preview-10.jpg',date:'6月28-29日',duration:'2天1夜',location:'河北 · 丰宁',distance:'骑马15km',difficulty:'★★☆☆☆',maxParticipants:30,currentParticipants:30,tags:['骑马','草原','篝火'],status:'finished',description:'坝上草原骑马体验，篝火晚会住蒙古包。30位同学已满员出发！篝火晚会上老王讲了他走川藏线的故事，小鹿弹了吉他。我突然觉得，这群人真好啊。',schedule:[{time:'07:00',desc:'出发'},{time:'12:00',desc:'到达坝上'},{time:'14:00',desc:'骑马体验'},{time:'19:00',desc:'篝火晚会'},{time:'05:00',desc:'草原日出'},{time:'16:00',desc:'返京'}],includes:['往返交通','蒙古包住宿','骑马体验','三正一早','篝火晚会','保险'],gear:'长裤、运动鞋、防晒、驱蚊',leader:{name:'小鹿',wechat:'deer_photo'},photos:['preview-10.jpg','preview-11.jpg'],participants:[{name:'小鹿'},{name:'老王'},{name:'小鱼儿'},{name:'Alex'},{name:'大牛'}]}
+];
+
+// ====== MAIN ======
+const params = new URLSearchParams(location.search);
+const eventId = parseInt(params.get('id')) || 1;
+const event = events.find(e => e.id === eventId) || events[0];
+
+document.title = event.title + ' - 京途';
+
+// Toast helper
+function toast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2000);
+}
+
+// Copy wechat
+function copyWechat() {
+  if (!event.leader?.wechat) return;
+  navigator.clipboard?.writeText(event.leader.wechat).then(() => {
+    toast('微信号已复制！打开微信添加「' + event.leader.name + '」');
+  }).catch(() => toast('复制失败，微信号: ' + event.leader.wechat));
+}
+
+// Build page
+function build() {
+  const statusLabels = {registering:'招募中',upcoming:'即将开始',finished:'已结束'};
+  const statusCls = event.status === 'registering' ? 'open' : event.status === 'upcoming' ? 'open' : 'done';
+  const isOpen = event.status === 'registering';
+
+  let html = `
+  <div class="hero">
+    <img class="hero-img" src="${event.cover}" alt="${event.title}" loading="eager">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-status ${statusCls}">${statusLabels[event.status]}</div>
+      <h1>${event.title}</h1>
+      <div class="hero-meta">
+        <span>📅 ${event.date}</span><span>📍 ${event.location}</span><span>👥 ${event.currentParticipants}/${event.maxParticipants}人</span>
+      </div>
+    </div>
+    <div class="hero-slide">↓ 向下翻阅</div>
+  </div>`;
+
+  // Info
+  html += `<div class="section">
+    <div class="info-grid">
+      <div class="info-item"><div class="info-icon blue">📅</div><div><div class="info-label">日期</div><div class="info-value">${event.date}</div></div></div>
+      <div class="info-item"><div class="info-icon coral">⏱️</div><div><div class="info-label">时长</div><div class="info-value">${event.duration}</div></div></div>
+      <div class="info-item"><div class="info-icon mint">📍</div><div><div class="info-label">地点</div><div class="info-value">${event.location}</div></div></div>
+      <div class="info-item"><div class="info-icon amber">📏</div><div><div class="info-label">距离</div><div class="info-value">${event.distance}</div></div></div>
+    </div>
+    <div class="tags">
+      ${event.tags.map(t => `<span class="tag tag-blue">${t}</span>`).join('')}
+      <span class="tag tag-coral">难度 ${event.difficulty}</span>
+    </div>
+  </div>`;
+
+  // Description
+  html += `<div class="section">
+    <div class="section-title">关于这次同行</div>
+    <div class="section-text">${event.description}</div>
+  </div>`;
+
+  // Schedule
+  html += `<div class="section">
+    <div class="section-title">行程安排</div>
+    <div class="schedule-list">
+      ${event.schedule.map((s,i) => `<div class="schedule-item">
+        <div class="schedule-dot" style="background:${i===0?`linear-gradient(135deg,var(--blue),var(--coral))`:'var(--blue)'}"></div>
+        <span class="schedule-time">${s.time}</span><span>${s.desc}</span>
+      </div>`).join('')}
+    </div>
+  </div>`;
+
+  // Includes
+  html += `<div class="section">
+    <div class="section-title">提供内容</div>
+    <div class="includes-grid">${event.includes.map(i => `<span class="include-tag">✅ ${i}</span>`).join('')}</div>
+  </div>`;
+
+  // Gear
+  html += `<div class="section">
+    <div class="section-title">装备建议</div>
+    <div class="section-text">${event.gear}</div>
+  </div>`;
+
+  // Leader
+  html += `<div class="section">
+    <div class="section-title">领队</div>
+    <div class="leader-card">
+      <div class="leader-avatar">${event.leader.name[0]}</div>
+      <div class="leader-info">
+        <div class="leader-name">${event.leader.name}</div>
+        <div class="leader-tag">京途认证领队</div>
+        <div class="leader-wechat" onclick="copyWechat()">📱 ${event.leader.wechat} <span class="copy-hint">点击复制</span></div>
+      </div>
+    </div>
+  </div>`;
+
+  // Participants
+  if (event.participants.length > 0) {
+    html += `<div class="section">
+      <div class="section-title">已加入同学 · ${event.currentParticipants}人</div>
+      <div class="faces-row">
+        ${event.participants.slice(0,8).map(p => `<div class="face">${p.name[0]}</div>`).join('')}
+        ${event.currentParticipants > event.participants.length ? `<div class="face-more">+${event.currentParticipants - event.participants.length}</div>` : ''}
+        <span class="face-label">和有趣的人一起出发</span>
+      </div>
+    </div>`;
+  }
+
+  // Photos
+  if (event.photos.length > 0) {
+    html += `<div class="section">
+      <div class="section-title">活动照片</div>
+      <div class="photo-grid">
+        ${event.photos.map(p => `<img src="${p}" alt="" loading="lazy">`).join('')}
+      </div>
+    </div>`;
+  }
+
+  // Slogan
+  html += `<div class="slogan">
+    <div class="slogan-text">和<b>有趣的人</b>，一起去探索<b>更广阔的世界</b></div>
+  </div>`;
+
+  // Padding
+  html += `<div style="height:100px"></div>`;
+
+  // Bottom Bar
+  if (isOpen) {
+    document.getElementById('bottomBar').innerHTML = `
+      <span class="bar-text">想加入？</span>
+      <button class="bottom-join" onclick="copyWechat()">📱 复制微信号联系领队</button>`;
+  } else {
+    document.getElementById('bottomBar').innerHTML = `
+      <div class="bottom-done">🎉 活动已圆满结束 · 故事永存</div>`;
+  }
+
+  document.getElementById('content').innerHTML = html;
+
+  // Reveal
+  setTimeout(() => {
+    document.getElementById('loading').classList.add('hide');
+    document.getElementById('content').classList.add('show');
+  }, 300);
+}
+
+// Image error fallback
+window.addEventListener('error', e => {
+  if (e.target.tagName === 'IMG') e.target.style.background = '#E8E7E3';
+}, true);
+
+build();
+</script>
+</body>
+</html>

@@ -6,7 +6,7 @@
   </view>
 
   <view class="disc-list" wx:if="{{list.length>0}}">
-    <navigator wx:for="{{list}}" wx:key="id" url="/pages/event-detail/event-detail?id={{item.id}}" class="disc-card">
+    <navigator wx:for="{{list}}" wx:key="id" url="/pages/story/story?id={{item.id}}" class="disc-card">
       <image src="{{item.cover}}" mode="aspectFill" class="disc-cover"/>
       <view class="disc-body">
         <view class="disc-badge-row"><text class="status-tag {{item.status==='registering'?'status-open':item.status==='upcoming'?'status-soon':'status-done'}}">{{item.status==='registering'?'招募中':item.status==='upcoming'?'即将开始':'已结束'}}</text></view>

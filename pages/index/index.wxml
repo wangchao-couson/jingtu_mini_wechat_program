@@ -19,7 +19,7 @@
   <view class="sec-head"><text class="sec-title">共同的故事</text><navigator url="/pages/events/events" class="sec-more">全部 →</navigator></view>
 
   <view wx:if="{{stories.length > 0}}">
-    <navigator wx:for="{{stories}}" wx:key="id" url="/pages/event-detail/event-detail?id={{item.id}}" class="story-card">
+    <navigator wx:for="{{stories}}" wx:key="id" url="/pages/story/story?id={{item.id}}" class="story-card">
       <image src="{{item.cover}}" mode="aspectFill" class="story-cover"/>
       <view class="story-body">
         <view class="story-month">{{item.month}}</view>

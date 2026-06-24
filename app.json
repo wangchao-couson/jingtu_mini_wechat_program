@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/story/story",
     "pages/index/index",
     "pages/events/events",
     "pages/classmates/classmates",
