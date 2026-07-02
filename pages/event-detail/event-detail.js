@@ -1,10 +1,10 @@
 Page({
-  data: { event: null },
+  data: { event: null, statusText: '', detailItems: [] },
 
   onLoad(options) {
     const id = parseInt(options.id)
     const events = wx.getStorageSync('jingtu_events') || []
-    this.setData({ event: events.find(e => e.id === id) || null })
+    this.setEvent(events.find(e => e.id === id) || null)
   },
 
   onShow() {
@@ -12,8 +12,24 @@ Page({
     if (o.id) {
       const id = parseInt(o.id)
       const events = wx.getStorageSync('jingtu_events') || []
-      this.setData({ event: events.find(e => e.id === id) || null })
+      this.setEvent(events.find(e => e.id === id) || null)
     }
+  },
+
+  setEvent(event) {
+    if (!event) {
+      this.setData({ event: null, statusText: '', detailItems: [] })
+      return
+    }
+
+    const statusText = event.status === 'registering' ? '招募中' : event.status === 'upcoming' ? '即将开始' : '已结束'
+    const detailItems = [
+      { label: '日期', value: event.date },
+      { label: '时长', value: event.duration },
+      { label: '地点', value: event.location },
+      { label: '距离', value: event.distance }
+    ]
+    this.setData({ event, statusText, detailItems })
   },
 
   copyWechat() {
@@ -57,7 +73,7 @@ Page({
                 time: new Date().toISOString()
               })
               wx.setStorageSync('jingtu_my_joins', joins)
-              this.setData({ event: event })
+              this.setEvent(event)
             }
           }
         })

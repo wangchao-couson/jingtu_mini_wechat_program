@@ -2,53 +2,51 @@
   <view class="ed-hero">
     <image src="{{event.cover}}" mode="aspectFill" class="ed-cover"/>
     <view class="ed-hero-overlay">
-      <text class="status-tag {{event.status==='registering'?'status-open':'status-done'}}" style="margin-bottom:12rpx;display:inline-block">{{event.status==='registering'?'招募中':'已结束'}}</text>
+      <text class="status-tag {{event.status==='registering'?'status-open':event.status==='upcoming'?'status-soon':'status-done'}} ed-status">{{statusText}}</text>
       <view class="ed-title-hero">{{event.title}}</view>
+      <view class="ed-hero-meta">{{event.location}} · {{event.distance}} · {{event.difficulty}}</view>
     </view>
   </view>
 
   <view class="detail-section">
     <view class="ed-spots">{{event.currentParticipants}}/<text class="text-amber">{{event.maxParticipants}}</text> 人已加入</view>
     <view class="ed-info-grid">
-      <view class="ed-info"><text class="ed-info-icon">📅</text><view><view class="ed-info-v">{{event.date}}</view><view class="ed-info-l">日期</view></view></view>
-      <view class="ed-info"><text class="ed-info-icon">⏱️</text><view><view class="ed-info-v">{{event.duration}}</view><view class="ed-info-l">时长</view></view></view>
-      <view class="ed-info"><text class="ed-info-icon">📍</text><view><view class="ed-info-v">{{event.location}}</view><view class="ed-info-l">地点</view></view></view>
-      <view class="ed-info"><text class="ed-info-icon">📏</text><view><view class="ed-info-v">{{event.distance}}</view><view class="ed-info-l">距离</view></view></view>
+      <view class="ed-info" wx:for="{{detailItems}}" wx:key="label"><view class="ed-info-mark"></view><view><view class="ed-info-v">{{item.value}}</view><view class="ed-info-l">{{item.label}}</view></view></view>
     </view>
     <view class="flex gap-8 flex-wrap"><text class="tag tag-teal" wx:for="{{event.tags}}" wx:key="*this">{{item}}</text><text class="tag tag-amber">难度 {{event.difficulty}}</text></view>
   </view>
 
-  <view class="detail-section"><view class="detail-title">📖 活动介绍</view><view class="detail-text">{{event.description}}</view></view>
-  <view class="detail-section"><view class="detail-title">🗺️ 行程安排</view><view class="detail-text" style="white-space:pre-line">{{event.schedule}}</view></view>
-  <view class="detail-section"><view class="detail-title">✅ 提供内容</view><view class="detail-text" wx:for="{{event.includes}}" wx:key="*this">• {{item}}</view></view>
-  <view class="detail-section" wx:if="{{event.gear}}"><view class="detail-title">🎒 装备建议</view><view class="detail-text">{{event.gear}}</view></view>
+  <view class="detail-section"><view class="detail-title">活动介绍</view><view class="detail-text">{{event.description}}</view></view>
+  <view class="detail-section"><view class="detail-title">行程安排</view><view class="detail-text" style="white-space:pre-line">{{event.schedule}}</view></view>
+  <view class="detail-section"><view class="detail-title">提供内容</view><view class="ed-include" wx:for="{{event.includes}}" wx:key="*this">{{item}}</view></view>
+  <view class="detail-section" wx:if="{{event.gear}}"><view class="detail-title">装备建议</view><view class="detail-text">{{event.gear}}</view></view>
 
   <view class="detail-section">
-    <view class="detail-title">🎯 领队</view>
+    <view class="detail-title">领队</view>
     <view class="flex-center gap-16">
       <view class="avatar">{{event.leader.name[0]}}</view>
       <view><view class="fs-28 font-bold">{{event.leader.name}}</view><view class="fs-22 text-teal">京途认证领队</view></view>
     </view>
     <view class="leader-contact" wx:if="{{event.leader.wechat}}">
-      <view class="fs-26 font-bold text-teal mb-12">📱 联系领队加入活动</view>
+      <view class="fs-26 font-bold text-teal mb-12">联系领队加入活动</view>
       <view class="flex-between"><text class="fs-28 font-bold">{{event.leader.wechat}}</text><button class="btn btn-sm btn-teal" bindtap="copyWechat">一键复制</button></view>
-      <view class="fs-22 text-light mt-16">💡 添加领队微信，加入活动群了解详情</view>
+      <view class="fs-22 text-light mt-16">添加领队微信，加入活动群了解详情</view>
     </view>
   </view>
 
   <view class="detail-section" wx:if="{{event.participants.length>0}}">
-    <view class="detail-title">👥 已加入同学 ({{event.currentParticipants}}人)</view>
+    <view class="detail-title">已加入同学 ({{event.currentParticipants}}人)</view>
     <view class="flex gap-12"><view class="avatar avatar-sm" wx:for="{{event.participants}}" wx:key="index">{{item.name[0]}}</view><view class="story-face-more" style="width:52rpx;height:52rpx;font-size:18rpx" wx:if="{{event.currentParticipants>event.participants.length}}">+{{event.currentParticipants-event.participants.length}}</view></view>
   </view>
 
   <view class="detail-section" wx:if="{{event.photos.length>0}}">
-    <view class="detail-title">📸 活动照片</view>
+    <view class="detail-title">活动照片</view>
     <scroll-view scroll-x class="photo-scroll" show-scrollbar="{{false}}"><image src="{{item}}" mode="aspectFill" class="photo-scroll-item" wx:for="{{event.photos}}" wx:key="*this"/></scroll-view>
   </view>
 
   <view class="ed-bar" wx:if="{{event.status==='registering'}}">
     <text class="ed-bar-text">想和同学们一起出发？</text>
-    <button class="btn btn-primary flex-1" style="height:72rpx;font-size:26rpx" bindtap="joinEvent">📱 联系领队加入</button>
+    <button class="btn btn-primary flex-1" style="height:72rpx;font-size:26rpx" bindtap="joinEvent">联系领队加入</button>
   </view>
   <view style="height:100rpx"></view>
 </view>

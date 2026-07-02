@@ -6,19 +6,24 @@
   </view>
 
   <view class="disc-list" wx:if="{{list.length>0}}">
-    <navigator wx:for="{{list}}" wx:key="id" url="/pages/story/story?id={{item.id}}" class="disc-card">
-      <image src="{{item.cover}}" mode="aspectFill" class="disc-cover"/>
+    <navigator wx:for="{{list}}" wx:key="id" url="/pages/event-detail/event-detail?id={{item.id}}" class="disc-card tone-{{item.template.tone}}">
+      <view class="disc-media">
+        <image src="{{item.cover}}" mode="aspectFill" class="disc-cover"/>
+        <view class="disc-media-shade"></view>
+        <view class="disc-template">{{item.template.label}}</view>
+        <view class="disc-capacity">{{item.currentParticipants}}/{{item.maxParticipants}} 人</view>
+      </view>
       <view class="disc-body">
         <view class="disc-badge-row"><text class="status-tag {{item.status==='registering'?'status-open':item.status==='upcoming'?'status-soon':'status-done'}}">{{item.status==='registering'?'招募中':item.status==='upcoming'?'即将开始':'已结束'}}</text></view>
         <view class="disc-title">{{item.title}}</view>
-        <view class="disc-meta"><text>📅 {{item.date}}</text><text>📍 {{item.location}}</text><text>📏 {{item.distance}}</text></view>
+        <view class="disc-meta"><text>{{item.date}}</text><text>{{item.location}}</text><text>{{item.distance}}</text></view>
         <view class="disc-faces">
           <view class="disc-face" wx:for="{{item.faceList}}" wx:key="*this" wx:for-item="f">{{f}}</view>
           <view class="disc-face-more" wx:if="{{item.currentParticipants>item.faceList.length}}">+{{item.currentParticipants-item.faceList.length}}</view>
         </view>
         <view class="disc-footer">
-          <text class="disc-leader">🎯 领队：{{item.leader.name}}</text>
-          <text class="disc-join" wx:if="{{item.status==='registering'}}">联系加入 →</text>
+          <text class="disc-leader">领队 {{item.leader.name}}</text>
+          <text class="disc-join" wx:if="{{item.status==='registering'}}">查看详情</text>
         </view>
       </view>
     </navigator>
