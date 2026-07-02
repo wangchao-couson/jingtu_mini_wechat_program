@@ -1,7 +1,7 @@
 <view class="mp-page">
   <view class="mp-nav" style="padding-top:{{statusBarHeight}}px">
-    <view class="mp-nav-title">京途</view>
-    <view class="mp-nav-sub">去过山，也遇见了很多人。</view>
+    <view class="mp-nav-title">我的京途</view>
+    <view class="mp-nav-sub">我的足迹、活动、同行者和贡献。</view>
   </view>
 
   <view class="mp-hero">
@@ -14,7 +14,15 @@
   </view>
 
   <view class="detail-section">
-    <view class="detail-title">今年数据</view>
+    <view class="detail-title">足迹地图</view>
+    <view class="mp-footprint dark-map">
+      <text class="mp-fp-icon">•</text>
+      <text class="mp-fp-text">北京 · 河北 · 内蒙古 · 青海 · 河南</text>
+    </view>
+  </view>
+
+  <view class="detail-section">
+    <view class="detail-title">我的数据</view>
     <view class="mp-stats year-stats">
       <view class="mp-stat" wx:for="{{yearStats}}" wx:key="label"><text class="mp-stat-num">{{item.num}}</text><text class="mp-stat-label">{{item.label}}</text></view>
     </view>
@@ -38,17 +46,6 @@
       <view class="mp-memory-meta">{{memoryMeta}}</view>
     </view>
     <view class="mp-story-chip" wx:for="{{myStories}}" wx:key="*this">{{item}}</view>
-  </view>
-
-  <view class="detail-section">
-    <view class="detail-title">足迹地图</view>
-    <view class="mp-footprint">
-      <text class="mp-fp-icon">📍</text>
-      <text class="mp-fp-text">已点亮 {{visitedPlaces.length}} 个地方</text>
-    </view>
-    <view class="flex gap-6 flex-wrap" style="margin-top:12rpx">
-      <text class="mp-fp-tag" wx:for="{{visitedPlaces}}" wx:key="*this">{{item}}</text>
-    </view>
   </view>
 
   <view class="detail-section">

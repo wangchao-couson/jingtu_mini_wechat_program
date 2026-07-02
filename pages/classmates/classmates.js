@@ -1,13 +1,15 @@
 Page({
   data: {
-    dailyLine: '因为一次活动，认识了一群人。',
+    dailyLine: '因为一次出发，认识一群人。',
     networkNodes: [
-      { name: 'Carson', role: '共创', x: 48, y: 12 },
-      { name: 'CC', role: '路线灵感', x: 18, y: 42 },
-      { name: '老王', role: '故事', x: 68, y: 42 },
-      { name: '小鹿', role: '摄影', x: 35, y: 72 },
-      { name: '阿杰', role: '领队', x: 78, y: 74 }
+      { name: '你', role: '中心', x: 50, y: 48 },
+      { name: 'CC', role: '共创', x: 22, y: 28 },
+      { name: '领队老王', role: '领队', x: 76, y: 24 },
+      { name: '摄影师阿泽', role: '摄影', x: 24, y: 72 },
+      { name: '小李', role: '志愿者', x: 68, y: 72 },
+      { name: '小雨', role: '多次同行', x: 50, y: 15 }
     ],
+    peopleCards: [],
     allClassmates: [],
     filteredClassmates: [],
     totalCount: 0,
@@ -26,7 +28,14 @@ Page({
 
   loadClassmates() {
     const classmates = wx.getStorageSync('jingtu_classmates') || []
-    this.setData({ allClassmates: classmates, totalCount: classmates.length })
+    const covers = ['/assets/images/trips/preview-05.jpg','/assets/images/trips/preview-08.jpg','/assets/images/trips/preview-11.jpg','/assets/images/trips/preview-12.jpg','/assets/images/trips/preview-03.jpg']
+    const peopleCards = [
+      { id: 1, name: 'CC', role: '共创同学', cover: '/assets/images/trips/preview-15.jpg', desc: '热爱旅行 · 擅长提建议' },
+      { id: 9, name: '领队老王', role: '领队', cover: '/assets/images/trips/preview-08.jpg', desc: '路线设计 · 安全第一' },
+      { id: 2, name: '摄影师阿泽', role: '摄影师', cover: '/assets/images/trips/preview-05.jpg', desc: '记录故事 · 捕捉光影' },
+      { id: 6, name: '小李', role: '志愿者', cover: '/assets/images/trips/preview-12.jpg', desc: '热心靠谱 · 组织协作' }
+    ]
+    this.setData({ allClassmates: classmates, totalCount: classmates.length, peopleCards })
     this.doFilter()
   },
 

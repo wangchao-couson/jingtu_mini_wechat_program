@@ -11,17 +11,17 @@
     "pages/story/story"
   ],
   "window": {
-    "navigationBarBackgroundColor": "#F7F4EE",
+    "navigationBarBackgroundColor": "#07110F",
     "navigationBarTitleText": "京途",
-    "navigationBarTextStyle": "black",
-    "backgroundColor": "#F7F4EE",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#07110F",
     "backgroundTextStyle": "dark"
   },
   "tabBar": {
-    "color": "#8C918A",
-    "selectedColor": "#1F6B52",
-    "backgroundColor": "#FFFDF8",
-    "borderStyle": "white",
+    "color": "#7C8782",
+    "selectedColor": "#35D07F",
+    "backgroundColor": "#07110F",
+    "borderStyle": "black",
     "list": [
       {
         "pagePath": "pages/index/index",

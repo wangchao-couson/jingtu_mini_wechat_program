@@ -1,29 +1,44 @@
 module.exports = [
   {
-    id: 'story-june-rafting',
-    section: '今天',
-    title: '六月最后一个周末',
-    subtitle: '8个人 · 第一次漂流 · 雨后放晴',
-    cover: '/assets/images/trips/preview-13.jpg',
-    quote: '有时候记住的不是风景，而是一起笑的人。',
-    meta: '北京 · 雨后 · 8人同行'
+    id: 'rafting-001',
+    title: '紫荆关漂流',
+    tag: '即刻探索',
+    date: '2024.06.28',
+    location: '北京 · 怀柔',
+    summary: '8个人，笑了372次，雨后放晴。',
+    coverUrl: '/assets/images/trips/preview-13.jpg',
+    mediaType: 'video',
+    peopleCount: 8,
+    photoCount: 42,
+    videoCount: 2,
+    lines: ['那天水很凉，大家笑得很大声。', '雨后放晴的时候，山谷像被重新洗过。']
   },
   {
-    id: 'story-qinggan',
-    section: '故事',
-    title: '青甘大环线',
-    subtitle: '踩线准备中 · 还有12天',
-    cover: '/assets/images/trips/preview-15.jpg',
-    quote: '远方不是目的地，而是一个重新认识自己的方式。',
-    meta: '青海 · 甘肃 · 灵感池'
+    id: 'ulanbutong-001',
+    title: '乌兰布统 · 草原日落',
+    tag: '活动回顾',
+    date: '2024.06.15-16',
+    location: '内蒙古 · 乌兰布统',
+    summary: '18位同学，126张照片，4段故事。',
+    coverUrl: '/assets/images/trips/preview-10.jpg',
+    mediaType: 'video',
+    peopleCount: 18,
+    photoCount: 126,
+    videoCount: 4,
+    lines: ['那天傍晚，大家坐在草坡上等日落。', '风很大，但没人急着离开。']
   },
   {
-    id: 'story-last-year',
-    section: '去年今天',
-    title: '南太行',
-    subtitle: '第一次认识 CC',
-    cover: '/assets/images/trips/preview-08.jpg',
-    quote: '后来很多故事，都从那次同行开始。',
-    meta: '南太行 · 旧照片 · 同路人'
+    id: 'nantaihang-001',
+    title: '南太行 · 第一次共创',
+    tag: '社区里程碑',
+    date: '2024.05.25',
+    location: '河南 · 南太行',
+    summary: '一次小团活动，也是一场社区协作实验。',
+    coverUrl: '/assets/images/trips/preview-08.jpg',
+    mediaType: 'image',
+    peopleCount: 8,
+    photoCount: 58,
+    videoCount: 1,
+    lines: ['一次小团活动，也是一场社区协作实验。', 'CC 的建议，后来变成了路线灵感池。']
   }
 ]

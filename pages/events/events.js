@@ -8,11 +8,9 @@ Page({
     all: [],
     list: [],
     hero: site.discoverHero,
-    discoveryBlocks: [
-      { title: '活动', sub: '正在出发 · 即将发布 · 咨询中', type: 'activity' },
-      { title: '路线灵感池', sub: '阿那亚 · 18人想去 · 收集中', type: 'idea' },
-      { title: '精选路线', sub: '北京 · 河北 · 内蒙 · 青海', type: 'route' },
-      { title: '共创日志', sub: 'CC 建议上线路线灵感池 · 已采纳', type: 'log' }
+    routeIdeas: [
+      { title: '阿那亚', recommender: 'CC 推荐', reason: '适合周末放松、拍照、看海。', cover: '/assets/images/trips/preview-15.jpg', count: 12, status: '收集中' },
+      { title: '玉渡山', recommender: '京途领队推荐', reason: '北京周边稳定徒步路线，适合新人。', cover: '/assets/images/trips/preview-07.jpg', count: 18, status: '可成行' }
     ]
   },
 

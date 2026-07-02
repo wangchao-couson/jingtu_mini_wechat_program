@@ -1,4 +1,10 @@
 <view class="disc-page">
+  <view class="mini-status">
+    <text>9:41</text>
+    <text>发现</text>
+    <view class="capsule">···</view>
+  </view>
+
   <view class="disc-hero">
     <image src="{{hero.cover}}" mode="aspectFill" class="disc-hero-img"/>
     <view class="disc-hero-shade"></view>
@@ -9,11 +15,30 @@
     </view>
   </view>
 
-  <view class="discover-grid">
-    <view class="discover-block {{item.type}}" wx:for="{{discoveryBlocks}}" wx:key="title">
-      <view class="discover-title">{{item.title}}</view>
-      <view class="discover-sub">{{item.sub}}</view>
+  <view class="module-head">
+    <view>
+      <view class="module-title">路线灵感池</view>
+      <view class="module-sub">你想去的地方，也可能成为京途下一场活动。</view>
     </view>
+    <view class="module-more">我想推荐 ></view>
+  </view>
+
+  <scroll-view scroll-x class="idea-scroll" show-scrollbar="{{false}}">
+    <view class="idea-card" wx:for="{{routeIdeas}}" wx:key="title">
+      <image src="{{item.cover}}" mode="aspectFill" class="idea-img"/>
+      <view class="idea-mask"></view>
+      <view class="idea-copy">
+        <view class="idea-rec">{{item.recommender}}</view>
+        <view class="idea-title">📍 {{item.title}}</view>
+        <view class="idea-reason">{{item.reason}}</view>
+        <view class="idea-foot"><text>{{item.count}}人想去</text><text>{{item.status}}</text></view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <view class="module-head">
+    <view class="module-title">活动入口</view>
+    <view class="module-more">全部活动 ></view>
   </view>
 
   <view class="disc-tabs">

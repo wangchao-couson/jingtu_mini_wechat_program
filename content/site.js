@@ -9,8 +9,8 @@ module.exports = {
   ],
   discoverHero: {
     eyebrow: 'DISCOVER',
-    title: '下一段故事，从这里开始',
-    subtitle: '队伍、路线灵感、精选路线和共创日志，都在这里慢慢生长。',
+    title: '发现下一站',
+    subtitle: '活动报名、预告、路线灵感池、回顾，都在这里。',
     cover: '/assets/images/trips/preview-13.jpg'
   },
   consultation: {

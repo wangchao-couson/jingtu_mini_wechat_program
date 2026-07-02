@@ -1,35 +1,35 @@
 <view class="stories-page">
-  <view class="jt-top" style="padding-top:{{statusBarHeight + 16}}px">
-    <view class="jt-brand">京途</view>
-    <view class="jt-line">{{dailyLine}}</view>
+  <view class="mini-status" style="padding-top:{{statusBarHeight}}px">
+    <text>9:41</text>
+    <text>故事</text>
+    <view class="capsule">···</view>
   </view>
 
-  <view class="story-intro">
-    <view class="story-intro-kicker">STORIES</view>
-    <view class="story-intro-title">故事</view>
-    <view class="story-intro-text">不是首页，是一本慢慢翻开的相册。</view>
+  <view class="story-hero">
+    <image src="/assets/images/trips/preview-10.jpg" mode="aspectFill" class="story-hero-img"/>
+    <view class="story-hero-mask"></view>
+    <view class="play-btn">▶</view>
+    <view class="story-hero-copy">
+      <view class="hero-title">我们的故事</view>
+      <view class="hero-sub">不是活动列表，<br/>而是一起走过的时间。</view>
+      <view class="hero-slogan">{{sloganTop}}<br/>{{sloganBottom}}</view>
+    </view>
   </view>
 
-  <view wx:if="{{stories.length > 0}}">
-    <view wx:for="{{stories}}" wx:key="id" class="memory-card">
-      <view class="memory-copy">
-        <view class="memory-section">{{item.section}}</view>
-        <view class="memory-title">{{item.title}}</view>
-        <view class="memory-subtitle">{{item.subtitle}}</view>
-        <view class="memory-meta">{{item.meta}}</view>
-        <view class="memory-link">查看故事</view>
+  <view class="story-flow" wx:if="{{stories.length > 0}}">
+    <navigator wx:for="{{stories}}" wx:key="id" url="/pages/story/story?id={{item.id}}" class="memory-card">
+      <image src="{{item.coverUrl}}" mode="aspectFill" class="memory-img"/>
+      <view class="memory-mask"></view>
+      <view class="memory-top">
+        <text class="memory-tag">{{item.tag}}</text>
+        <text class="memory-place">{{item.date}} · {{item.location}}</text>
       </view>
-      <image src="{{item.cover}}" mode="aspectFill" class="memory-img"/>
-      <view class="memory-quote">“{{item.quote}}”</view>
-    </view>
-  </view>
-
-  <view class="timeline-card">
-    <view class="timeline-title">故事时间轴</view>
-    <view class="timeline-row" wx:for="{{months}}" wx:key="*this">
-      <text>{{item}}</text>
-      <view></view>
-    </view>
+      <view class="memory-bottom">
+        <view class="memory-title">{{item.title}}</view>
+        <view class="memory-summary">{{item.summary}}</view>
+        <view class="memory-data">{{item.peopleCount}}位同学 · {{item.photoCount}}张照片 · {{item.videoCount}}段视频</view>
+      </view>
+    </navigator>
   </view>
 
   <view style="height:40rpx"></view>

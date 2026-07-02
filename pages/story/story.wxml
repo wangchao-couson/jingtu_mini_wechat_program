@@ -1,1 +1,31 @@
-<web-view src="{{webUrl}}" bindmessage="onMessage"></web-view>
+<view class="sd-page" wx:if="{{story}}">
+  <view class="sd-hero">
+    <image src="{{story.coverUrl}}" mode="aspectFill" class="sd-hero-img"/>
+    <view class="sd-mask"></view>
+    <view class="sd-play">▶</view>
+    <view class="sd-copy">
+      <view class="sd-title">{{story.title}}</view>
+      <view class="sd-meta">{{story.date}} · {{story.location}}</view>
+      <view class="sd-data">{{story.peopleCount}}位同学 · {{story.photoCount}}张照片 · {{story.videoCount}}段故事</view>
+    </view>
+  </view>
+
+  <view class="media-flow">
+    <view class="media-item" wx:for="{{media}}" wx:key="label">
+      <image src="{{item.url}}" mode="aspectFill" class="media-img"/>
+      <view class="media-label">{{item.label}}</view>
+      <view class="media-play" wx:if="{{item.type==='video'}}">▶</view>
+    </view>
+  </view>
+
+  <view class="people-strip">
+    <view class="person-dot" wx:for="{{people}}" wx:key="*this">{{item}}</view>
+  </view>
+
+  <view class="story-lines">
+    <view wx:for="{{story.lines}}" wx:key="*this">{{item}}</view>
+  </view>
+
+  <view class="next-story">继续看下一段故事</view>
+  <view class="sd-bottom">第{{story.peopleCount}}位同学的故事 · ♡ {{story.photoCount}} · 分享</view>
+</view>

@@ -1,16 +1,22 @@
 <view class="cm-page">
-  <view class="jt-top">
-    <view class="jt-brand">京途</view>
-    <view class="jt-line">{{dailyLine}}</view>
+  <view class="mini-status">
+    <text>9:41</text>
+    <text>我们</text>
+    <view class="capsule">···</view>
   </view>
 
   <view class="we-hero">
-    <view class="we-kicker">WE</view>
     <view class="we-title">我们</view>
     <view class="we-sub">一起走过的人，会慢慢长成一张关系地图。</view>
   </view>
 
   <view class="network-card">
+    <view class="network-head">
+      <view>
+        <view class="network-title">一起走过的人</view>
+        <view class="network-sub">每一次同行，都会让人与人之间多一条线。</view>
+      </view>
+    </view>
     <view class="network-line line-a"></view>
     <view class="network-line line-b"></view>
     <view class="network-line line-c"></view>
@@ -19,24 +25,30 @@
       <view class="network-name">{{item.name}}</view>
       <view class="network-role">{{item.role}}</view>
     </view>
+    <view class="legend">一起参加过 · 多次同行 · 共同组织 · 同城好友</view>
   </view>
 
-  <view class="cm-header">
-    <view class="cm-search-box">
-      <text class="cm-search-icon">🔍</text>
-      <input placeholder="搜索一起走过的人..." bindinput="onSearch" class="cm-search-input"/>
+  <view class="people-head">
+    <view>
+      <view class="people-title">京途同学</view>
+      <view class="people-sub">有趣的人，一起去探索世界。</view>
     </view>
-    <view class="cm-count">已有 <text class="text-teal font-bold">{{totalCount}}</text> 位同路人</view>
+    <view class="people-more">全部同学 ></view>
   </view>
 
-  <scroll-view scroll-x class="tag-scroll" show-scrollbar="{{false}}">
-    <view class="tag-row">
-      <view class="tag-chip {{activeTag===''?'active':''}}" bindtap="setTag" data-tag="">全部</view>
-      <view wx:for="{{allTags}}" wx:key="*this" class="tag-chip {{activeTag===item?'active':''}}" bindtap="setTag" data-tag="{{item}}">{{item}}</view>
-    </view>
+  <scroll-view scroll-x class="people-scroll" show-scrollbar="{{false}}">
+    <navigator wx:for="{{peopleCards}}" wx:key="name" url="/pages/classmate-detail/classmate-detail?id={{item.id}}" class="person-card">
+      <image src="{{item.cover}}" mode="aspectFill" class="person-cover"/>
+      <view class="person-mask"></view>
+      <view class="person-copy">
+        <view class="person-name">{{item.name}}</view>
+        <view class="person-role">{{item.role}}</view>
+        <view class="person-desc">{{item.desc}}</view>
+      </view>
+    </navigator>
   </scroll-view>
 
-  <view class="cm-list">
+  <view class="cm-list compact">
     <navigator wx:for="{{filteredClassmates}}" wx:key="id" url="/pages/classmate-detail/classmate-detail?id={{item.id}}" class="cm-card{{item.commonEvents>0?' has-common':''}}">
       <view class="avatar avatar-lg">{{item.nickname[0]}}</view>
       <view class="cm-info">

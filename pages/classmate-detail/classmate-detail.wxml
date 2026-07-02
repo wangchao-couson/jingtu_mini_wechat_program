@@ -1,6 +1,6 @@
 <view class="cd-page" wx:if="{{classmate}}">
   <view class="cd-hero">
-    <view class="cd-avatar avatar" style="width:120rpx;height:120rpx;font-size:48rpx;background:rgba(255,255,255,0.2);margin:0 auto 16rpx;">
+    <view class="cd-avatar avatar" style="width:120rpx;height:120rpx;font-size:48rpx;background:rgba(255,255,255,0.16);margin:0 auto 16rpx;">
       {{classmate.nickname[0]}}
     </view>
     <view class="cd-name">{{classmate.nickname}}</view>
@@ -15,21 +15,21 @@
   </view>
 
   <view class="detail-section">
-    <view class="detail-section-title">📊 户外足迹</view>
+    <view class="detail-section-title">贡献记录</view>
     <view class="cd-stats-grid">
       <view class="cd-stat">
         <text class="cd-stat-num">{{classmate.eventCount}}</text>
-        <text class="cd-stat-label">参加活动</text>
+        <text class="cd-stat-label">共同经历</text>
       </view>
       <view class="cd-stat">
         <text class="cd-stat-num">{{classmate.commonEvents}}</text>
-        <text class="cd-stat-label">共同活动</text>
+        <text class="cd-stat-label">共同联系人</text>
       </view>
     </view>
   </view>
 
   <view class="detail-section">
-    <view class="detail-section-title">📱 联系方式</view>
+    <view class="detail-section-title">TA 的标签</view>
     <view class="cd-contact">
       <text class="cd-contact-label">微信号</text>
       <view class="cd-contact-row">
