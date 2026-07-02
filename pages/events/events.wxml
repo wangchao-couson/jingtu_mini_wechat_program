@@ -23,20 +23,20 @@
   </view>
 
   <scroll-view scroll-x class="idea-scroll" show-scrollbar="{{false}}">
-    <view class="idea-card" wx:for="{{routeIdeas}}" wx:key="title" bindtap="previewRoute" data-title="{{item.title}}">
+    <navigator class="idea-card" wx:for="{{routeIdeas}}" wx:key="id" url="/pages/route-detail/route-detail?id={{item.id}}">
       <image src="{{item.cover}}" mode="aspectFill" class="idea-img"/>
       <view class="idea-mask"></view>
       <view class="idea-copy">
         <view class="idea-rec">{{item.recommender}}</view>
-        <view class="idea-title">📍 {{item.title}}</view>
+        <view class="idea-title">{{item.title}}</view>
         <view class="idea-reason">{{item.reason}}</view>
         <view class="idea-foot"><text>{{item.count}}人想去</text><text>{{item.status}}</text></view>
       </view>
-    </view>
+    </navigator>
   </scroll-view>
 
-  <view class="module-head">
-    <view class="module-title">活动入口</view>
+  <view class="module-head" id="activity-section">
+    <view class="module-title">下一段出发</view>
     <view class="module-more" bindtap="showAllActivities">全部活动 ></view>
   </view>
 

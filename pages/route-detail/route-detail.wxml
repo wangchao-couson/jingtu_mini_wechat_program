@@ -1,0 +1,41 @@
+<view class="rd-page" wx:if="{{route}}">
+  <view class="rd-hero">
+    <image src="{{route.cover}}" mode="aspectFill" class="rd-cover"/>
+    <view class="rd-shade"></view>
+    <view class="rd-copy">
+      <view class="rd-eyebrow">{{route.recommender}}</view>
+      <view class="rd-title">{{route.title}}</view>
+      <view class="rd-sub">{{route.count}}人想去 · {{route.status}}</view>
+    </view>
+  </view>
+
+  <view class="rd-section">
+    <view class="rd-section-title">为什么想去</view>
+    <view class="rd-text">{{route.story}}</view>
+  </view>
+
+  <view class="rd-section">
+    <view class="rd-grid">
+      <view class="rd-cell"><view class="rd-cell-v">{{route.season}}</view><view class="rd-cell-l">适合季节</view></view>
+      <view class="rd-cell"><view class="rd-cell-v">{{route.distance}}</view><view class="rd-cell-l">大致距离</view></view>
+    </view>
+    <view class="rd-vibe">{{route.vibe}}</view>
+  </view>
+
+  <view class="rd-section">
+    <view class="rd-section-title">共创进度</view>
+    <view class="rd-step" wx:for="{{route.planning}}" wx:key="*this">
+      <view class="rd-dot"></view>
+      <view class="rd-step-text">{{item}}</view>
+    </view>
+  </view>
+
+  <view class="rd-actions">
+    <button class="rd-btn" bindtap="recommend">我也想去</button>
+  </view>
+</view>
+
+<view class="empty-state" wx:else>
+  <view class="empty-icon">🧭</view>
+  <view class="empty-text">路线灵感不存在</view>
+</view>

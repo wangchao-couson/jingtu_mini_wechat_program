@@ -17,6 +17,6 @@ Page({
   },
 
   showMediaPreview(e) {
-    wx.showToast({ title: e.currentTarget.dataset.type === 'video' ? '视频素材稍后上线' : '正在预览照片', icon: 'none' })
+    wx.showToast({ title: e.currentTarget.dataset.type === 'video' ? '这段视频正在整理中' : '正在预览照片', icon: 'none' })
   }
 })

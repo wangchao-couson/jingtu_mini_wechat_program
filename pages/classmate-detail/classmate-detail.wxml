@@ -5,6 +5,7 @@
     </view>
     <view class="cd-name">{{classmate.nickname}}</view>
     <view class="cd-city">📍 {{classmate.city}}</view>
+    <view class="cd-role">{{profile.roleLine}}</view>
     <view class="cd-bio-hero">「{{classmate.bio}}」</view>
   </view>
 
@@ -26,6 +27,23 @@
         <text class="cd-stat-label">共同联系人</text>
       </view>
     </view>
+    <view class="cd-contribution" wx:for="{{profile.contributions}}" wx:key="*this">
+      <view class="cd-dot"></view>
+      <view class="cd-contribution-text">{{item}}</view>
+    </view>
+  </view>
+
+  <view class="detail-section">
+    <view class="detail-section-title">共同经历</view>
+    <view class="cd-chip" wx:for="{{profile.activities}}" wx:key="*this">{{item}}</view>
+  </view>
+
+  <view class="detail-section">
+    <view class="detail-section-title">共同认识的人</view>
+    <view class="cd-contact-people">
+      <view class="cd-person" wx:for="{{profile.contacts}}" wx:key="name">{{item.initial}}</view>
+      <view class="cd-person-text">{{profile.contactsText}}</view>
+    </view>
   </view>
 
   <view class="detail-section">
@@ -37,6 +55,7 @@
 
   <view class="detail-section">
     <view class="detail-section-title">联系方式</view>
+    <view class="cd-contact-tip">想了解 TA 参与过的故事，可以复制微信沟通。</view>
     <view class="cd-contact">
       <text class="cd-contact-label">微信号</text>
       <view class="cd-contact-row">

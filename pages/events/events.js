@@ -1,6 +1,7 @@
 const teams = require('../../content/teams.js')
 const roles = require('../../content/roles.js')
 const site = require('../../content/site.js')
+const routeIdeas = require('../../content/route-ideas.js')
 
 Page({
   data: {
@@ -8,10 +9,7 @@ Page({
     all: [],
     list: [],
     hero: site.discoverHero,
-    routeIdeas: [
-      { title: '阿那亚', recommender: 'CC 推荐', reason: '适合周末放松、拍照、看海。', cover: '/content/images/magazine-grassland.jpg', count: 12, status: '收集中' },
-      { title: '玉渡山', recommender: '京途领队推荐', reason: '北京周边稳定徒步路线，适合新人。', cover: '/content/images/magazine-mountain.jpg', count: 18, status: '可成行' }
-    ]
+    routeIdeas
   },
 
   onLoad() {
@@ -30,16 +28,16 @@ Page({
   },
 
   showRecommend() {
-    wx.showToast({ title: '路线推荐入口稍后开放', icon: 'none' })
+    wx.showModal({
+      title: '推荐路线',
+      content: '路线灵感池正在收集想去的地方。可以先添加领队微信，或在京途群里告诉我们你的路线灵感。',
+      confirmText: '知道了',
+      showCancel: false
+    })
   },
 
   showAllActivities() {
-    wx.showToast({ title: '下方已展示活动入口', icon: 'none' })
-  },
-
-  previewRoute(e) {
-    const title = e.currentTarget.dataset.title || '路线'
-    wx.showToast({ title: title + '详情稍后开放', icon: 'none' })
+    wx.pageScrollTo({ selector: '#activity-section', duration: 320 })
   },
 
   decorateTeams(items) {

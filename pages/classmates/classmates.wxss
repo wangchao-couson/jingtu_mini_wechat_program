@@ -40,6 +40,7 @@
 .tag-chip.active{background:var(--primary);color:#fff;border-color:var(--primary);box-shadow:0 3rpx 10rpx rgba(45,111,247,0.2)}
 
 .cm-list{padding:8rpx 24rpx}
+.cm-list-head{padding:28rpx 24rpx 10rpx}
 .cm-card{display:flex;align-items:center;gap:18rpx;background:var(--card);border-radius:var(--radius-lg);padding:20rpx 22rpx;margin-bottom:12rpx;box-shadow:var(--shadow);position:relative}
 .cm-card.has-common{border-left:4rpx solid var(--accent)}
 .cm-info{flex:1;min-width:0}

@@ -5,6 +5,7 @@
     "pages/classmates/classmates",
     "pages/profile/profile",
     "pages/team-detail/team-detail",
+    "pages/route-detail/route-detail",
     "pages/role-detail/role-detail",
     "pages/event-detail/event-detail",
     "pages/classmate-detail/classmate-detail",

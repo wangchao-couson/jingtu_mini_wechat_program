@@ -29,10 +29,10 @@ Page({
   loadClassmates() {
     const classmates = wx.getStorageSync('jingtu_classmates') || []
     const peopleCards = [
-      { id: 1, name: 'CC', role: '共创同学', cover: '/content/images/magazine-portrait.jpg', desc: '热爱旅行 · 擅长提建议' },
-      { id: 9, name: '领队老王', role: '领队', cover: '/content/images/magazine-mountain.jpg', desc: '路线设计 · 安全第一' },
-      { id: 2, name: '摄影师阿泽', role: '摄影师', cover: '/content/images/magazine-camp.jpg', desc: '记录故事 · 捕捉光影' },
-      { id: 6, name: '小李', role: '志愿者', cover: '/content/images/magazine-grassland.jpg', desc: '热心靠谱 · 组织协作' }
+      { id: 1, name: 'CC', role: '共创同学', cover: '/content/images/person-cc.jpg', desc: '热爱旅行 · 擅长提建议' },
+      { id: 9, name: '领队老王', role: '领队', cover: '/content/images/person-leader.jpg', desc: '路线设计 · 安全第一' },
+      { id: 2, name: '摄影师阿泽', role: '摄影师', cover: '/content/images/person-photographer.jpg', desc: '记录故事 · 捕捉光影' },
+      { id: 6, name: '小李', role: '志愿者', cover: '/content/images/magazine-portrait.jpg', desc: '热心靠谱 · 组织协作' }
     ]
     this.setData({ allClassmates: classmates, totalCount: classmates.length, peopleCards })
     this.doFilter()
@@ -49,7 +49,7 @@ Page({
   },
 
   showAllClassmates() {
-    wx.showToast({ title: '下方已展示全部京途同学', icon: 'none' })
+    wx.pageScrollTo({ selector: '#classmate-list', duration: 320 })
   },
 
   doFilter() {

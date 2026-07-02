@@ -5,7 +5,7 @@ module.exports = [
     roleType: 'photographer',
     roleName: '户外摄影师 / 露营领队',
     wechat: 'deer_photo',
-    avatar: '/content/images/magazine-portrait.jpg',
+    avatar: '/content/images/person-photographer.jpg',
     cover: '/content/images/magazine-camp.jpg',
     bio: '喜欢拍人和山之间的关系。不是摆拍大片，而是把队伍里真实发光的瞬间留下。',
     tags: ['星空', '人像', '露营'],
@@ -16,7 +16,7 @@ module.exports = [
     ],
     gallery: [
       '/content/images/magazine-camp.jpg',
-      '/content/images/magazine-portrait.jpg',
+      '/content/images/person-photographer.jpg',
       '/assets/images/trips/preview-11.jpg'
     ],
     highlights: ['星空露营纪实', '轻户外人像', '队伍氛围记录']
@@ -27,7 +27,7 @@ module.exports = [
     roleType: 'leader',
     roleName: '京郊徒步领队',
     wechat: 'ajie_outdoor',
-    avatar: '/content/images/magazine-portrait.jpg',
+    avatar: '/content/images/person-leader.jpg',
     cover: '/content/images/magazine-mountain.jpg',
     bio: '擅长入门徒步、古道路线和新同学破冰。节奏稳定，喜欢把路线背后的故事讲给大家听。',
     tags: ['徒步', '古道', '新手友好'],
@@ -71,7 +71,7 @@ module.exports = [
     roleType: 'volunteer',
     roleName: '队伍志愿者',
     wechat: 'momo_404',
-    avatar: '/content/images/magazine-portrait.jpg',
+    avatar: '/content/images/person-cc.jpg',
     cover: '/content/images/magazine-grassland.jpg',
     bio: '负责队伍签到、照片整理和新人照顾。希望每个第一次来的同学都能自然地融入队伍。',
     tags: ['志愿者', '新人照顾', '照片整理'],
@@ -82,7 +82,7 @@ module.exports = [
     ],
     gallery: [
       '/content/images/magazine-grassland.jpg',
-      '/content/images/magazine-portrait.jpg',
+      '/content/images/person-cc.jpg',
       '/assets/images/trips/preview-15.jpg'
     ],
     highlights: ['新人引导', '活动签到', '照片归档']

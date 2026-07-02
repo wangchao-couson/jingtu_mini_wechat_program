@@ -47,6 +47,11 @@
     </navigator>
   </scroll-view>
 
+  <view class="cm-list-head" id="classmate-list">
+    <view class="people-title">更多同路人</view>
+    <view class="people-sub">不是通讯录，是一起走过的人。</view>
+  </view>
+
   <view class="cm-list compact">
     <navigator wx:for="{{filteredClassmates}}" wx:key="id" url="/pages/classmate-detail/classmate-detail?id={{item.id}}" class="cm-card{{item.commonEvents>0?' has-common':''}}">
       <view class="avatar avatar-lg">{{item.nickname[0]}}</view>

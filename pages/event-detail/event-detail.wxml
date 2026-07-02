@@ -41,7 +41,9 @@
 
   <view class="detail-section" wx:if="{{event.photos.length>0}}">
     <view class="detail-title">活动照片</view>
-    <scroll-view scroll-x class="photo-scroll" show-scrollbar="{{false}}"><image src="{{item}}" mode="aspectFill" class="photo-scroll-item" wx:for="{{event.photos}}" wx:key="*this"/></scroll-view>
+    <view class="photo-grid">
+      <image src="{{item}}" mode="aspectFill" class="photo-grid-item" wx:for="{{event.photos}}" wx:key="*this" bindtap="previewPhoto" data-src="{{item}}"/>
+    </view>
   </view>
 
   <view class="ed-bar" wx:if="{{event.status==='registering'}}">

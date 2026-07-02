@@ -61,7 +61,7 @@
   <view class="td-section">
     <view class="td-section-title">真实照片</view>
     <view class="td-gallery">
-      <image src="{{item}}" mode="aspectFill" class="td-gallery-img" wx:for="{{team.gallery}}" wx:key="*this"/>
+      <image src="{{item}}" mode="aspectFill" class="td-gallery-img" wx:for="{{team.gallery}}" wx:key="*this" bindtap="previewPhoto" data-src="{{item}}"/>
     </view>
   </view>
 

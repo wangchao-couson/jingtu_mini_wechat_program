@@ -34,5 +34,12 @@ Page({
     const leader = this.data.leader
     if (!leader || !leader.id) return
     wx.navigateTo({ url: '/pages/role-detail/role-detail?id=' + leader.id })
+  },
+
+  previewPhoto(e) {
+    const current = e.currentTarget.dataset.src
+    const urls = (this.data.team && this.data.team.gallery) || []
+    if (!current || !urls.length) return
+    wx.previewImage({ current, urls })
   }
 })

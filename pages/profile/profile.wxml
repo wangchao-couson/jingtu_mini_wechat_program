@@ -22,7 +22,7 @@
   </view>
 
   <view class="detail-section">
-    <view class="detail-title">我的数据</view>
+    <view class="detail-title">我的 2026 记录</view>
     <view class="mp-stats year-stats">
       <view class="mp-stat" wx:for="{{yearStats}}" wx:key="label"><text class="mp-stat-num">{{item.num}}</text><text class="mp-stat-label">{{item.label}}</text></view>
     </view>

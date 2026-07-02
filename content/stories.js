@@ -29,16 +29,16 @@ module.exports = [
   },
   {
     id: 'nantaihang-001',
-    title: '南太行 · 第一次共创',
+    title: '南太行 · 第一次周末特种兵组队自驾',
     tag: '社区里程碑',
     date: '2024.05.25',
     location: '河南 · 南太行',
-    summary: '一次小团活动，也是一场社区协作实验。',
+    summary: '8个人，一次周末特种兵组队自驾，也是一场社区协作实验。',
     coverUrl: '/content/images/magazine-mountain.jpg',
     mediaType: 'image',
     peopleCount: 8,
     photoCount: 58,
     videoCount: 1,
-    lines: ['一次小团活动，也是一场社区协作实验。', 'CC 的建议，后来变成了路线灵感池。']
+    lines: ['周末特种兵式出发，大家一路轮流导航、拍照和照顾队友。', 'CC 的建议，后来变成了路线灵感池。']
   }
 ]
