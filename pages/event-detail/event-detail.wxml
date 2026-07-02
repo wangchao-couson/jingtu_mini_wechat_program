@@ -42,7 +42,9 @@
   <view class="detail-section" wx:if="{{event.photos.length>0}}">
     <view class="detail-title">活动照片</view>
     <view class="photo-grid">
-      <image src="{{item}}" mode="aspectFill" class="photo-grid-item" wx:for="{{event.photos}}" wx:key="*this" bindtap="previewPhoto" data-src="{{item}}"/>
+      <view class="photo-grid-cell" wx:for="{{event.photos}}" wx:key="*this" catchtouchmove="stopPhotoMove">
+        <image src="{{item}}" mode="aspectFill" class="photo-grid-item" bindtap="previewPhoto" data-src="{{item}}" show-menu-by-longpress="{{false}}"/>
+      </view>
     </view>
   </view>
 

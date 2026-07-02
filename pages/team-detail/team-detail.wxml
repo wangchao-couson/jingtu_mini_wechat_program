@@ -61,7 +61,9 @@
   <view class="td-section">
     <view class="td-section-title">真实照片</view>
     <view class="td-gallery">
-      <image src="{{item}}" mode="aspectFill" class="td-gallery-img" wx:for="{{team.gallery}}" wx:key="*this" bindtap="previewPhoto" data-src="{{item}}"/>
+      <view class="td-gallery-cell" wx:for="{{team.gallery}}" wx:key="*this" catchtouchmove="stopPhotoMove">
+        <image src="{{item}}" mode="aspectFill" class="td-gallery-img" bindtap="previewPhoto" data-src="{{item}}" show-menu-by-longpress="{{false}}"/>
+      </view>
     </view>
   </view>
 

@@ -67,5 +67,9 @@ Page({
     const urls = (this.data.event && this.data.event.photos) || []
     if (!current || !urls.length) return
     wx.previewImage({ current, urls })
+  },
+
+  stopPhotoMove() {
+    return false
   }
 })

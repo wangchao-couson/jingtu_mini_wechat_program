@@ -41,5 +41,9 @@ Page({
     const urls = (this.data.team && this.data.team.gallery) || []
     if (!current || !urls.length) return
     wx.previewImage({ current, urls })
+  },
+
+  stopPhotoMove() {
+    return false
   }
 })

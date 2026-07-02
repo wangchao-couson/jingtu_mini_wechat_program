@@ -19,9 +19,10 @@
 .ed-include{display:inline-block;margin:0 10rpx 10rpx 0;padding:9rpx 16rpx;border-radius:999rpx;background:rgba(31,107,82,0.08);color:var(--primary);font-size:24rpx;font-weight:600}
 
 .leader-contact{background:rgba(31,107,82,0.06);border-radius:var(--radius);padding:18rpx;margin-top:16rpx;border:2rpx solid rgba(31,107,82,0.1)}
-.photo-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:10rpx;overflow:hidden}
-.photo-grid-item{width:100%;height:176rpx;border-radius:var(--radius);display:block;background:rgba(255,255,255,.08)}
-.photo-grid-item:first-child{height:362rpx;grid-row:span 2}
+.photo-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:10rpx;height:362rpx;overflow:hidden;touch-action:none}
+.photo-grid-cell{height:176rpx;border-radius:var(--radius);overflow:hidden;background:rgba(255,255,255,.08)}
+.photo-grid-cell:first-child{height:362rpx;grid-row:span 2}
+.photo-grid-item{width:100%;height:100%;border-radius:var(--radius);display:block}
 
 .ed-bar{position:fixed;bottom:0;left:0;right:0;display:flex;align-items:center;gap:14rpx;padding:12rpx 24rpx calc(12rpx + env(safe-area-inset-bottom));background:rgba(255,253,248,0.96);backdrop-filter:blur(20rpx);border-top:1rpx solid var(--border-light);z-index:100}
 .ed-bar-text{font-size:24rpx;color:var(--text-secondary);flex-shrink:0}
