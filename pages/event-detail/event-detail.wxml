@@ -9,7 +9,7 @@
   </view>
 
   <view class="detail-section">
-    <view class="ed-spots">{{event.currentParticipants}}/<text class="text-amber">{{event.maxParticipants}}</text> 人已加入</view>
+    <view class="ed-spots">{{event.currentParticipants}}/<text class="text-amber">{{event.maxParticipants}}</text> 人关注咨询</view>
     <view class="ed-info-grid">
       <view class="ed-info" wx:for="{{detailItems}}" wx:key="label"><view class="ed-info-mark"></view><view><view class="ed-info-v">{{item.value}}</view><view class="ed-info-l">{{item.label}}</view></view></view>
     </view>
@@ -28,14 +28,14 @@
       <view><view class="fs-28 font-bold">{{event.leader.name}}</view><view class="fs-22 text-teal">京途认证领队</view></view>
     </view>
     <view class="leader-contact" wx:if="{{event.leader.wechat}}">
-      <view class="fs-26 font-bold text-teal mb-12">联系领队加入活动</view>
+      <view class="fs-26 font-bold text-teal mb-12">联系领队咨询行程</view>
       <view class="flex-between"><text class="fs-28 font-bold">{{event.leader.wechat}}</text><button class="btn btn-sm btn-teal" bindtap="copyWechat">一键复制</button></view>
-      <view class="fs-22 text-light mt-16">添加领队微信，加入活动群了解详情</view>
+      <view class="fs-22 text-light mt-16">添加领队微信，了解行程、装备和集合安排</view>
     </view>
   </view>
 
   <view class="detail-section" wx:if="{{event.participants.length>0}}">
-    <view class="detail-title">已加入同学 ({{event.currentParticipants}}人)</view>
+    <view class="detail-title">同行同学 ({{event.currentParticipants}}人)</view>
     <view class="flex gap-12"><view class="avatar avatar-sm" wx:for="{{event.participants}}" wx:key="index">{{item.name[0]}}</view><view class="story-face-more" style="width:52rpx;height:52rpx;font-size:18rpx" wx:if="{{event.currentParticipants>event.participants.length}}">+{{event.currentParticipants-event.participants.length}}</view></view>
   </view>
 
@@ -45,8 +45,8 @@
   </view>
 
   <view class="ed-bar" wx:if="{{event.status==='registering'}}">
-    <text class="ed-bar-text">想和同学们一起出发？</text>
-    <button class="btn btn-primary flex-1" style="height:72rpx;font-size:26rpx" bindtap="joinEvent">联系领队加入</button>
+    <text class="ed-bar-text">想了解行程安排？</text>
+    <button class="btn btn-primary flex-1" style="height:72rpx;font-size:26rpx" bindtap="consultLeader">复制微信咨询</button>
   </view>
   <view style="height:100rpx"></view>
 </view>

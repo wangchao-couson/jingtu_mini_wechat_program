@@ -1,0 +1,82 @@
+<view class="td-page" wx:if="{{team}}">
+  <view class="td-hero">
+    <image src="{{team.cover}}" mode="aspectFill" class="td-hero-img"/>
+    <view class="td-hero-shade"></view>
+    <view class="td-hero-copy">
+      <text class="td-kicker">{{team.kind}}</text>
+      <view class="td-title">{{team.title}}</view>
+      <view class="td-meta">{{team.date}} · {{team.location}} · {{team.distance}}</view>
+    </view>
+  </view>
+
+  <view class="td-section td-glance">
+    <view class="td-glance-item"><text>{{team.duration}}</text><text>时长</text></view>
+    <view class="td-glance-item"><text>{{team.peopleText}}</text><text>咨询人数</text></view>
+    <view class="td-glance-item"><text>{{team.difficulty}}</text><text>难度</text></view>
+  </view>
+
+  <view class="td-section">
+    <view class="td-section-title">队伍介绍</view>
+    <view class="td-text">{{team.intro}}</view>
+    <view class="td-tags">
+      <text class="tag tag-teal" wx:for="{{team.tags}}" wx:key="*this">{{item}}</text>
+      <text class="tag tag-amber">仅微信咨询</text>
+    </view>
+  </view>
+
+  <view class="td-section" wx:if="{{leader}}">
+    <view class="td-section-title">队伍联系人</view>
+    <view class="td-leader" bindtap="openRole">
+      <image src="{{leader.avatar}}" mode="aspectFill" class="td-leader-img"/>
+      <view class="td-leader-info">
+        <view class="td-leader-name">{{leader.name}}</view>
+        <view class="td-leader-role">{{leader.roleName}}</view>
+      </view>
+      <text class="td-leader-more">主页</text>
+    </view>
+    <view class="td-consult">
+      <view>
+        <view class="td-consult-title">{{site.consultation.title}}</view>
+        <view class="td-consult-note">微信 {{leader.wechat}} · {{site.consultation.note}}</view>
+      </view>
+      <button class="td-consult-btn" bindtap="copyWechat">{{site.consultation.buttonText}}</button>
+    </view>
+  </view>
+
+  <view class="td-section">
+    <view class="td-section-title">行程感</view>
+    <view class="td-time" wx:for="{{team.timeline}}" wx:key="time">
+      <text class="td-time-label">{{item.time}}</text>
+      <text class="td-time-text">{{item.text}}</text>
+    </view>
+  </view>
+
+  <view class="td-section">
+    <view class="td-section-title">包含内容</view>
+    <view class="td-include-wrap">
+      <text class="td-include" wx:for="{{team.includes}}" wx:key="*this">{{item}}</text>
+    </view>
+  </view>
+
+  <view class="td-section">
+    <view class="td-section-title">真实照片</view>
+    <view class="td-gallery">
+      <image src="{{item}}" mode="aspectFill" class="td-gallery-img" wx:for="{{team.gallery}}" wx:key="*this"/>
+    </view>
+  </view>
+
+  <view class="td-section">
+    <view class="td-section-title">安全提示</view>
+    <view class="td-safe" wx:for="{{site.safetyNotes}}" wx:key="*this">{{item}}</view>
+  </view>
+
+  <view class="td-bottom-space"></view>
+  <view class="td-bottom" wx:if="{{leader}}">
+    <view class="td-bottom-text">咨询 {{leader.name}}</view>
+    <button class="td-bottom-btn" bindtap="copyWechat">复制微信</button>
+  </view>
+</view>
+<view class="empty-state" wx:else>
+  <view class="empty-icon">🔍</view>
+  <view class="empty-text">队伍不存在</view>
+</view>

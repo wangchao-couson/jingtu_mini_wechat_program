@@ -1,0 +1,54 @@
+<view class="rd-page" wx:if="{{role}}">
+  <view class="rd-hero">
+    <image src="{{role.cover}}" mode="aspectFill" class="rd-hero-img"/>
+    <view class="rd-hero-shade"></view>
+    <view class="rd-hero-copy">
+      <image src="{{role.avatar}}" mode="aspectFill" class="rd-avatar"/>
+      <view>
+        <view class="rd-name">{{role.name}}</view>
+        <view class="rd-role">{{role.roleName}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="rd-section">
+    <view class="rd-tags">
+      <text class="tag tag-teal" wx:for="{{role.tags}}" wx:key="*this">{{item}}</text>
+    </view>
+    <view class="rd-bio">{{role.bio}}</view>
+  </view>
+
+  <view class="rd-section rd-stats">
+    <view class="rd-stat" wx:for="{{role.stats}}" wx:key="label">
+      <text>{{item.value}}</text>
+      <text>{{item.label}}</text>
+    </view>
+  </view>
+
+  <view class="rd-section">
+    <view class="rd-section-title">擅长方向</view>
+    <view class="rd-highlight" wx:for="{{role.highlights}}" wx:key="*this">{{item}}</view>
+  </view>
+
+  <view class="rd-section">
+    <view class="rd-section-title">真实作品</view>
+    <view class="rd-gallery">
+      <image src="{{item}}" mode="aspectFill" class="rd-gallery-img" wx:for="{{role.gallery}}" wx:key="*this"/>
+    </view>
+  </view>
+
+  <view class="rd-section">
+    <view class="rd-section-title">微信咨询</view>
+    <view class="rd-contact">
+      <view>
+        <view class="rd-wechat">{{role.wechat}}</view>
+        <view class="rd-contact-note">{{site.consultation.note}}</view>
+      </view>
+      <button class="rd-copy" bindtap="copyWechat">复制微信</button>
+    </view>
+  </view>
+</view>
+<view class="empty-state" wx:else>
+  <view class="empty-icon">🔍</view>
+  <view class="empty-text">角色不存在</view>
+</view>

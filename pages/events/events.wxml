@@ -1,4 +1,14 @@
 <view class="disc-page">
+  <view class="disc-hero">
+    <image src="{{hero.cover}}" mode="aspectFill" class="disc-hero-img"/>
+    <view class="disc-hero-shade"></view>
+    <view class="disc-hero-copy">
+      <view class="disc-hero-eyebrow">{{hero.eyebrow}}</view>
+      <view class="disc-hero-title">{{hero.title}}</view>
+      <view class="disc-hero-sub">{{hero.subtitle}}</view>
+    </view>
+  </view>
+
   <view class="disc-tabs">
     <view class="disc-tab {{tab==='open'?'active':''}}" bindtap="switchTab" data-tab="open">招募中</view>
     <view class="disc-tab {{tab==='soon'?'active':''}}" bindtap="switchTab" data-tab="soon">即将开始</view>
@@ -6,12 +16,12 @@
   </view>
 
   <view class="disc-list" wx:if="{{list.length>0}}">
-    <navigator wx:for="{{list}}" wx:key="id" url="/pages/event-detail/event-detail?id={{item.id}}" class="disc-card tone-{{item.template.tone}}">
+    <navigator wx:for="{{list}}" wx:key="id" url="/pages/team-detail/team-detail?id={{item.id}}" class="disc-card tone-{{item.template.tone}}">
       <view class="disc-media">
         <image src="{{item.cover}}" mode="aspectFill" class="disc-cover"/>
         <view class="disc-media-shade"></view>
         <view class="disc-template">{{item.template.label}}</view>
-        <view class="disc-capacity">{{item.currentParticipants}}/{{item.maxParticipants}} 人</view>
+        <view class="disc-capacity">{{item.peopleText}} 人</view>
       </view>
       <view class="disc-body">
         <view class="disc-badge-row"><text class="status-tag {{item.status==='registering'?'status-open':item.status==='upcoming'?'status-soon':'status-done'}}">{{item.status==='registering'?'招募中':item.status==='upcoming'?'即将开始':'已结束'}}</text></view>
@@ -19,11 +29,11 @@
         <view class="disc-meta"><text>{{item.date}}</text><text>{{item.location}}</text><text>{{item.distance}}</text></view>
         <view class="disc-faces">
           <view class="disc-face" wx:for="{{item.faceList}}" wx:key="*this" wx:for-item="f">{{f}}</view>
-          <view class="disc-face-more" wx:if="{{item.currentParticipants>item.faceList.length}}">+{{item.currentParticipants-item.faceList.length}}</view>
+          <view class="disc-face-more" wx:if="{{item.extraPeopleText>0}}">+{{item.extraPeopleText}}</view>
         </view>
         <view class="disc-footer">
-          <text class="disc-leader">领队 {{item.leader.name}}</text>
-          <text class="disc-join" wx:if="{{item.status==='registering'}}">查看详情</text>
+          <text class="disc-leader">{{item.leader.roleName}} · {{item.leader.name}}</text>
+          <text class="disc-join">咨询详情</text>
         </view>
       </view>
     </navigator>

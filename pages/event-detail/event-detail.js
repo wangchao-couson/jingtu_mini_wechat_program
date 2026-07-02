@@ -45,7 +45,7 @@ Page({
     })
   },
 
-  joinEvent() {
+  consultLeader() {
     const event = this.data.event
     if (!event || !event.leader || !event.leader.wechat) return
 
@@ -53,29 +53,10 @@ Page({
       data: event.leader.wechat,
       success: () => {
         wx.showModal({
-          title: '加入活动',
-          content: '领队微信号已复制\n\n请打开微信添加「' + event.leader.name + '」\n微信号: ' + event.leader.wechat + '\n\n加入活动群后由领队统一安排',
+          title: '咨询领队',
+          content: '领队微信号已复制\n\n请打开微信添加「' + event.leader.name + '」\n微信号: ' + event.leader.wechat + '\n\n行程、装备和集合信息由领队统一沟通',
           confirmText: '知道了',
-          showCancel: false,
-          success: () => {
-            const joins = wx.getStorageSync('jingtu_my_joins') || []
-            if (!joins.find(r => r.eventId === event.id)) {
-              event.currentParticipants++
-              const allEvents = wx.getStorageSync('jingtu_events') || []
-              wx.setStorageSync('jingtu_events',
-                allEvents.map(e => e.id === event.id ? event : e))
-              joins.push({
-                id: Date.now(),
-                eventId: event.id,
-                eventTitle: event.title,
-                eventDate: event.date,
-                eventCover: event.cover,
-                time: new Date().toISOString()
-              })
-              wx.setStorageSync('jingtu_my_joins', joins)
-              this.setEvent(event)
-            }
-          }
+          showCancel: false
         })
       }
     })

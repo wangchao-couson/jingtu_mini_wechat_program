@@ -1,24 +1,53 @@
+const teams = require('../../content/teams.js')
+const roles = require('../../content/roles.js')
+const site = require('../../content/site.js')
+
 Page({
-  data:{tab:'open',all:[],list:[]},
-  onLoad(){const e=wx.getStorageSync('jingtu_events')||[];this.setData({all:e});this.filter()},
-  onShow(){const e=wx.getStorageSync('jingtu_events')||[];this.setData({all:e});this.filter()},
-  switchTab(e){this.setData({tab:e.currentTarget.dataset.tab});this.filter()},
-  filter(){
-    const m={open:'registering',soon:'upcoming',done:'finished'};
-    const faceMap={1:['阿','山','墨','雨','S'],2:['小','大','墨','雨','A'],3:['A','鱼','大','S'],4:['山','阿','老'],5:['阿','墨','S','大'],6:['小','老','鱼','A','大']};
-    const templateMap={
-      1:{type:'trail',label:'古道徒步',tone:'forest'},
-      2:{type:'camp',label:'星空露营',tone:'night'},
-      3:{type:'ride',label:'湖畔骑行',tone:'lake'},
-      4:{type:'climb',label:'长城进阶',tone:'stone'},
-      5:{type:'night',label:'城市夜爬',tone:'ember'},
-      6:{type:'grass',label:'草原周末',tone:'field'}
-    };
-    let l=this.data.all.filter(x=>x.status===m[this.data.tab]).map(e=>({
-      ...e,
-      faceList:faceMap[e.id]||['阿','小','大'].slice(0,3),
-      template:templateMap[e.id]||{type:'trail',label:'京途活动',tone:'forest'}
-    }));
-    this.setData({list:l})
+  data: { tab: 'open', all: [], list: [], hero: site.discoverHero },
+
+  onLoad() {
+    this.setData({ all: this.decorateTeams(teams) })
+    this.filter()
+  },
+
+  onShow() {
+    this.setData({ all: this.decorateTeams(teams) })
+    this.filter()
+  },
+
+  switchTab(e) {
+    this.setData({ tab: e.currentTarget.dataset.tab })
+    this.filter()
+  },
+
+  decorateTeams(items) {
+    const roleMap = roles.reduce((map, role) => {
+      map[role.id] = role
+      return map
+    }, {})
+    const faceMap = {
+      'team-haituo-camp': ['小', '鹿', '墨', '雨', 'S'],
+      'team-jingxi-trail': ['阿', '山', '墨', '雨'],
+      'team-yanqi-ride': ['A', '鱼', '大', 'S'],
+      'team-jiankou-greatwall': ['山', '阿', '老'],
+      'team-bashang-memory': ['小', '老', '鱼', 'A']
+    }
+    return items.map(team => {
+      const faceList = faceMap[team.id] || ['京', '途', '山']
+      const currentCount = parseInt((team.peopleText || '').split('/')[0], 10) || faceList.length
+      return {
+        ...team,
+        leader: roleMap[team.leaderId] || {},
+        faceList,
+        extraPeopleText: Math.max(currentCount - faceList.length, 0),
+        template: { label: team.kind || '京途队伍', tone: team.status === 'finished' ? 'field' : 'forest' }
+      }
+    })
+  },
+
+  filter() {
+    const statusMap = { open: 'registering', soon: 'upcoming', done: 'finished' }
+    const list = this.data.all.filter(team => team.status === statusMap[this.data.tab])
+    this.setData({ list })
   }
 })
