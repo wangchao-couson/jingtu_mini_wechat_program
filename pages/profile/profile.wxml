@@ -35,7 +35,7 @@
       <view class="flex-1"><view class="fs-28 font-bold">{{item.name}}</view><view class="fs-22 text-gray">{{item.bio}}</view></view>
       <text class="mp-comp-count">{{item.count}}次</text>
     </view>
-    <view class="empty-text fs-22" wx:if="{{topCompanions.length===0}}" style="padding:16rpx 0">还没有一起出行的同学</view>
+    <view class="empty-text fs-22" wx:if="{{topCompanions.length===0}}" style="padding:16rpx 0">还没有同行者记录</view>
   </view>
 
   <view class="detail-section">
@@ -49,23 +49,23 @@
   </view>
 
   <view class="detail-section">
-    <view class="detail-title">📋 我的咨询 ({{participations.length}})</view>
+    <view class="detail-title">我关注的出发 ({{participations.length}})</view>
     <block wx:if="{{participations.length===0}}">
-      <view class="empty-text fs-22" style="padding:12rpx 0">还没有咨询记录</view>
+      <view class="empty-text fs-22" style="padding:12rpx 0">还没有关注的出发</view>
     </block>
     <block wx:else>
       <view class="mp-join" wx:for="{{participations}}" wx:key="id">
       <image src="{{item.eventCover}}" mode="aspectFill" class="mp-join-img"/>
       <view class="flex-1"><view class="fs-26 font-bold">{{item.eventTitle}}</view><view class="fs-22 text-light">{{item.eventDate}}</view></view>
-      <text class="status-tag status-open">已咨询</text>
+      <text class="status-tag status-open">已关注</text>
       </view>
     </block>
   </view>
 
   <view class="detail-section">
-    <view class="detail-title">⚙️</view>
-    <view class="mp-setting" bindtap="editProfile">✏️ 编辑资料</view>
-    <view class="mp-setting" bindtap="showAbout">ℹ️ 关于京途</view>
+    <view class="detail-title">更多</view>
+    <view class="mp-setting" bindtap="editProfile">编辑资料</view>
+    <view class="mp-setting" bindtap="showAbout">关于京途</view>
   </view>
   <view style="height:40rpx"></view>
 </view>

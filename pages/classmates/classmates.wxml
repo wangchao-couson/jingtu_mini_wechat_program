@@ -1,6 +1,5 @@
 <view class="cm-page">
   <view class="mini-status">
-    <text>9:41</text>
     <text>我们</text>
     <view class="capsule">···</view>
   </view>
@@ -33,7 +32,7 @@
       <view class="people-title">京途同学</view>
       <view class="people-sub">有趣的人，一起去探索世界。</view>
     </view>
-    <view class="people-more">全部同学 ></view>
+    <view class="people-more" bindtap="showAllClassmates">全部同学 ></view>
   </view>
 
   <scroll-view scroll-x class="people-scroll" show-scrollbar="{{false}}">

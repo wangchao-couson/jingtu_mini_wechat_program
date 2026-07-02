@@ -9,8 +9,8 @@ Page({
     list: [],
     hero: site.discoverHero,
     routeIdeas: [
-      { title: '阿那亚', recommender: 'CC 推荐', reason: '适合周末放松、拍照、看海。', cover: '/assets/images/trips/preview-15.jpg', count: 12, status: '收集中' },
-      { title: '玉渡山', recommender: '京途领队推荐', reason: '北京周边稳定徒步路线，适合新人。', cover: '/assets/images/trips/preview-07.jpg', count: 18, status: '可成行' }
+      { title: '阿那亚', recommender: 'CC 推荐', reason: '适合周末放松、拍照、看海。', cover: '/content/images/magazine-grassland.jpg', count: 12, status: '收集中' },
+      { title: '玉渡山', recommender: '京途领队推荐', reason: '北京周边稳定徒步路线，适合新人。', cover: '/content/images/magazine-mountain.jpg', count: 18, status: '可成行' }
     ]
   },
 
@@ -27,6 +27,19 @@ Page({
   switchTab(e) {
     this.setData({ tab: e.currentTarget.dataset.tab })
     this.filter()
+  },
+
+  showRecommend() {
+    wx.showToast({ title: '路线推荐入口稍后开放', icon: 'none' })
+  },
+
+  showAllActivities() {
+    wx.showToast({ title: '下方已展示活动入口', icon: 'none' })
+  },
+
+  previewRoute(e) {
+    const title = e.currentTarget.dataset.title || '路线'
+    wx.showToast({ title: title + '详情稍后开放', icon: 'none' })
   },
 
   decorateTeams(items) {

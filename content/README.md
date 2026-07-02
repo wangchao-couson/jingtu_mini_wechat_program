@@ -25,7 +25,7 @@
 打开 `teams.js`，复制一个队伍对象，修改：
 
 - `id`：保持唯一，例如 `team-haituo-camp`。
-- `status`：`registering` 招募中，`upcoming` 即将开始，`finished` 已结束。
+- `status`：`registering` 正在出发，`upcoming` 活动预告，`finished` 故事回顾。
 - `cover`：封面图路径，建议使用实景图。
 - `leaderId`：对应 `roles.js` 里的角色 id。
 - `wechat`：咨询微信，页面只展示“咨询”。

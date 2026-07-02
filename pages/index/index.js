@@ -19,5 +19,11 @@ Page({
 
   loadStories() {
     this.setData({ stories })
+  },
+
+  openFirstStory() {
+    const first = this.data.stories[0]
+    if (!first) return
+    wx.navigateTo({ url: '/pages/story/story?id=' + first.id })
   }
 })

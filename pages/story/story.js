@@ -14,5 +14,9 @@ Page({
     ]
     this.setData({ story, media })
     wx.setNavigationBarTitle({ title: story.title })
+  },
+
+  showMediaPreview(e) {
+    wx.showToast({ title: e.currentTarget.dataset.type === 'video' ? '视频素材稍后上线' : '正在预览照片', icon: 'none' })
   }
 })

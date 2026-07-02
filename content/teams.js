@@ -4,7 +4,7 @@ module.exports = [
     title: '海坨山星空露营队',
     kind: '星空露营',
     status: 'registering',
-    cover: '/assets/images/trips/preview-04.jpg',
+    cover: '/content/images/magazine-camp.jpg',
     date: '7月12-13日',
     duration: '2天1夜',
     location: '北京 · 延庆',
@@ -22,8 +22,8 @@ module.exports = [
     ],
     includes: ['领队服务', '露营建议', '路线说明', '摄影记录'],
     gallery: [
-      '/assets/images/trips/preview-04.jpg',
-      '/assets/images/trips/preview-05.jpg',
+      '/content/images/magazine-camp.jpg',
+      '/content/images/magazine-mountain.jpg',
       '/assets/images/trips/preview-11.jpg'
     ]
   },
@@ -32,7 +32,7 @@ module.exports = [
     title: '京西古道文化徒步队',
     kind: '古道徒步',
     status: 'registering',
-    cover: '/assets/images/trips/preview-01.jpg',
+    cover: '/content/images/magazine-mountain.jpg',
     date: '7月5日',
     duration: '1天',
     location: '北京 · 门头沟',
@@ -50,7 +50,7 @@ module.exports = [
     ],
     includes: ['路线说明', '新人照顾', '基础户外建议', '队伍照片'],
     gallery: [
-      '/assets/images/trips/preview-01.jpg',
+      '/content/images/magazine-mountain.jpg',
       '/assets/images/trips/preview-02.jpg',
       '/assets/images/trips/preview-03.jpg'
     ]
@@ -60,7 +60,7 @@ module.exports = [
     title: '雁栖湖环湖骑行队',
     kind: '湖畔骑行',
     status: 'upcoming',
-    cover: '/assets/images/trips/preview-06.jpg',
+    cover: '/content/images/magazine-grassland.jpg',
     date: '7月6日',
     duration: '半天',
     location: '北京 · 怀柔',
@@ -78,7 +78,7 @@ module.exports = [
     ],
     includes: ['骑行路线', '安全提醒', '照片记录', '新同学照顾'],
     gallery: [
-      '/assets/images/trips/preview-06.jpg',
+      '/content/images/magazine-grassland.jpg',
       '/assets/images/trips/preview-07.jpg',
       '/assets/images/trips/preview-13.jpg'
     ]
@@ -88,7 +88,7 @@ module.exports = [
     title: '箭扣长城进阶队',
     kind: '长城进阶',
     status: 'upcoming',
-    cover: '/assets/images/trips/preview-08.jpg',
+    cover: '/content/images/magazine-mountain.jpg',
     date: '7月19日',
     duration: '1天',
     location: '北京 · 怀柔',
@@ -106,7 +106,7 @@ module.exports = [
     ],
     includes: ['路线评估', '装备建议', '队伍控速', '安全预案'],
     gallery: [
-      '/assets/images/trips/preview-08.jpg',
+      '/content/images/magazine-mountain.jpg',
       '/assets/images/trips/preview-14.jpg',
       '/assets/images/trips/preview-09.jpg'
     ]
@@ -116,7 +116,7 @@ module.exports = [
     title: '坝上草原回忆队',
     kind: '活动故事',
     status: 'finished',
-    cover: '/assets/images/trips/preview-10.jpg',
+    cover: '/content/images/magazine-grassland.jpg',
     date: '6月28-29日',
     duration: '2天1夜',
     location: '河北 · 丰宁',
@@ -132,7 +132,7 @@ module.exports = [
     ],
     includes: ['活动记录', '摄影作品', '队伍故事'],
     gallery: [
-      '/assets/images/trips/preview-10.jpg',
+      '/content/images/magazine-grassland.jpg',
       '/assets/images/trips/preview-11.jpg',
       '/assets/images/trips/preview-12.jpg'
     ]

@@ -10,7 +10,7 @@
 
   <view class="detail-section">
     <view class="flex gap-8 flex-wrap">
-      <text class="tag tag-cyan" wx:for="{{classmate.tags}}" wx:key="*this">{{item}}</text>
+      <text class="tag tag-teal" wx:for="{{classmate.tags}}" wx:key="*this">{{item}}</text>
     </view>
   </view>
 
@@ -30,6 +30,13 @@
 
   <view class="detail-section">
     <view class="detail-section-title">TA 的标签</view>
+    <view class="flex gap-8 flex-wrap">
+      <text class="tag tag-amber" wx:for="{{classmate.tags}}" wx:key="*this">{{item}}</text>
+    </view>
+  </view>
+
+  <view class="detail-section">
+    <view class="detail-section-title">联系方式</view>
     <view class="cd-contact">
       <text class="cd-contact-label">微信号</text>
       <view class="cd-contact-row">
@@ -40,7 +47,7 @@
   </view>
 
   <view class="cd-actions">
-    <button class="btn btn-primary flex-1" bindtap="copyWechat" wx:if="{{classmate.wechat}}">📱 复制微信号</button>
+    <button class="btn btn-primary flex-1" bindtap="copyWechat" wx:if="{{classmate.wechat}}">复制微信号</button>
   </view>
 </view>
 

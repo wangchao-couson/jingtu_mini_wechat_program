@@ -1,6 +1,5 @@
 <view class="disc-page">
   <view class="mini-status">
-    <text>9:41</text>
     <text>发现</text>
     <view class="capsule">···</view>
   </view>
@@ -20,11 +19,11 @@
       <view class="module-title">路线灵感池</view>
       <view class="module-sub">你想去的地方，也可能成为京途下一场活动。</view>
     </view>
-    <view class="module-more">我想推荐 ></view>
+    <view class="module-more" bindtap="showRecommend">我想推荐 ></view>
   </view>
 
   <scroll-view scroll-x class="idea-scroll" show-scrollbar="{{false}}">
-    <view class="idea-card" wx:for="{{routeIdeas}}" wx:key="title">
+    <view class="idea-card" wx:for="{{routeIdeas}}" wx:key="title" bindtap="previewRoute" data-title="{{item.title}}">
       <image src="{{item.cover}}" mode="aspectFill" class="idea-img"/>
       <view class="idea-mask"></view>
       <view class="idea-copy">
@@ -38,13 +37,13 @@
 
   <view class="module-head">
     <view class="module-title">活动入口</view>
-    <view class="module-more">全部活动 ></view>
+    <view class="module-more" bindtap="showAllActivities">全部活动 ></view>
   </view>
 
   <view class="disc-tabs">
-    <view class="disc-tab {{tab==='open'?'active':''}}" bindtap="switchTab" data-tab="open">招募中</view>
-    <view class="disc-tab {{tab==='soon'?'active':''}}" bindtap="switchTab" data-tab="soon">即将开始</view>
-    <view class="disc-tab {{tab==='done'?'active':''}}" bindtap="switchTab" data-tab="done">已结束</view>
+    <view class="disc-tab {{tab==='open'?'active':''}}" bindtap="switchTab" data-tab="open">正在出发</view>
+    <view class="disc-tab {{tab==='soon'?'active':''}}" bindtap="switchTab" data-tab="soon">活动预告</view>
+    <view class="disc-tab {{tab==='done'?'active':''}}" bindtap="switchTab" data-tab="done">故事回顾</view>
   </view>
 
   <view class="disc-list" wx:if="{{list.length>0}}">
@@ -56,7 +55,7 @@
         <view class="disc-capacity">{{item.peopleText}} 人</view>
       </view>
       <view class="disc-body">
-        <view class="disc-badge-row"><text class="status-tag {{item.status==='registering'?'status-open':item.status==='upcoming'?'status-soon':'status-done'}}">{{item.status==='registering'?'招募中':item.status==='upcoming'?'即将开始':'已结束'}}</text></view>
+        <view class="disc-badge-row"><text class="status-tag {{item.status==='registering'?'status-open':item.status==='upcoming'?'status-soon':'status-done'}}">{{item.status==='registering'?'正在出发':item.status==='upcoming'?'活动预告':'故事回顾'}}</text></view>
         <view class="disc-title">{{item.title}}</view>
         <view class="disc-meta"><text>{{item.date}}</text><text>{{item.location}}</text><text>{{item.distance}}</text></view>
         <view class="disc-faces">

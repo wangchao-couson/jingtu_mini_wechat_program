@@ -1,12 +1,11 @@
 <view class="stories-page">
   <view class="mini-status" style="padding-top:{{statusBarHeight}}px">
-    <text>9:41</text>
     <text>故事</text>
     <view class="capsule">···</view>
   </view>
 
-  <view class="story-hero">
-    <image src="/assets/images/trips/preview-10.jpg" mode="aspectFill" class="story-hero-img"/>
+  <view class="story-hero" bindtap="openFirstStory">
+    <image src="/content/images/magazine-grassland.jpg" mode="aspectFill" class="story-hero-img"/>
     <view class="story-hero-mask"></view>
     <view class="play-btn">▶</view>
     <view class="story-hero-copy">

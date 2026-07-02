@@ -11,7 +11,7 @@ module.exports = {
     eyebrow: 'DISCOVER',
     title: '发现下一站',
     subtitle: '活动报名、预告、路线灵感池、回顾，都在这里。',
-    cover: '/assets/images/trips/preview-13.jpg'
+    cover: '/content/images/magazine-mountain.jpg'
   },
   consultation: {
     title: '微信咨询',

@@ -11,7 +11,7 @@
   </view>
 
   <view class="media-flow">
-    <view class="media-item" wx:for="{{media}}" wx:key="label">
+    <view class="media-item" wx:for="{{media}}" wx:key="label" bindtap="showMediaPreview" data-type="{{item.type}}">
       <image src="{{item.url}}" mode="aspectFill" class="media-img"/>
       <view class="media-label">{{item.label}}</view>
       <view class="media-play" wx:if="{{item.type==='video'}}">▶</view>
@@ -27,5 +27,5 @@
   </view>
 
   <view class="next-story">继续看下一段故事</view>
-  <view class="sd-bottom">第{{story.peopleCount}}位同学的故事 · ♡ {{story.photoCount}} · 分享</view>
+  <view class="sd-bottom">{{story.peopleCount}}位同学的故事 · ♡ {{story.photoCount}} · 分享</view>
 </view>

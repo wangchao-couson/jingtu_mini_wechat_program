@@ -15,4 +15,8 @@
 cover: '/content/images/team-haituo-cover.jpg'
 ```
 
-当前第一版仍复用 `/assets/images/trips/` 里的示例实景图。
+当前第一版主要使用本目录的 `magazine-*.jpg` 统一杂志风占位素材。
+
+## 当前素材
+
+`magazine-*.jpg` 为从 Unsplash 图片服务下载的真实户外/人物图片，用作 V1.0 体验版统一杂志风占位素材。后续正式上线前建议替换为京途真实活动素材或确认授权范围的图片。

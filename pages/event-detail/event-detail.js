@@ -22,7 +22,7 @@ Page({
       return
     }
 
-    const statusText = event.status === 'registering' ? '招募中' : event.status === 'upcoming' ? '即将开始' : '已结束'
+    const statusText = event.status === 'registering' ? '正在出发' : event.status === 'upcoming' ? '活动预告' : '故事回顾'
     const detailItems = [
       { label: '日期', value: event.date },
       { label: '时长', value: event.duration },
