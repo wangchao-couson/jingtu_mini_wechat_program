@@ -1,17 +1,17 @@
-/* 京途 v4 · 山野同学录 */
+/* 京途 App Design 1.0 */
 page {
-  --primary: #1F6B52;
-  --primary-dark: #124838;
-  --accent: #D97742;
-  --accent-soft: #F1B36D;
+  --primary: #2E5E4E;
+  --primary-dark: #1D3F34;
+  --accent: #E58A4B;
+  --accent-soft: #F0B174;
   --mint: #4FAF93;
   --mint-light: #DDF1EA;
-  --sky: #6C91A8;
+  --sky: #7FAFD4;
   --amber: #C9892F;
-  --bg: #F7F4EE;
+  --bg: #F7F5F1;
   --card: #FFFDF8;
   --text: #202722;
-  --text-secondary: #667067;
+  --text-secondary: #5F646D;
   --text-light: #9AA298;
   --border: #E8E1D4;
   --border-light: #F0E9DC;
@@ -57,7 +57,7 @@ page {
 .status-soon{background:rgba(217,119,66,0.1);color:var(--accent)}
 .status-done{background:rgba(32,39,34,0.06);color:var(--text-light)}
 
-.avatar{width:72rpx;height:72rpx;border-radius:50%;background:linear-gradient(135deg,var(--primary),#6C91A8);color:#fff;display:flex;align-items:center;justify-content:center;font-size:28rpx;font-weight:700;flex-shrink:0}
+.avatar{width:72rpx;height:72rpx;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--sky));color:#fff;display:flex;align-items:center;justify-content:center;font-size:28rpx;font-weight:700;flex-shrink:0}
 .avatar-sm{width:52rpx;height:52rpx;font-size:22rpx}
 .avatar-lg{width:96rpx;height:96rpx;font-size:36rpx}
 .avatar-xl{width:120rpx;height:120rpx;font-size:44rpx}
@@ -73,7 +73,7 @@ page {
 .empty-text{font-size:26rpx;color:var(--text-light)}
 
 .slogan-banner{
-  background:linear-gradient(135deg,#1F6B52,#6C91A8);
+  background:linear-gradient(135deg,#2E5E4E,#7FAFD4);
   color:#fff;text-align:center;padding:32rpx 24rpx;
   font-size:26rpx;letter-spacing:1rpx;line-height:1.8;
   border-radius:var(--radius-xl);margin:20rpx 24rpx;
@@ -85,3 +85,7 @@ page {
 .slogan-highlight{font-weight:700;color:#FFE0A0}
 .text-teal,.t-teal{color:var(--primary)}
 .text-amber{color:var(--amber)}
+
+.jt-top{padding:24rpx 28rpx 18rpx;background:rgba(255,253,248,0.9);border-bottom:1rpx solid var(--border-light)}
+.jt-brand{font-size:34rpx;font-weight:900;letter-spacing:3rpx;color:var(--text)}
+.jt-line{font-size:24rpx;color:var(--text-secondary);margin-top:4rpx}

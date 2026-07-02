@@ -1,5 +1,13 @@
 Page({
   data: {
+    dailyLine: '因为一次活动，认识了一群人。',
+    networkNodes: [
+      { name: 'Carson', role: '共创', x: 48, y: 12 },
+      { name: 'CC', role: '路线灵感', x: 18, y: 42 },
+      { name: '老王', role: '故事', x: 68, y: 42 },
+      { name: '小鹿', role: '摄影', x: 35, y: 72 },
+      { name: '阿杰', role: '领队', x: 78, y: 74 }
+    ],
     allClassmates: [],
     filteredClassmates: [],
     totalCount: 0,

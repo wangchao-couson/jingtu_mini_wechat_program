@@ -1,6 +1,6 @@
 .mp-page{background:var(--bg);padding-bottom:40rpx}
 .mp-nav{background:#fff;padding-bottom:40rpx;text-align:center;border-bottom:1rpx solid var(--border-light)}
-.mp-nav-title{font-size:30rpx;font-weight:600;color:var(--text)}
+.mp-nav-title{font-size:34rpx;font-weight:900;color:var(--text);letter-spacing:3rpx}
 .mp-nav-sub{font-size:22rpx;color:var(--text-light);margin-top:2rpx}
 .mp-hero{margin:24rpx 24rpx 16rpx;background:var(--card);border-radius:var(--radius-xl);padding:28rpx 32rpx 24rpx;text-align:center;box-shadow:var(--shadow-md)}
 .mp-name{font-size:32rpx;font-weight:700;margin-bottom:4rpx}
@@ -24,6 +24,7 @@
 .mp-memory-label{font-size:20rpx;letter-spacing:3rpx;opacity:0.6;margin-bottom:10rpx;position:relative;z-index:1}
 .mp-memory-word{font-size:26rpx;font-weight:600;line-height:1.6;position:relative;z-index:1}
 .mp-memory-meta{font-size:22rpx;opacity:0.55;margin-top:10rpx;position:relative;z-index:1}
+.mp-story-chip{display:inline-block;margin:14rpx 10rpx 0 0;padding:10rpx 18rpx;border-radius:999rpx;background:rgba(46,94,78,.08);color:var(--primary);font-size:24rpx;font-weight:800}
 
 .mp-footprint{text-align:center;padding:26rpx;background:var(--bg);border-radius:var(--radius)}
 .mp-fp-icon{font-size:42rpx;display:block;margin-bottom:6rpx}

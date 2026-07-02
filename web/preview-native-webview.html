@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>京途 · Native + WebView 预览</title>
+<title>京途 App Design 1.0</title>
 <style>
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#161914;color:#202722;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased}
 button{font:inherit;color:inherit}img{display:block;width:100%;height:100%;object-fit:cover}
-:root{--green:#1f6b52;--deep:#10291f;--orange:#d97742;--sand:#f7f0e4;--paper:#fffdf8;--muted:#727a70;--line:#e8ddcb;--sky:#6c91a8}
-.stage{min-height:100vh;padding:28px 18px 36px;background:radial-gradient(circle at 15% 10%,rgba(217,119,66,.16),transparent 28%),radial-gradient(circle at 80% 0,rgba(108,145,168,.2),transparent 30%),#161914}
+:root{--green:#2E5E4E;--deep:#1D3F34;--orange:#E58A4B;--sand:#F7F5F1;--paper:#fffdf8;--muted:#5F646D;--line:#e8ddcb;--sky:#7FAFD4}
+.stage{min-height:100vh;padding:28px 18px 36px;background:radial-gradient(circle at 15% 10%,rgba(229,138,75,.16),transparent 28%),radial-gradient(circle at 80% 0,rgba(127,175,212,.2),transparent 30%),#161914}
 .top{max-width:1180px;margin:0 auto 20px;color:#fff;display:flex;align-items:flex-end;justify-content:space-between;gap:18px}
 .brand{font-size:13px;letter-spacing:.28em;color:rgba(255,255,255,.58);font-weight:800}.top h1{margin:6px 0 6px;font-size:32px;line-height:1.08;letter-spacing:0}.top p{margin:0;color:rgba(255,255,255,.68);font-size:14px;line-height:1.7;max-width:620px}.pill-note{border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.08);border-radius:999px;padding:9px 14px;color:rgba(255,255,255,.72);font-size:13px;white-space:nowrap}
 .layout{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:390px 1fr;gap:22px;align-items:start}
@@ -27,11 +27,11 @@ button{font:inherit;color:inherit}img{display:block;width:100%;height:100%;objec
 <main class="stage">
   <header class="top">
     <div>
-      <div class="brand">JINGTU PREVIEW</div>
-      <h1>Native 壳 + 可配置炫酷页面</h1>
-      <p>没有 HTTPS 域名时，先用小程序 native 模板承载正式版；这个网页用于快速预览视觉和内容结构。正式页只保留咨询微信，不做报名、支付或交易闭环。</p>
+      <div class="brand">JINGTU APP DESIGN 1.0</div>
+      <h1>青年探索纪念册</h1>
+      <p>京途不是活动报名工具，而是一部不断生长的青年探索纪念册。记录故事、同路人、路线灵感、共创和回忆。</p>
     </div>
-    <div class="pill-note">适合体验版快速看效果，也方便后续接 WebView</div>
+    <div class="pill-note">Native 快速上线，配置驱动迭代</div>
   </header>
 
   <section class="layout">
@@ -51,24 +51,24 @@ button{font:inherit;color:inherit}img{display:block;width:100%;height:100%;objec
       <div class="desk-card">
         <h3>预览切换</h3>
         <div class="switcher">
-          <button class="choice active" data-view="discover"><b>发现列表</b><span>活动卡片模板</span></button>
-          <button class="choice" data-view="team"><b>队伍主页</b><span>仅咨询领队</span></button>
-          <button class="choice" data-view="leader"><b>领队主页</b><span>资历与路线</span></button>
-          <button class="choice" data-view="photo"><b>摄影师主页</b><span>作品集展示</span></button>
+          <button class="choice active" data-view="discover"><b>发现</b><span>探索与灵感</span></button>
+          <button class="choice" data-view="team"><b>队伍</b><span>下一段故事</span></button>
+          <button class="choice" data-view="leader"><b>领队</b><span>贡献与路线</span></button>
+          <button class="choice" data-view="photo"><b>摄影师</b><span>回忆记录者</span></button>
         </div>
       </div>
       <div class="desk-card">
-        <h3>为什么这样做</h3>
+        <h3>JHIG 1.0 原则</h3>
         <ul>
-          <li>正式版先不用远程 web-view，规避没有 HTTPS 业务域名的问题。</li>
-          <li>炫酷视觉做成模板，数据从配置读取，后续改图、改文案、换角色很快。</li>
-          <li>页面只展示领队、摄影师、志愿者身份与微信咨询，降低审核敏感度。</li>
-          <li>等域名准备好，同一套内容可以迁移到 WebView 远程专题页。</li>
+          <li>像苹果相册、国家地理和一本青年同学录。</li>
+          <li>故事优先，活动只是故事开始的地方。</li>
+          <li>记录贡献，不做排名、刺激体系和强社交。</li>
+          <li>Native 模板先上线，后续内容通过配置文件夹更新。</li>
         </ul>
       </div>
       <div class="desk-card">
-        <h3>审核友好文案基调</h3>
-        <p>把“报名入口”改为“咨询领队”，把“立即加入”改为“添加微信了解行程”。页面强调真实户外记录、队伍介绍、领队资历、摄影作品和安全提示。</p>
+        <h3>文案基调</h3>
+        <p>不写报名、抢购和支付。写“今天适合去看山”“下一次故事，也许就在周末开始”“有时候记住的不是风景，而是一起笑的人”。</p>
       </div>
     </aside>
   </section>
@@ -105,7 +105,7 @@ function discover(){
   document.getElementById("nativeTitle").textContent = "京途发现";
   setConsult(currentTeam.leader,currentTeam.wechat,"领队");
   return `<div class="tabs"><button class="tab active">招募中</button><button class="tab">即将开始</button><button class="tab">故事</button></div>
-    <div class="hero"><img src="${img("preview-13.jpg")}" alt=""><div class="hero-copy"><span class="eyebrow">THIS WEEK</span><h2>周末进山，和靠谱的人一起</h2><p>活动不设线上报名入口，添加领队微信咨询行程、装备和集合安排。</p></div></div>
+    <div class="hero"><img src="${img("preview-13.jpg")}" alt=""><div class="hero-copy"><span class="eyebrow">THIS WEEK</span><h2>周末进山，和靠谱的人一起</h2><p>添加领队微信咨询行程、装备和集合安排。</p></div></div>
     <div class="section">${teams.map(teamCard).join("")}</div>`;
 }
 function team(id){

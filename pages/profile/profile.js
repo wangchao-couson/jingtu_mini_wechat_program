@@ -1,6 +1,13 @@
 Page({
   data:{
     statusBarHeight:20,user:{},participations:[],topCompanions:[],
+    yearStats:[
+      {num:18,label:'活动'},
+      {num:43,label:'认识的人'},
+      {num:'2200km',label:'探索距离'},
+      {num:5,label:'共创'}
+    ],
+    myStories:['第一次参加','第一次露营','第一次摄影','第一次建议被采纳'],
     visitedPlaces:['北京·门头沟','北京·延庆','北京·怀柔','河北·丰宁'],
     memoryText:'那晚星空下，我们裹着睡袋聊了一个通宵',
     memoryMeta:'2026年6月 · 海坨山 · 和小鹿、大牛、墨墨一起'

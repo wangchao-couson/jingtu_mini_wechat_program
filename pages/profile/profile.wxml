@@ -1,7 +1,7 @@
 <view class="mp-page">
   <view class="mp-nav" style="padding-top:{{statusBarHeight}}px">
-    <view class="mp-nav-title">我的京途档案</view>
-    <view class="mp-nav-sub">2026.3 加入</view>
+    <view class="mp-nav-title">京途</view>
+    <view class="mp-nav-sub">去过山，也遇见了很多人。</view>
   </view>
 
   <view class="mp-hero">
@@ -14,16 +14,14 @@
   </view>
 
   <view class="detail-section">
-    <view class="detail-title">我的户外足迹</view>
-    <view class="mp-stats">
-      <view class="mp-stat"><text class="mp-stat-num">{{user.totalEvents||0}}</text><text class="mp-stat-label">参加次数</text></view>
-      <view class="mp-stat"><text class="mp-stat-num teal">{{user.totalKm||0}}</text><text class="mp-stat-label">累计公里</text></view>
-      <view class="mp-stat"><text class="mp-stat-num mint">{{user.totalDays||0}}</text><text class="mp-stat-label">累计天数</text></view>
+    <view class="detail-title">今年数据</view>
+    <view class="mp-stats year-stats">
+      <view class="mp-stat" wx:for="{{yearStats}}" wx:key="label"><text class="mp-stat-num">{{item.num}}</text><text class="mp-stat-label">{{item.label}}</text></view>
     </view>
   </view>
 
   <view class="detail-section">
-    <view class="detail-title">🤝 最常同行</view>
+    <view class="detail-title">我的同行者</view>
     <view class="mp-comp" wx:for="{{topCompanions}}" wx:key="id">
       <view class="avatar">{{item.name[0]}}</view>
       <view class="flex-1"><view class="fs-28 font-bold">{{item.name}}</view><view class="fs-22 text-gray">{{item.bio}}</view></view>
@@ -33,16 +31,17 @@
   </view>
 
   <view class="detail-section">
-    <view class="detail-title">✨ 京途回忆</view>
+    <view class="detail-title">我的故事</view>
     <view class="mp-memory">
       <view class="mp-memory-label">✦ 时光机</view>
       <view class="mp-memory-word">"{{memoryText}}"</view>
       <view class="mp-memory-meta">{{memoryMeta}}</view>
     </view>
+    <view class="mp-story-chip" wx:for="{{myStories}}" wx:key="*this">{{item}}</view>
   </view>
 
   <view class="detail-section">
-    <view class="detail-title">🗺️ 足迹地图</view>
+    <view class="detail-title">足迹地图</view>
     <view class="mp-footprint">
       <text class="mp-fp-icon">📍</text>
       <text class="mp-fp-text">已点亮 {{visitedPlaces.length}} 个地方</text>

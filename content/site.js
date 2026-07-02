@@ -1,9 +1,16 @@
 module.exports = {
   brand: '京途',
+  dailyLines: [
+    '今天适合去看山。',
+    '今天适合出发。',
+    '下一次故事，也许就在周末开始。',
+    '有时候记住的不是风景，而是一起笑的人。',
+    '因为一次活动，认识了一群人。'
+  ],
   discoverHero: {
-    eyebrow: 'JINGTU WEEKEND',
-    title: '周末进山，和靠谱的人一起',
-    subtitle: '活动不设线上报名入口，添加领队微信咨询行程、装备和集合安排。',
+    eyebrow: 'DISCOVER',
+    title: '下一段故事，从这里开始',
+    subtitle: '队伍、路线灵感、精选路线和共创日志，都在这里慢慢生长。',
     cover: '/assets/images/trips/preview-13.jpg'
   },
   consultation: {

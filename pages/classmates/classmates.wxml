@@ -1,10 +1,32 @@
 <view class="cm-page">
+  <view class="jt-top">
+    <view class="jt-brand">京途</view>
+    <view class="jt-line">{{dailyLine}}</view>
+  </view>
+
+  <view class="we-hero">
+    <view class="we-kicker">WE</view>
+    <view class="we-title">我们</view>
+    <view class="we-sub">一起走过的人，会慢慢长成一张关系地图。</view>
+  </view>
+
+  <view class="network-card">
+    <view class="network-line line-a"></view>
+    <view class="network-line line-b"></view>
+    <view class="network-line line-c"></view>
+    <view class="network-node" wx:for="{{networkNodes}}" wx:key="name" style="left:{{item.x}}%;top:{{item.y}}%">
+      <view class="network-dot">{{item.name[0]}}</view>
+      <view class="network-name">{{item.name}}</view>
+      <view class="network-role">{{item.role}}</view>
+    </view>
+  </view>
+
   <view class="cm-header">
     <view class="cm-search-box">
       <text class="cm-search-icon">🔍</text>
-      <input placeholder="搜索同学..." bindinput="onSearch" class="cm-search-input"/>
+      <input placeholder="搜索一起走过的人..." bindinput="onSearch" class="cm-search-input"/>
     </view>
-    <view class="cm-count">已有 <text class="text-teal font-bold">{{totalCount}}</text> 位京途同学</view>
+    <view class="cm-count">已有 <text class="text-teal font-bold">{{totalCount}}</text> 位同路人</view>
   </view>
 
   <scroll-view scroll-x class="tag-scroll" show-scrollbar="{{false}}">
@@ -23,13 +45,13 @@
         <view class="cm-tags flex gap-6 flex-wrap">
           <text class="tag tag-teal" wx:for="{{item.tags}}" wx:key="*this">{{item}}</text>
         </view>
-        <view class="cm-stats">🏔️ {{item.eventCount}}次活动<text wx:if="{{item.commonEvents>0}}" class="cm-common"> · 🤝 同行{{item.commonEvents}}次</text></view>
+        <view class="cm-stats">贡献：{{item.tags[0] || '同行'}}<text wx:if="{{item.commonEvents>0}}" class="cm-common"> · 同行{{item.commonEvents}}次</text></view>
       </view>
       <text class="cm-arrow">→</text>
     </navigator>
   </view>
 
   <view class="empty-state" wx:if="{{filteredClassmates.length===0}}">
-    <view class="empty-icon">👥</view><view class="empty-text">没有找到匹配的同学</view>
+    <view class="empty-icon">👥</view><view class="empty-text">没有找到匹配的同路人</view>
   </view>
 </view>

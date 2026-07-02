@@ -3,7 +3,18 @@ const roles = require('../../content/roles.js')
 const site = require('../../content/site.js')
 
 Page({
-  data: { tab: 'open', all: [], list: [], hero: site.discoverHero },
+  data: {
+    tab: 'open',
+    all: [],
+    list: [],
+    hero: site.discoverHero,
+    discoveryBlocks: [
+      { title: '活动', sub: '正在出发 · 即将发布 · 咨询中', type: 'activity' },
+      { title: '路线灵感池', sub: '阿那亚 · 18人想去 · 收集中', type: 'idea' },
+      { title: '精选路线', sub: '北京 · 河北 · 内蒙 · 青海', type: 'route' },
+      { title: '共创日志', sub: 'CC 建议上线路线灵感池 · 已采纳', type: 'log' }
+    ]
+  },
 
   onLoad() {
     this.setData({ all: this.decorateTeams(teams) })

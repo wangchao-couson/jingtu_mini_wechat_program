@@ -31,7 +31,7 @@
       },
       {
         "pagePath": "pages/classmates/classmates",
-        "text": "同学",
+        "text": "我们",
         "iconPath": "assets/tab-classmates.png",
         "selectedIconPath": "assets/tab-classmates-active.png"
       },

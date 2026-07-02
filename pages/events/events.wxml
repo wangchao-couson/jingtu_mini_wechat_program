@@ -9,6 +9,13 @@
     </view>
   </view>
 
+  <view class="discover-grid">
+    <view class="discover-block {{item.type}}" wx:for="{{discoveryBlocks}}" wx:key="title">
+      <view class="discover-title">{{item.title}}</view>
+      <view class="discover-sub">{{item.sub}}</view>
+    </view>
+  </view>
+
   <view class="disc-tabs">
     <view class="disc-tab {{tab==='open'?'active':''}}" bindtap="switchTab" data-tab="open">招募中</view>
     <view class="disc-tab {{tab==='soon'?'active':''}}" bindtap="switchTab" data-tab="soon">即将开始</view>
